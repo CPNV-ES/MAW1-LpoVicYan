@@ -3,7 +3,7 @@
 ## Getting started
 
 1. Install **Git 2.37.2.2**
-<pre><code>choco install git --version=2.37.2.2</code></pre>
+<pre><code>choco install git --version=2.37.2.2 -y</code></pre>
 
 2. Install the latest version of Phpstorm
 <pre><code>choco install phpstorm</code></pre>
