@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: index.php
- * Author: LPOdev
+ * Author: LPO & VIC & YAN
  * Date: 29 August 2022
  * Version: 1.0
  */
@@ -21,6 +21,6 @@ switch ($action) {
         break;
 
     default:
-        require_once "view/manage_exercices.php";
+        require_once "view/index.php";
         break;
 }

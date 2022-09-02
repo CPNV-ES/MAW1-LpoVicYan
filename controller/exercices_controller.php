@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: exercices_controller.php
- * Author: LPOdev
+ * Author: LP & VIC & YAN
  * Date: 29 August 2022
  * Version: 1.0
  */
