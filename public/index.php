@@ -1,3 +1,12 @@
+<?php
+  /**
+ * Title: index.php
+ * Author: LPO & VIC & YAN
+ * Date: 5th September 2022
+ * Version: 1.0
+ */
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,14 +15,14 @@
 <meta name="csrf-token" content="b1FCaUTd6u9RY3IpgP44v2QxYoAWBNdCyjq7aK/es1tWUTzNl6vndtBe+z50FOx2Hwq8r/URODBkKc2Lp1Xzjg==" />
     
 
-    <link rel="stylesheet" media="all" href="/assets/application2.css" />
-    <script src="/assets/application.js"></script>
+    <link rel="stylesheet" media="all" href="/css/stylesheet.css" />
+    <script src="/js/js.js"></script>
   </head>
 
   <body>
     <header class="dashboard">
   <section class="container">
-    <p><img src="/view/logo.png" /></p>
+    <p><img src="/images/logo.png" /></p>
     <h1>Exercise<br>Looper</h1>
   </section>
 </header>
