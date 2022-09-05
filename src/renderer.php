@@ -31,17 +31,6 @@ function render($bag)
         // Expose data directly to the view
         $data = $bag['data'] ?? [];
         
-        if (array_key_exists('layout', $bag)) {
-            // The view has to be embedded in a layout, so render it in a buffer
-            ob_start();
-            include SOURCE_DIR.'/'.$bag['view'].'.php';
-            $content = ob_get_clean();
-            
-            // Finally render the layout by passing the $content variable
-            include SOURCE_DIR.'/'.$bag['layout'].'.php';
-        } else {
-            // Render bare view
-            include SOURCE_DIR.'/'.$bag['view'].'.php';
-        }
+        include SOURCE_DIR.'/'.$bag['view'].'.php';
     }
 }

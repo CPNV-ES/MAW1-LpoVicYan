@@ -8,7 +8,7 @@
 ?>
 <header class="heading results">
     <section class="container">
-        <a href="/"><img src="/public/images/logo.png" /></a>
+        <a href="/"><img src="/images/logo.png" /></a>
 
     </section>
 </header>
@@ -21,8 +21,8 @@
         <meta name="csrf-param" content="authenticity_token" />
         <meta name="csrf-token" content="O+X59+n+Wp5b5DLBIDzmTDhN8qo6qB/68gATK9xowo5EealHXwiiL5e8ZER+rE7XvO9q0Dj49PM0dlHBi5tEXg==" />
 
-        <link rel="stylesheet" media="all" href="/public/css/stylesheet.css" />
-        <script src="/public/js/js.js"></script>
+        <link rel="stylesheet" media="all" href="/css/stylesheet.css" />
+        <script src="/js/script.js"></script>
     </head>
 
     <body>

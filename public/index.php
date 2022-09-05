@@ -1,51 +1,53 @@
 <?php
-  /**
- * Title: index.php
- * Author: LPO & VIC & YAN
- * Date: 5th September 2022
- * Version: 1.0
- */
-?>
+//=============================================================================
+// Entry script for ooless framework web apps.
+// Author:  Pascal Hurni
+// Date:    03-05-2014
+//=============================================================================
+// Do not modify this file except to adapt the URL fetching for URL rewriting.
+// Fill up these files:
+//    src/dispatcher.php
+//    src/handler.php
+//    src/renderer.php
+//=============================================================================
 
-<!DOCTYPE html>
-<html>
-/**
- * Title: manage_exercices.php
- * Author: LPO & VIC & YAN
- * Date: 29 August 2022
- * Version: 1.0
- */
-  <head>
-    <title>ExerciseLooper</title>
-    <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="b1FCaUTd6u9RY3IpgP44v2QxYoAWBNdCyjq7aK/es1tWUTzNl6vndtBe+z50FOx2Hwq8r/URODBkKc2Lp1Xzjg==" />
-    
-    <link rel="stylesheet" media="all" href="/css/stylesheet.css" />
-    <script src="/js/js.js"></script>
-  </head>
+session_start();
 
-  <body>
-    <header class="dashboard">
-  <section class="container">
-    <p><img src="/images/logo.png" /></p>
-    <h1>Exercise<br>Looper</h1>
-  </section>
-</header>
+define('BASE_DIR', dirname( __FILE__ ).'/..');
+define('SOURCE_DIR', BASE_DIR.'/src');
 
-<div class="container dashboard">
-  <section class="row">
-    <div class="column">
-      <a class="button answering column" href="/exercises/answering">Take an exercise</a>
-    </div>
-    <div class="column">
-      <a class="button managing column" href="/exercises/new">Create an exercise</a>
-    </div>
-    <div class="column">
-      <a class="button results column" href="/exercises">Manage an exercise</a>
-    </div>
-  </section>
-</div>
+//=============================================================================
+// Create the BAG which will contain the request/response meta data
 
-  </body>
-</html>
+$bag = [];
 
+//=============================================================================
+// Extract the route from a friendly URL
+
+$route = $_SERVER["REQUEST_URI"];
+if (!empty($_SERVER["QUERY_STRING"])) {
+    $route = substr($route, 0, strlen($_SERVER["REQUEST_URI"])-strlen($_SERVER["QUERY_STRING"])-1);
+}
+
+$bag['route'] = $route;
+$bag['method'] = $_SERVER['REQUEST_METHOD'];
+
+error_log("index(): ".$bag['method']." ".$bag['route']);
+
+//=============================================================================
+// Dispatch the request
+
+require SOURCE_DIR.'/dispatcher.php';
+$bag = dispatch($bag);
+
+//=============================================================================
+// Call the handler
+
+require SOURCE_DIR.'/handler.php';
+$bag = handle($bag);
+
+//=============================================================================
+// Render the response
+
+require SOURCE_DIR.'/renderer.php';
+render($bag);

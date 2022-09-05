@@ -5,7 +5,7 @@
 // Date:    2022-08-27, 03-05-2014
 //=============================================================================
 
-require SOURCE_DIR.'/auth.php';
+//require SOURCE_DIR.'/auth.php';
 
 function handle($bag)
 {
@@ -13,7 +13,7 @@ function handle($bag)
     if (array_key_exists('status_code', $bag)) return $bag;
 
     // Pass the request to the auth layer
-    $bag = authorize($bag);
+    //$bag = authorize($bag);
 
     // Once again, short circuit if status_code defined by the auth layer
     if (array_key_exists('status_code', $bag)) return $bag;

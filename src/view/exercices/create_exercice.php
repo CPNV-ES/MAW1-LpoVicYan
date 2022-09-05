@@ -1,11 +1,12 @@
+<?php
+    /**
+    * Title: create.php
+    * Author: LPO & VIC & YAN
+    * Date: 29 august 2022
+    * Version: 1.0
+    */
+?>
 <html>
-/**
-* Title: manage_exercices.php
-* Author: LPO & VIC & YAN
-* Date: 29 august 2022
-* Version: 1.0
-*/
-
 <head>
     <title>ExerciseLooper</title>
     <meta name="csrf-param" content="authenticity_token">
@@ -13,19 +14,8 @@
         content="nUvnusYD+1qjb01guAZ9hA+VSy7MKipC1EiltIX5VJTGrpsti+mEKBVLguUqTHMy5gXJVsLmKZoec9c3y0I/pg==">
 
 
-    <link rel="stylesheet" media="all" href="public/css/stylesheet.css">
-    <script src="/public/js/js.js"></script>
-</head>
-
-<head>
-    <title>ExerciseLooper</title>
-    <meta name="csrf-param" content="authenticity_token">
-    <meta name="csrf-token"
-        content="nUvnusYD+1qjb01guAZ9hA+VSy7MKipC1EiltIX5VJTGrpsti+mEKBVLguUqTHMy5gXJVsLmKZoec9c3y0I/pg==">
-
-
-    <link rel="stylesheet" media="all" href="/public/css/stylesheet.css">
-    <script src="/public/js/js.js"></script>
+    <link rel="stylesheet" media="all" href="/css/stylesheet.css">
+    <script src="/js/script.js"></script>
 </head>
 
 <body>
@@ -50,10 +40,6 @@
         </section>
     </div>
 
-
-
 </body>
 
-</html>untitled C:\Users\Victorien.MONTAVON\PhpstormProjects\untitled
-External Libraries
-Scratches and Consoles
+</html>
