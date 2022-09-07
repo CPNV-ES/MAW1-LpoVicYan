@@ -1,11 +1,9 @@
 <?php
-//=============================================================================
-// Handler script for ooless web apps.
-// Author:  Pascal Hurni
-// Date:    2022-08-27, 03-05-2014
-//=============================================================================
-
-//require SOURCE_DIR.'/auth.php';
+/**
+ * Title: handler
+ * Author: Yann Menoud
+ * Version 1.0 from 7th September 2022
+ */
 
 function handle($bag)
 {

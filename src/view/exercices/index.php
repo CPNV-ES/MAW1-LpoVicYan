@@ -1,3 +1,10 @@
+<?php
+/**
+ * Title: index
+ * Author: Luís Pedro Pinheiro
+ * Version: 1.0 from 7th September 2022
+ */
+?>
 
 <header class="heading results">
   <section class="container">

@@ -1,9 +1,8 @@
 <?php
 /**
- * Title: exercices_controller.php
- * Author: LP & VIC & YAN
- * Date: 29 August 2022
- * Version: 1.0
+ * Title: exercices
+ * Author: Luís Pedro Pinheiro
+ * Version: 1.0 from 29th August 2022
  */
 
 function loadExercicesPage(){

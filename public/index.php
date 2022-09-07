@@ -1,15 +1,9 @@
 <?php
-//=============================================================================
-// Entry script for ooless framework web apps.
-// Author:  Pascal Hurni
-// Date:    03-05-2014
-//=============================================================================
-// Do not modify this file except to adapt the URL fetching for URL rewriting.
-// Fill up these files:
-//    src/dispatcher.php
-//    src/handler.php
-//    src/renderer.php
-//=============================================================================
+/**
+ * Title: index
+ * Author: Yann Menoud
+ * Version: 1.0 from 7th September 2022
+ */
 
 session_start();
 

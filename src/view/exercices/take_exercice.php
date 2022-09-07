@@ -1,4 +1,10 @@
-
+<?php
+/**
+ * Title: take_exercice
+ * Author: Victorien Montavon
+ * Version: 1.0 from 7th September 2022
+ */
+?>
 <header class="heading answering">
   <section class="container">
     <a href="/"><img src="/images/logo.png" /></a>

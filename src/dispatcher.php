@@ -1,14 +1,9 @@
 <?php
-//=============================================================================
-// Dispatcher script for ooless web apps.
-// Author:  Pascal Hurni
-// Date:    2022-08-27, 03-05-2014
-//=============================================================================
-
-//=============================================================================
-// Decode the given route and return the bag augmented with:
-//    handler        string  PHP file name that should handle this request (without php extension).
-//    status_code    int     HTTP code to return if already determined.
+/**
+ * Title: dispatcher
+ * Author: Yann Menoud
+ * Version: 1.0 from 7th September 2022
+ */
 
 function dispatch($bag)
 {

@@ -1,9 +1,9 @@
 <?php
-//=============================================================================
-// Renderer script for ooless web apps.
-// Author:  Pascal Hurni
-// Date:    2022-08-27, 03-05-2014
-//=============================================================================
+/**
+ * Title: renderer
+ * Author: Yann Menoud
+ * Version: 1.0 from 7th September 2022
+ */
 
 // This function will send out the headers and the body of the response, it does not return any value.
 function render($bag)

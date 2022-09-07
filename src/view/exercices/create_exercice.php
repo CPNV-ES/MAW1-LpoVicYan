@@ -1,9 +1,8 @@
 <?php
     /**
-    * Title: create.php
-    * Author: LPO & VIC & YAN
-    * Date: 29 august 2022
-    * Version: 1.0
+    * Title: create
+    * Author: Victorien Montavon
+    * Version: 1.0 from 29th August 2022
     */
 ?>
 <html>
