@@ -27,7 +27,7 @@ function dispatch($bag)
     }
         //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/create_questions$/', $bag['route'], $matches)) {
-            $bag['view'] = 'views/exercices/create_questions';
+            $bag['view'] = 'views/exercises/create_questions';
         }
     //-----------------------------------------------------------------------------
     else {
