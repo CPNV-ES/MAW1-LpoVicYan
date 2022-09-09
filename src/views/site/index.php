@@ -21,7 +21,7 @@
   <body>
     <header class="dashboard">
   <section class="container">
-    <p><img src="/images/logo.png" /></p>
+  <a href="/"><img src="/images/logo.png" /></a>
     <h1>Exercise<br>Looper</h1>
   </section>
 </header>
