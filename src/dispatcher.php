@@ -25,6 +25,10 @@ function dispatch($bag)
     elseif (preg_match('/^\/exercises\/answering$/', $bag['route'], $matches)) {
         $bag['view'] = 'view/exercices/take_exercice';
     }
+        //-----------------------------------------------------------------------------
+    elseif (preg_match('/^\/exercises\/create_questions$/', $bag['route'], $matches)) {
+            $bag['view'] = 'view/exercices/create_questions';
+        }
     //-----------------------------------------------------------------------------
     else {
         $bag['status_code'] = 404;
