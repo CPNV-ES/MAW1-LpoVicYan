@@ -11,19 +11,19 @@ function dispatch($bag)
 
     //-----------------------------------------------------------------------------
     if (preg_match('/^\/?$/', $bag['route'])) {
-        $bag['view'] = 'view/site/index';
+        $bag['view'] = 'views/site/index';
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises$/', $bag['route'], $matches)) {
-        $bag['view'] = 'controllers/exercices/index';
+        $bag['handler'] = 'controllers/exercises/index';
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/new$/', $bag['route'], $matches)) {
-        $bag['view'] = 'view/exercices/create_exercice';
+        $bag['view'] = 'view/exercises/create_exercice';
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/answering$/', $bag['route'], $matches)) {
-        $bag['view'] = 'view/exercices/take_exercice';
+        $bag['view'] = 'view/exercises/take_exercice';
     }
     //-----------------------------------------------------------------------------
     else {
