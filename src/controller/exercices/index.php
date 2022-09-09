@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: exercices
+ * Title: index
  * Author: Luís Pedro Pinheiro
  * Version: 1.0 from 29th August 2022
  */
