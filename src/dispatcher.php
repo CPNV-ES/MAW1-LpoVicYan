@@ -19,15 +19,15 @@ function dispatch($bag)
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/new$/', $bag['route'], $matches)) {
-        $bag['view'] = 'view/exercises/create_exercice';
+        $bag['view'] = 'views/exercises/create_exercice';
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/answering$/', $bag['route'], $matches)) {
-        $bag['view'] = 'view/exercises/take_exercice';
+        $bag['view'] = 'views/exercises/take_exercice';
     }
         //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/create_questions$/', $bag['route'], $matches)) {
-            $bag['view'] = 'view/exercices/create_questions';
+            $bag['view'] = 'views/exercices/create_questions';
         }
     //-----------------------------------------------------------------------------
     else {
