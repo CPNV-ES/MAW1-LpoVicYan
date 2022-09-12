@@ -29,14 +29,6 @@ class Exercise
   }
 
   /**
-   * Get all exercises
-   */
-  public function getAllExercises()
-  {
-    //code here...
-  }
-
-  /**
    * Get title
    */
   public function getTitle()

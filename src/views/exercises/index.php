@@ -9,7 +9,6 @@
 <header class="heading results">
   <section class="container">
     <a href="/"><img src="/images/logo.png" /></a>
-    
   </section>
 </header>
 
@@ -23,12 +22,12 @@
     
 
     <link rel="stylesheet" media="all" href="/css/stylesheet.css" />
-    <script src="/js/script.js"></script>
+    <script src="js/script.js"></script>
   </head>
 
   <body>
   <?php foreach ($data['exercises'] as $exercise): ?>
-        <?= $exercise['title'] ?><br/>
+        <?= $exercise.getTitle(); ?>
     <?php endforeach; ?>
   </body>
 </html>

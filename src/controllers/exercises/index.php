@@ -11,11 +11,14 @@
  */
 require_once SOURCE_DIR . '/models/exercises/index.php';
 
+
 /**
- * Get all exercises 
+ * If $bag['handler] is receive
  */
-function displayExercices() {
+if ($bag['handler']) {
     $bag['data'] = ['exercises' => getAllExercises()];
     $bag['view'] = 'views/exercises/index';
     return $bag;
 }
+
+
