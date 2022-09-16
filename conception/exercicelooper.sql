@@ -1,5 +1,5 @@
 -- MySQL Workbench Synchronization
--- Generated: 2022-09-16 08:07
+-- Generated: 2022-09-16 08:36
 -- Model: New Model
 -- Version: 1.0
 -- Project: Name of the project
@@ -38,12 +38,13 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE IF NOT EXISTS `exerciselooper`.`answers` (
-  `idanswers` INT(11) NOT NULL,
-  `date` DATE NOT NULL,
+  `idanswers` INT(11) NOT NULL AUTO_INCREMENT,
+  `date` DATETIME NOT NULL,
   `answer` VARCHAR(255) NOT NULL,
   `questions_idquestions` INT(11) NOT NULL,
   PRIMARY KEY (`idanswers`),
   INDEX `fk_answers_questions_idx` (`questions_idquestions` ASC) VISIBLE,
+  UNIQUE INDEX `idanswers_UNIQUE` (`idanswers` ASC) VISIBLE,
   CONSTRAINT `fk_answers_questions`
     FOREIGN KEY (`questions_idquestions`)
     REFERENCES `exerciselooper`.`questions` (`idquestions`)
