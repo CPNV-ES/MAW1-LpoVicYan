@@ -1,10 +1,12 @@
 <?php
 
 /**
- * Title: index
+ * Title: exercise.php
  * Author: Menoud Yann  
- * Version: 1.0 from 29th August 2022
+ * Version: 3.0 from 16th September 2022
  */
+
+define('USERS_DATA_PATHNAME', BASE_DIR . '/data/exercises.json');
 
 
 /**
@@ -12,10 +14,10 @@
  */
 class Exercise
 {
-  public $title;
-  public $creation_date;
-  public $modification_date;
-  public $status;
+  protected $title;
+  protected $creation_date;
+  protected $modification_date;
+  protected $status;
 
   /**
    * Constructor of Exercise
@@ -26,6 +28,25 @@ class Exercise
     $this->creation_date = $creation_date;
     $this->modification_date = $modification_date;
     $this->status = $status;
+  }
+
+  /**
+   * Get all exercise
+   */
+  static function getAllExercises()
+  {
+    try {
+      $exercisesJson = json_decode(file_get_contents(USERS_DATA_PATHNAME), true);
+      $exercisesAsOjects = array();
+      foreach ($exercisesJson as $exercise) {
+        $objectExercice = new Exercise($exercise['title'], $exercise['creation_date'], $exercise['modification_date'], $exercise['status']);
+        array_push($exercisesAsOjects, $objectExercice);
+      }
+      return $exercisesAsOjects;
+    } catch (Exception $e) {
+      // if there is no exercise
+      return [];
+    }
   }
 
   /**

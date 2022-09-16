@@ -3,20 +3,20 @@
 /**
  * Title: index
  * Author: Luís Pedro Pinheiro
- * Version: 1.0 from 29th August 2022
+ * Version: 3.0 from 16 September 2022
  */
 
 /**
- * Import exercises controller
+ * Import exercise model
  */
-require_once SOURCE_DIR . '/models/exercises/index.php';
+require_once SOURCE_DIR . '/models/Exercise.php';
 
 
 /**
  * If $bag['handler] is receive
  */
 if ($bag['handler']) {
-    $bag['data'] = ['exercises' => getAllExercises()];
+    $bag['data'] = ['exercises' => Exercise::getAllExercises()];
     $bag['view'] = 'views/exercises/index';
     return $bag;
 }
