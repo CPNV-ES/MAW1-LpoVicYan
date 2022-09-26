@@ -1,0 +1,6 @@
+
+{
+    "autoload": {
+        "files": ["models/Exercise.php", "models/Question.php"]
+    }
+}

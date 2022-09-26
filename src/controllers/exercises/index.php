@@ -9,7 +9,7 @@
 /**
  * Import exercise model
  */
-require_once SOURCE_DIR . '/models/Exercise.php';
+require '../../vendor/autoload.php';
 
 
 /**
