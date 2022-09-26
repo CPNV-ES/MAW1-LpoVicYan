@@ -19,4 +19,19 @@ class Answer
         $this->answer_text = $answer;
         $this->question_id = $question_id;
     }
+
+    public function save($values)
+    {
+        if ($this->answer_id > 0) {
+            // mettre à jour une réponse
+        } else {
+            // créer une réponse
+        }
+    }
+
+    public function delete()
+    {
+        // supprimer avec l'id
+    }
+
 }
