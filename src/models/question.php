@@ -27,14 +27,17 @@ class Question
     public static function loadById( $id )
     {
         // loads a question from database using id
+
     }
 
     public static function getAll()
     {
         // returns an array with all the questions
         $res          = getConnector();
-        $answers_list = $res->query( "Select * from answers" )->fetchAll();
+        $questions_list = $res->query( "Select * from questions" )->fetchAll();
         unset( $res );
-        return $answers_list;
+        return $questions_list;
     }
 }
+
+var_dump(Question::getAll());
