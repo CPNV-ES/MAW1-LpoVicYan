@@ -125,7 +125,7 @@ VALUES
 
 # Generate questions data
 
-INSERT INTO `questions` (`name`,`type`,`order`,`exercises_id`)
+INSERT INTO `questions` (`name`,`type`,`order`,`exercise_id`)
 VALUES
   ("La Rioja","inline",2,27),
   ("Metropolitana de Santiago","inline",4,46),
@@ -137,7 +137,7 @@ VALUES
   ("Kano","inline",2,57),
   ("East Region","multiline",2,24),
   ("Pernambuco","multiline",3,43);
-INSERT INTO `questions` (`name`,`type`,`order`,`exercises_id`)
+INSERT INTO `questions` (`name`,`type`,`order`,`exercise_id`)
 VALUES
   ("Östergötlands län","choice",2,6),
   ("Nova Scotia","choice",5,34),
@@ -149,7 +149,7 @@ VALUES
   ("Los Lagos","choice",3,45),
   ("Jeju","inline",4,28),
   ("Manitoba","inline",2,75);
-INSERT INTO `questions` (`name`,`type`,`order`,`exercises_id`)
+INSERT INTO `questions` (`name`,`type`,`order`,`exercise_id`)
 VALUES
   ("Nevada","multiline",4,26),
   ("Dadra and Nagar Haveli","multiline",2,64),
@@ -161,7 +161,7 @@ VALUES
   ("Vorarlberg","multiline",2,60),
   ("Orkney","choice",1,100),
   ("Bolívar","choice",1,62);
-INSERT INTO `questions` (`name`,`type`,`order`,`exercises_id`)
+INSERT INTO `questions` (`name`,`type`,`order`,`exercise_id`)
 VALUES
   ("Jigawa","inline",3,26),
   ("Vichada","inline",3,63),
@@ -173,7 +173,7 @@ VALUES
   ("Connacht","inline",4,59),
   ("Nova Scotia","multiline",4,23),
   ("Khyber Pakhtoonkhwa","multiline",5,25);
-INSERT INTO `questions` (`name`,`type`,`order`,`exercises_id`)
+INSERT INTO `questions` (`name`,`type`,`order`,`exercise_id`)
 VALUES
   ("Western Cape","choice",4,77),
   ("Namen","choice",2,47),
@@ -185,7 +185,7 @@ VALUES
   ("Puno","choice",4,98),
   ("Guaviare","inline",4,35),
   ("Loreto","inline",4,32);
-INSERT INTO `questions` (`name`,`type`,`order`,`exercises_id`)
+INSERT INTO `questions` (`name`,`type`,`order`,`exercise_id`)
 VALUES
   ("Gangwon","multiline",2,67),
   ("Gaziantep","multiline",4,46),
@@ -197,7 +197,7 @@ VALUES
   ("Bangsamoro","multiline",1,71),
   ("Rogaland","choice",3,28),
   ("Dōngběi","choice",4,23);
-INSERT INTO `questions` (`name`,`type`,`order`,`exercises_id`)
+INSERT INTO `questions` (`name`,`type`,`order`,`exercise_id`)
 VALUES
   ("Limburg","inline",4,4),
   ("Henegouwen","inline",3,82),
@@ -209,7 +209,7 @@ VALUES
   ("Kansas","inline",3,92),
   ("Wielkopolskie","multiline",2,25),
   ("Van","multiline",5,92);
-INSERT INTO `questions` (`name`,`type`,`order`,`exercises_id`)
+INSERT INTO `questions` (`name`,`type`,`order`,`exercise_id`)
 VALUES
   ("Khyber Pakhtoonkhwa","choice",4,48),
   ("Sląskie","choice",4,41),
@@ -221,7 +221,7 @@ VALUES
   ("Hải Dương","choice",3,4),
   ("Khyber Pakhtoonkhwa","inline",2,48),
   ("Corse","inline",2,66);
-INSERT INTO `questions` (`name`,`type`,`order`,`exercises_id`)
+INSERT INTO `questions` (`name`,`type`,`order`,`exercise_id`)
 VALUES
   ("Leinster","multiline",1,90),
   ("Atacama","multiline",2,40),
@@ -233,7 +233,7 @@ VALUES
   ("San Andrés y Providencia","multiline",3,16),
   ("Zhōngnán","choice",3,72),
   ("Oregon","choice",2,79);
-INSERT INTO `questions` (`name`,`type`,`order`,`exercises_id`)
+INSERT INTO `questions` (`name`,`type`,`order`,`exercise_id`)
 VALUES
   ("Coahuila","inline",5,83),
   ("Odessa oblast","inline",3,96),
@@ -248,7 +248,7 @@ VALUES
 
 # Generate answers data
 
-INSERT INTO `answers` (`date`,`answer`,`questions_id`)
+INSERT INTO `answers` (`date`,`answer`,`question_id`)
 VALUES
   ("2022-09-29 08:14:57","orci lacus vestibulum lorem, sit amet ultricies",63),
   ("2022-08-10 00:44:57","penatibus et magnis dis parturient montes, nascetur",49),
@@ -260,7 +260,7 @@ VALUES
   ("2022-09-30 04:13:32","neque. Sed eget lacus. Mauris non dui",26),
   ("2022-08-05 12:38:54","Donec est. Nunc ullamcorper, velit in aliquet",3),
   ("2022-08-07 23:19:20","malesuada. Integer id magna et ipsum cursus",30);
-INSERT INTO `answers` (`date`,`answer`,`questions_id`)
+INSERT INTO `answers` (`date`,`answer`,`question_id`)
 VALUES
   ("2022-08-05 03:13:03","amet, consectetuer adipiscing elit. Etiam laoreet, libero",46),
   ("2022-09-20 01:33:20","aliquet, sem ut cursus luctus, ipsum leo",91),
@@ -272,7 +272,7 @@ VALUES
   ("2022-08-21 00:56:52","nonummy. Fusce fermentum fermentum arcu. Vestibulum ante",48),
   ("2022-09-15 08:46:14","accumsan laoreet ipsum. Curabitur consequat, lectus sit",16),
   ("2022-08-06 14:28:24","Cum sociis natoque penatibus et magnis dis",97);
-INSERT INTO `answers` (`date`,`answer`,`questions_id`)
+INSERT INTO `answers` (`date`,`answer`,`question_id`)
 VALUES
   ("2022-09-27 13:28:21","augue malesuada malesuada. Integer id magna et",59),
   ("2022-08-09 19:26:16","Quisque purus sapien, gravida non, sollicitudin a,",31),
@@ -284,7 +284,7 @@ VALUES
   ("2022-08-25 06:44:06","ante. Nunc mauris sapien, cursus in, hendrerit",47),
   ("2022-09-02 13:15:08","vel arcu eu odio tristique pharetra. Quisque",8),
   ("2022-09-15 11:30:26","tempus, lorem fringilla ornare placerat, orci lacus",33);
-INSERT INTO `answers` (`date`,`answer`,`questions_id`)
+INSERT INTO `answers` (`date`,`answer`,`question_id`)
 VALUES
   ("2022-08-08 12:34:16","varius. Nam porttitor scelerisque neque. Nullam nisl.",24),
   ("2022-08-08 06:54:04","Proin vel nisl. Quisque fringilla euismod enim.",14),
@@ -296,7 +296,7 @@ VALUES
   ("2022-09-15 23:36:05","ut aliquam iaculis, lacus pede sagittis augue,",40),
   ("2022-09-04 18:21:41","hendrerit. Donec porttitor tellus non magna. Nam",50),
   ("2022-08-27 17:08:58","consectetuer adipiscing elit. Curabitur sed tortor. Integer",39);
-INSERT INTO `answers` (`date`,`answer`,`questions_id`)
+INSERT INTO `answers` (`date`,`answer`,`question_id`)
 VALUES
   ("2022-08-16 10:18:41","nec tellus. Nunc lectus pede, ultrices a,",10),
   ("2022-09-11 11:39:45","Suspendisse sed dolor. Fusce mi lorem, vehicula",25),
@@ -308,7 +308,7 @@ VALUES
   ("2022-09-24 21:43:10","nulla. Cras eu tellus eu augue porttitor",30),
   ("2022-09-09 15:45:18","Morbi accumsan laoreet ipsum. Curabitur consequat, lectus",39),
   ("2022-09-17 06:23:30","gravida. Praesent eu nulla at sem molestie",72);
-INSERT INTO `answers` (`date`,`answer`,`questions_id`)
+INSERT INTO `answers` (`date`,`answer`,`question_id`)
 VALUES
   ("2022-08-16 14:28:24","Phasellus dolor elit, pellentesque a, facilisis non,",56),
   ("2022-09-15 09:56:20","orci luctus et ultrices posuere cubilia Curae",30),
@@ -320,7 +320,7 @@ VALUES
   ("2022-09-03 05:37:48","tellus sem mollis dui, in sodales elit",70),
   ("2022-09-30 06:40:49","Curabitur egestas nunc sed libero. Proin sed",16),
   ("2022-08-09 16:12:02","lacus. Nulla tincidunt, neque vitae semper egestas,",24);
-INSERT INTO `answers` (`date`,`answer`,`questions_id`)
+INSERT INTO `answers` (`date`,`answer`,`question_id`)
 VALUES
   ("2022-09-19 14:15:55","montes, nascetur ridiculus mus. Proin vel nisl.",91),
   ("2022-09-20 19:37:01","enim. Nunc ut erat. Sed nunc est,",91),
@@ -332,7 +332,7 @@ VALUES
   ("2022-08-03 18:00:10","Proin ultrices. Duis volutpat nunc sit amet",37),
   ("2022-09-20 00:28:55","risus varius orci, in consequat enim diam",14),
   ("2022-08-30 09:15:15","In faucibus. Morbi vehicula. Pellentesque tincidunt tempus",92);
-INSERT INTO `answers` (`date`,`answer`,`questions_id`)
+INSERT INTO `answers` (`date`,`answer`,`question_id`)
 VALUES
   ("2022-09-17 12:42:25","aliquet odio. Etiam ligula tortor, dictum eu,",8),
   ("2022-09-27 12:00:26","arcu et pede. Nunc sed orci lobortis",47),
@@ -344,7 +344,7 @@ VALUES
   ("2022-09-04 22:23:53","a tortor. Nunc commodo auctor velit. Aliquam",19),
   ("2022-08-18 07:19:19","eros turpis non enim. Mauris quis turpis",27),
   ("2022-08-22 19:48:39","metus. In nec orci. Donec nibh. Quisque",86);
-INSERT INTO `answers` (`date`,`answer`,`questions_id`)
+INSERT INTO `answers` (`date`,`answer`,`question_id`)
 VALUES
   ("2022-09-04 22:43:03","Fusce mi lorem, vehicula et, rutrum eu,",55),
   ("2022-08-17 02:01:25","amet, risus. Donec nibh enim, gravida sit",14),
@@ -356,7 +356,7 @@ VALUES
   ("2022-08-16 04:29:24","lectus rutrum urna, nec luctus felis purus",66),
   ("2022-08-16 17:17:01","odio. Phasellus at augue id ante dictum",30),
   ("2022-09-12 03:43:25","purus. Maecenas libero est, congue a, aliquet",15);
-INSERT INTO `answers` (`date`,`answer`,`questions_id`)
+INSERT INTO `answers` (`date`,`answer`,`question_id`)
 VALUES
   ("2022-08-05 22:12:40","Morbi sit amet massa. Quisque porttitor eros",85),
   ("2022-08-05 04:12:18","lectus ante dictum mi, ac mattis velit",19),
