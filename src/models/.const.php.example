@@ -4,10 +4,19 @@
  *  Author: YOU
  *  Version: 1.0 from DATE
  */
+
 //TODO: Fill the following informations for the database, debug mode and other configurations, and rename the file ".const.php.example" to ".const.php".
 
-//Database informations
-$user = "";
-$pass = "";
-$dbhost = "";
-$dbname = "";
+require_once "db.php";
+
+function getConnector()
+{
+    //Database informations
+    $dbuser = '....';
+    $dbpass = '....';
+    $dbhost = '....';
+    $dbname = '....';
+
+    $res = new db( $dbhost, $dbuser, $dbpass, $dbname );
+    return $res;
+}
