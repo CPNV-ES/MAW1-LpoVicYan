@@ -34,12 +34,12 @@ CREATE TABLE IF NOT EXISTS `exerciselooper`.`questions` (
   `name` VARCHAR(45) NULL,
   `type` VARCHAR(45) NOT NULL,
   `order` INT NOT NULL,
-  `exercises_id` INT NOT NULL,
+  `exercise_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `idquestions_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `fk_questions_exercises1_idx` (`exercises_id` ASC) VISIBLE,
+  INDEX `fk_questions_exercises1_idx` (`exercise_id` ASC) VISIBLE,
   CONSTRAINT `fk_questions_exercises1`
-    FOREIGN KEY (`exercises_id`)
+    FOREIGN KEY (`exercise_id`)
     REFERENCES `exerciselooper`.`exercises` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -53,12 +53,12 @@ CREATE TABLE IF NOT EXISTS `exerciselooper`.`answers` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `date` DATETIME NOT NULL,
   `answer` VARCHAR(255) NOT NULL,
-  `questions_id` INT NOT NULL,
+  `question_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_answers_questions_idx` (`questions_id` ASC) VISIBLE,
+  INDEX `fk_answers_questions_idx` (`question_id` ASC) VISIBLE,
   UNIQUE INDEX `idanswers_UNIQUE` (`id` ASC) VISIBLE,
   CONSTRAINT `fk_answers_questions`
-    FOREIGN KEY (`questions_id`)
+    FOREIGN KEY (`question_id`)
     REFERENCES `exerciselooper`.`questions` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
