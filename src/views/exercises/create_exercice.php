@@ -33,7 +33,7 @@
 
   <div class="field">
     <label for="exercise_title">Title</label>
-    <input type="text" name="exercise[title]" id="exercise_title" />
+    <input type="text" name="exercise_title" id="exercise_title" />
   </div>
 
   <div class="actions">
