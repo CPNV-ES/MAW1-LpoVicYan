@@ -36,6 +36,22 @@ class Exercise
   static function getAllExercises()
   {
     try {
+      $exercisesAsObjects = [];
+      $res = getConnector();
+      $exercises = $res->query('SELECT * FROM exercises;')->fetchAll();
+      foreach ($exercises as $exercise) {
+        $exerciseAsObject = new Exercise($exercise['title'], $exercise['creation_date'], $exercise['modification_date'], $exercise['status']);
+        array_push($exercisesAsObjects, $exerciseAsObject);
+      }
+      unset($res);
+      return $exercisesAsObjects;
+    } catch (Exception $e) {
+    }
+  }
+
+  /*    static function getAllExercises()
+  {
+    try {
       $exercisesJson = json_decode(file_get_contents(USERS_DATA_PATHNAME), true);
       $exercisesAsOjects = array();
       foreach ($exercisesJson as $exercise) {
@@ -47,7 +63,7 @@ class Exercise
       // if there is no exercise
       return [];
     }
-  }
+  } */
 
   /**
    * Get title

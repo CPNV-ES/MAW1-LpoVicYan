@@ -6,6 +6,8 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'af7a8a787a98b72471bd32a6acab9241' => $baseDir . '/models/Exercise.php',
-    '02bafee984c2184dcf9bdc243afeb6fb' => $baseDir . '/models/Question.php',
+    '8d8c9a67f6c0e9e7485f749d3c15ff90' => $baseDir . '/models/db.php',
+    '26e6ec7d59debf28cd174dfa5280d866' => $baseDir . '/models/.const.php',
+    '8e5ac8362ff407bbe0f06de44cdf6e69' => $baseDir . '/models/exercise.php',
+    '34aa4dde1223e115d7ec25da013bfbca' => $baseDir . '/models/question.php',
 );

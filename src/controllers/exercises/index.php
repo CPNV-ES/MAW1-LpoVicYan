@@ -6,11 +6,6 @@
  * Version: 3.0 from 16 September 2022
  */
 
-/**
- * Import exercise model
- */
-require '../../vendor/autoload.php';
-
 
 /**
  * If $bag['handler] is receive
