@@ -15,7 +15,7 @@
 <meta name="csrf-token" content="b1FCaUTd6u9RY3IpgP44v2QxYoAWBNdCyjq7aK/es1tWUTzNl6vndtBe+z50FOx2Hwq8r/URODBkKc2Lp1Xzjg==" />
     
     <link rel="stylesheet" media="all" href="/css/stylesheet.css" />
-    <script src="/js/script.js"></script>
+    <script src="/js/js.js"></script>
   </head>
 
   <body>

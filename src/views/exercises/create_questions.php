@@ -10,7 +10,7 @@
 <header class="heading managing">
     <section class="container">
         <a href="/"><img src="/images/logo.png" /></a>
-        <span class="exercise-label">Exercise: <a href="/exercises/750/fields"><?= $_GET['exercise_title']?></a></span>
+        <span class="exercise-label">Exercise: <a href="/exercises/750/fields">TestVM</a></span>
     </section>
 </header>
 
