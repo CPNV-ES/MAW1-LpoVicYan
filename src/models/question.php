@@ -62,8 +62,6 @@ class Question
         else
         {
             $query_result = $res->update( 'questions', $question, 'WHERE id = ' . $this->id );
-            print_r( $query_result );
-            print_r( $this );
         }
 
     }
