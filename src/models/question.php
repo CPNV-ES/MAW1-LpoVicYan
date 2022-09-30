@@ -15,7 +15,7 @@ class Question
     protected $order;
     protected $exercise_id;
 
-    public function __construct( $id, $name, $type, $order, $exercise_id )
+    public function __construct($name, $type, $order, $exercise_id, $id = 0)
     {
         $this->id          = $id;
         $this->name        = $name;
@@ -24,12 +24,19 @@ class Question
         $this->exercise_id = $exercise_id;
     }
 
+    public function save()
+    {
+        // Updates or creates a question depending if it exists or not
+        $res = getConnector();
+        
+    }
+
     public static function loadById( $id )
     {
         // loads a question from database using id
         $res      = getConnector();
         $question = $res->query( "Select * from questions Where id = ?", $id )->fetchArray();
-        $question = new Question( $question['id'], $question['name'], $question['type'], $question['order'], $question['exercise_id'] );
+        $question = new Question($question['name'], $question['type'], $question['order'], $question['exercise_id'], $question['id']);
         unset( $res );
         return $question;
     }
