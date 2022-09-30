@@ -1,0 +1,5 @@
+INSERT INTO `exercises` (`name`,`state`)
+VALUES
+  ("Exercise 1","Building"),
+  ("Exercise 2","Answering"),
+  ("Exercise 3","Closed")
