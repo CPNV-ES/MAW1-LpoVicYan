@@ -35,7 +35,7 @@
       <a class="button managing column" href="/exercises/new">Create an exercise</a>
     </div>
     <div class="column">
-      <a class="button results column" href="/exercises">Manage an exercise</a>
+      <a class="button results column" href="/manage-exercises">Manage an exercise</a>
     </div>
   </section>
 </div>
