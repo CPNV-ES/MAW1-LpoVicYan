@@ -33,12 +33,12 @@ class Exercise
   /**
    * Get all exercise
    */
-  static function getAllExercises()
+  static function getAllExercises($status)
   {
     try {
       $exercisesAsObjects = [];
       $res = getConnector();
-      $exercises = $res->query('SELECT * FROM exercises;')->fetchAll();
+      $exercises = $res->query('SELECT * FROM exercises WHERE status = ? ;', $status)->fetchAll();
       foreach ($exercises as $exercise) {
         $exerciseAsObject = new Exercise($exercise['title'], $exercise['creation_date'], $exercise['modification_date'], $exercise['status']);
         array_push($exercisesAsObjects, $exerciseAsObject);

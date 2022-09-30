@@ -11,7 +11,10 @@
  * If $bag['handler] is receive
  */
 if ($bag['handler']) {
-    $bag['data'] = ['exercises' => Exercise::getAllExercises()];
+    $bag['data'] = [];
+    $bag['data']['exercisesBuilding'] = Exercise::getAllExercises("building");
+    $bag['data']['exercisesAnswering'] = Exercise::getAllExercises("answering");
+    $bag['data']['exercisesClosed'] = Exercise::getAllExercises("closed");
     $bag['view'] = 'views/exercises/index';
     return $bag;
 }
