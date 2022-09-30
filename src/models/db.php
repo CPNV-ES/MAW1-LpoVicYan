@@ -18,7 +18,7 @@ class db
     public function __construct( $dbhost = 'localhost', $dbuser = 'root', $dbpass = '', $dbname = '', $charset = 'utf8' )
     {
         $this->connection = new mysqli( $dbhost, $dbuser, $dbpass, $dbname );
-        $this->db_name = $dbname;
+        $this->db_name    = $dbname;
 
         if ( $this->connection->connect_error )
         {
@@ -30,6 +30,7 @@ class db
 
     public function query( $query )
     {
+        print_r( $query );
 
         if ( !$this->query_closed )
         {
@@ -266,9 +267,9 @@ class db
 
         foreach ( $data as $colom => $row )
         {
-            $sql .= ( $postion == count( $data ) ) ? " `{$tbl}`.`{$colom}` = ?, " : " `{$tbl}`.`{$colom}` = ? ";
+            $postion = $postion + 1;
+            $sql .= ( $postion == count( $data ) ) ? " `{$tbl}`.`{$colom}` = ? " : "`{$tbl}`.`{$colom}` = ?, ";
             $values[] = $row;
-            $postion  = $postion + 1;
         }
 
         $con_values = array();

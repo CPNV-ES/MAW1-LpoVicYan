@@ -24,11 +24,32 @@ class Question
         $this->exercise_id = $exercise_id;
     }
 
+    public function __get( $property )
+    {
+
+        if ( property_exists( $this, $property ) )
+        {
+            return $this->$property;
+        }
+
+    }
+
+    public function __set( $property, $value )
+    {
+
+        if ( property_exists( $this, $property ) )
+        {
+            $this->$property = $value;
+        }
+
+        return $this;
+    }
+
     public function save()
     {
         // Updates or creates a question depending if it exists or not
         $res      = getConnector();
-        $question = array( 'name' => 'john', 'type' => $this->type, 'order' => $this->order, 'exercise_id' => $this->exercise_id );
+        $question = array( 'name' => $this->name, 'type' => $this->type, 'order' => $this->order, 'exercise_id' => $this->exercise_id );
 
         if ( $this->id === 0 )
         {
@@ -37,6 +58,12 @@ class Question
             $question     = Question::loadById( $query_result );
             unset( $query_result );
             return $question;
+        }
+        else
+        {
+            $query_result = $res->update( 'questions', $question, 'WHERE id = ' . $this->id );
+            print_r( $query_result );
+            print_r( $this );
         }
 
     }
