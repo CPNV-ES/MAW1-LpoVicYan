@@ -37,7 +37,9 @@
                     <thead>
                         <tr>
                             <th>Label</th>
+                            <th><?= $_GET['field_label']?></th>
                             <th>Value kind</th>
+                            <th><?= $_GET['field_value_kind']?></th>
                             <th></th>
                         </tr>
                     </thead>
