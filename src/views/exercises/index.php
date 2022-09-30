@@ -43,6 +43,7 @@
               <tr>
                 <td><?= $exercise->getTitle(); ?></td>
                 <td><?= 'icon' ?></td>
+                <!-- <a title="Manage Fields" href="/exercises/"></a> -->
               </tr>
             <?php endforeach; ?>
           </tbody>

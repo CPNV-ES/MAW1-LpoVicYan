@@ -49,21 +49,35 @@ class Exercise
     }
   }
 
-  /*    static function getAllExercises()
+  /**
+   * Get an exercise by id
+   */
+  static function getAnExercise($id)
   {
-    try {
-      $exercisesJson = json_decode(file_get_contents(USERS_DATA_PATHNAME), true);
-      $exercisesAsOjects = array();
-      foreach ($exercisesJson as $exercise) {
-        $objectExercice = new Exercise($exercise['title'], $exercise['creation_date'], $exercise['modification_date'], $exercise['status']);
-        array_push($exercisesAsOjects, $objectExercice);
-      }
-      return $exercisesAsOjects;
-    } catch (Exception $e) {
-      // if there is no exercise
-      return [];
-    }
-  } */
+  }
+
+  /**
+   * Update an exercise by id
+   */
+  static function createAnExercise()
+  {
+  }
+
+  /**
+   * Update an exercise by id
+   */
+  static function updateAnExercise($id)
+  {
+  }
+
+  /**
+   * Update an exercise by id
+   */
+  static function deleteAnExercise($id)
+  {
+  }
+
+
 
   /**
    * Get title
