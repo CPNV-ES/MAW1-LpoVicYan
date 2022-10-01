@@ -31,7 +31,7 @@ class Exercise
   }
 
   /**
-   * Get all exercise
+   * Get all exercises of a status
    */
   static function getAllExercises($status)
   {
@@ -50,28 +50,35 @@ class Exercise
   }
 
   /**
-   * Get an exercise by id
+   * Get an exercise
    */
   static function getAnExercise($id)
   {
+    $res = getConnector();
+    $exercise = $res->query('SELECT * FROM exercises WHERE id = ?', $id)->fetchArray();
+    $exerciseAsObject = new Exercise($exercise['title'], $exercise['creation_date'], $exercise['modification_date'], $exercise['status']);
+    return $exerciseAsObject;
   }
 
   /**
-   * Update an exercise by id
+   * Create an exercise
    */
-  static function createAnExercise()
+  static function createAnExercise($exercise)
   {
+    
   }
 
   /**
-   * Update an exercise by id
+   * Update an exercise
    */
   static function updateAnExercise($id)
   {
+    $res = getConnector();
+    
   }
 
   /**
-   * Update an exercise by id
+   * Delete an exercise
    */
   static function deleteAnExercise($id)
   {
