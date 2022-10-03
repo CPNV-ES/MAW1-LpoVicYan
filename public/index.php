@@ -10,6 +10,9 @@ session_start();
 define('BASE_DIR', dirname( __FILE__ ).'/..');
 define('SOURCE_DIR', BASE_DIR.'/src');
 
+require __DIR__ . '/../src/vendor/autoload.php';
+
+
 //=============================================================================
 // Create the BAG which will contain the request/response meta data
 

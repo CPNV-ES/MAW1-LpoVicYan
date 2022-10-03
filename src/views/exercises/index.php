@@ -39,10 +39,11 @@
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($data['exercises'] as $exercise) : ?>
+            <?php foreach ($data['exercisesBuilding'] as $exercise) : ?>
               <tr>
                 <td><?= $exercise->getTitle(); ?></td>
                 <td><?= 'icon' ?></td>
+                <!-- <a title="Manage Fields" href="/exercises/"></a> -->
               </tr>
             <?php endforeach; ?>
           </tbody>
@@ -59,7 +60,7 @@
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($data['exercises'] as $exercise) : ?>
+            <?php foreach ($data['exercisesAnswering'] as $exercise) : ?>
               <tr>
                 <td><?= $exercise->getTitle(); ?></td>
                 <td><?= 'icon' ?></td>
@@ -79,7 +80,7 @@
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($data['exercises'] as $exercise) : ?>
+            <?php foreach ($data['exercisesClosed'] as $exercise) : ?>
               <tr>
                 <td><?= $exercise->getTitle(); ?></td>
                 <td><?= 'icon' ?></td>

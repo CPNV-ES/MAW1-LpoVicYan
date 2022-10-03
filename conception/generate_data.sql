@@ -2,7 +2,7 @@
 USE exerciselooper;
 
 # Generate exercises data
-INSERT INTO `exercises` (`name`,`state`)
+INSERT INTO `exercises` (`title`,`status`)
 VALUES
   ("Russian Federation","building"),
   ("Brazil","building"),
@@ -14,7 +14,7 @@ VALUES
   ("Vietnam","building"),
   ("Chile","answering"),
   ("Australia","answering");
-INSERT INTO `exercises` (`name`,`state`)
+INSERT INTO `exercises` (`title`,`status`)
 VALUES
   ("Ukraine","closed"),
   ("Brazil","closed"),
@@ -26,7 +26,7 @@ VALUES
   ("France","closed"),
   ("India","building"),
   ("South Korea","building");
-INSERT INTO `exercises` (`name`,`state`)
+INSERT INTO `exercises` (`title`,`status`)
 VALUES
   ("Mexico","answering"),
   ("China","answering"),
@@ -38,7 +38,7 @@ VALUES
   ("Norway","answering"),
   ("Pakistan","closed"),
   ("Vietnam","closed");
-INSERT INTO `exercises` (`name`,`state`)
+INSERT INTO `exercises` (`title`,`status`)
 VALUES
   ("Vietnam","building"),
   ("Sweden","building"),
@@ -50,7 +50,7 @@ VALUES
   ("Poland","building"),
   ("Ukraine","answering"),
   ("India","answering");
-INSERT INTO `exercises` (`name`,`state`)
+INSERT INTO `exercises` (`title`,`status`)
 VALUES
   ("New Zealand","closed"),
   ("Mexico","closed"),
@@ -62,7 +62,7 @@ VALUES
   ("Spain","closed"),
   ("Ireland","building"),
   ("Colombia","building");
-INSERT INTO `exercises` (`name`,`state`)
+INSERT INTO `exercises` (`title`,`status`)
 VALUES
   ("Norway","answering"),
   ("Brazil","answering"),
@@ -74,7 +74,7 @@ VALUES
   ("Ireland","answering"),
   ("Germany","closed"),
   ("Chile","closed");
-INSERT INTO `exercises` (`name`,`state`)
+INSERT INTO `exercises` (`title`,`status`)
 VALUES
   ("Costa Rica","building"),
   ("Spain","building"),
@@ -86,7 +86,7 @@ VALUES
   ("China","building"),
   ("United Kingdom","answering"),
   ("Australia","answering");
-INSERT INTO `exercises` (`name`,`state`)
+INSERT INTO `exercises` (`title`,`status`)
 VALUES
   ("Austria","closed"),
   ("Germany","closed"),
@@ -98,7 +98,7 @@ VALUES
   ("Germany","closed"),
   ("Ireland","building"),
   ("Costa Rica","building");
-INSERT INTO `exercises` (`name`,`state`)
+INSERT INTO `exercises` (`title`,`status`)
 VALUES
   ("France","answering"),
   ("Peru","answering"),
@@ -110,7 +110,7 @@ VALUES
   ("Chile","answering"),
   ("United Kingdom","closed"),
   ("Peru","closed");
-INSERT INTO `exercises` (`name`,`state`)
+INSERT INTO `exercises` (`title`,`status`)
 VALUES
   ("Germany","building"),
   ("Austria","building"),
