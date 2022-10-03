@@ -30,7 +30,6 @@ class db
 
     public function query( $query )
     {
-        print_r( $query );
 
         if ( !$this->query_closed )
         {
