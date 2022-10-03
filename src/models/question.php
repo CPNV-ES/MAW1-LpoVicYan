@@ -85,4 +85,12 @@ class Question
         return $questions_list;
     }
 
+    public static function deleteById( $id )
+    {
+        $res  = getConnector();
+        $data = ['name' => 'id', 'value' => $id];
+        $res->delete( "questions", $data );
+        unset( $res );
+    }
+
 }
