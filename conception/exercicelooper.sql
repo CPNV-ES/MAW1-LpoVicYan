@@ -19,8 +19,10 @@ USE `exerciselooper` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `exerciselooper`.`exercises` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  `state` VARCHAR(45) NOT NULL,
+  `title` VARCHAR(45) NULL,
+  `creation_date` DATETIME NULL,
+  `modification_date` DATETIME NULL,
+  `status` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `idexercises_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB;
