@@ -66,6 +66,14 @@ class Question
 
     }
 
+    public function delete()
+    {
+        $res  = getConnector();
+        $data = ['name' => 'id', 'value' => $this->id];
+        $res->delete( "questions", $data );
+        unset( $res );
+    }
+
     public static function loadById( $id )
     {
         // loads a question from database using id
