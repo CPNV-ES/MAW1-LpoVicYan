@@ -46,7 +46,7 @@
                     </tbody>
                 </table>
 
-                <a data-confirm="Are you sure? You won&#39;t be able to further edit this exercise" class="button" rel="nofollow" data-method="put" href="/exercises/750?exercise%5Bstatus%5D=answering"><i class="fa fa-comment"></i> Complete and be ready for answers</a>
+                <a data-confirm="Are you sure? You won&#39;t be able to further edit this exercise" class="button" rel="nofollow" data-method="put" href="/manage-exercises"><i class="fa fa-comment"></i> Complete and be ready for answers</a>
 
             </section>
             <section class="column">

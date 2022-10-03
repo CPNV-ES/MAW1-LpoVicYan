@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Title: question
  * Author: Luís Pedro Pinheiro
@@ -100,5 +101,5 @@ class Question
         $res->delete( "questions", $data );
         unset( $res );
     }
-
+    
 }
