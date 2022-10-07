@@ -101,5 +101,13 @@ class Question
         $res->delete( "questions", $data );
         unset( $res );
     }
+
+    public static function getQuestionsFromExercise($exercise_id)
+    {
+        $res = getConnector();
+        $questions_list = $res->query("Select * from questions WHERE exercise_id = ".$exercise_id)->fetchAll();
+        unset($res);
+        return $questions_list;
+    }
     
 }
