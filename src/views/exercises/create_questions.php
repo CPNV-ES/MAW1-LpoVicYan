@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Title : create_exercice2
+ * Title : create_question
  * Author : Victorien Montavon
  * Verison : 1.0 from 0.9.09.2022
  */
@@ -37,9 +37,11 @@
                     <thead>
                         <tr>
                             <th>Label</th>
-                            <th> <a href="/create_questions"><?= $_POST['field_label']?></a></th>
+                            <th><?php foreach ($data['displayQuestion'] as $question) : ?></th>
+                                <?php endforeach; ?>
                             <th>Value kind</th>
-                            <th> <a href="/create_questions"><?= $_POST['field_value_kind']?></a></th>
+                            <th><?php foreach ($data['displayQuestion'] as $question) : ?></th>
+                                <?php endforeach; ?>
                             <th></th>
                         </tr>
                     </thead>
@@ -79,5 +81,4 @@
     </body>
 
     </html>
-
 </main>
