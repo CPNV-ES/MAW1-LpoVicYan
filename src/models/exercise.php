@@ -14,6 +14,7 @@ define('USERS_DATA_PATHNAME', BASE_DIR . '/data/exercises.json');
  */
 class Exercise
 {
+  protected $id;
   protected $title;
   protected $creation_date;
   protected $modification_date;
@@ -22,8 +23,9 @@ class Exercise
   /**
    * Constructor of Exercise
    */
-  public function __construct($title, $creation_date, $modification_date, $status)
+  public function __construct($id, $title, $creation_date, $modification_date, $status)
   {
+    $this->id = $id;
     $this->title = $title;
     $this->creation_date = $creation_date;
     $this->modification_date = $modification_date;
@@ -31,22 +33,73 @@ class Exercise
   }
 
   /**
-   * Get all exercise
+   * Get all exercises of a status
    */
-  static function getAllExercises()
+  static function getAllExercises($status)
   {
     try {
-      $exercisesJson = json_decode(file_get_contents(USERS_DATA_PATHNAME), true);
-      $exercisesAsOjects = array();
-      foreach ($exercisesJson as $exercise) {
-        $objectExercice = new Exercise($exercise['title'], $exercise['creation_date'], $exercise['modification_date'], $exercise['status']);
-        array_push($exercisesAsOjects, $objectExercice);
+      $exercisesAsObjects = [];
+      $res = getConnector();
+      $exercises = $res->query('SELECT * FROM exercises WHERE status = ? ;', $status)->fetchAll();
+      foreach ($exercises as $exercise) {
+        $exerciseAsObject = new Exercise($exercise['id'], $exercise['title'], $exercise['creation_date'], $exercise['modification_date'], $exercise['status']);
+        array_push($exercisesAsObjects, $exerciseAsObject);
       }
-      return $exercisesAsOjects;
+      unset($res);
+      return $exercisesAsObjects;
     } catch (Exception $e) {
-      // if there is no exercise
-      return [];
     }
+  }
+
+  /**
+   * Get an exercise
+   */
+  static function getAnExercise($id)
+  {
+    $res = getConnector();
+    $exercise = $res->query('SELECT * FROM exercises WHERE id = ?', $id)->fetchArray();
+    $exerciseAsObject = new Exercise($exercise['id'], $exercise['title'], $exercise['creation_date'], $exercise['modification_date'], $exercise['status']);
+    return $exerciseAsObject;
+  }
+
+  /**
+   * Create an exercise
+   */
+  static function save($exercise)
+  {
+    $res = getConnector();
+    $exerciseToCreate = array('title' => $exercise['title'], 'creation_date' => $exercise['creation_date'], 'modification_date' => $exercise['modification_date'], 'status' => $exercise['status']);
+
+
+
+    if ($exercise->getId() == 0 || $exercise->getId() == null) {
+      $query_result = $res->insert('exercises', $exerciseToCreate);
+      $query_result = $res->lastInsertID();
+      unset($query_result);
+    } else {
+      $query_result = $res->update('exercise', $exercise, 'WHERE id = ' . $exercise->getId);
+    }
+  }
+
+
+  /**
+   * Delete an exercise
+   */
+  static function deleteAnExercise($id)
+  {
+    $res  = getConnector();
+    $data = ['title' => 'id', 'value' => $id];
+    $res->delete("exercises", $data);
+    unset($res);
+  }
+
+
+  /**
+   * Get id
+   */
+  public function getId()
+  {
+    return $this->id;
   }
 
   /**
