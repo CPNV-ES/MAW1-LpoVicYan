@@ -42,8 +42,9 @@
             <?php foreach ($data['exercisesBuilding'] as $exercise) : ?>
               <tr>
                 <td><?= $exercise->getTitle(); ?></td>
-                <td><?= 'icon' ?></td>
-                <!-- <a title="Manage Fields" href="/exercises/"></a> -->
+                <td>
+                <a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete" href="/exercises/<?= $exercise->getId(); ?>"><i class="fa fa-trash"></i></a>
+                </td>
               </tr>
             <?php endforeach; ?>
           </tbody>
