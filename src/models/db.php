@@ -13,7 +13,7 @@ class db
     protected $query_closed = true;
     public $query_count     = 0;
 
-    public function __construct( $dbhost = 'localhost', $dbuser = 'root', $dbpass = '', $dbname = '', $charset = 'utf8' )
+    public function __construct( $dbhost = '127.0.0.1:3306', $dbuser = 'Looper', $dbpass = 'Password', $dbname = '`exerciselooper`', $charset = 'utf8' )
     {
         $this->connection = new mysqli( $dbhost, $dbuser, $dbpass, $dbname );
 

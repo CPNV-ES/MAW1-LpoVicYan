@@ -15,7 +15,7 @@
 <meta name="csrf-token" content="b1FCaUTd6u9RY3IpgP44v2QxYoAWBNdCyjq7aK/es1tWUTzNl6vndtBe+z50FOx2Hwq8r/URODBkKc2Lp1Xzjg==" />
     
     <link rel="stylesheet" media="all" href="/css/stylesheet.css" />
-    <script src="/js/js.js"></script>
+    <script src="/js/script.js"></script>
   </head>
 
   <body>
@@ -32,7 +32,7 @@
       <a class="button answering column" href="/exercises/answering">Take an exercise</a>
     </div>
     <div class="column">
-      <a class="button managing column" href="/exercises/new">Create an exercise</a>
+      <a class="button managing column" href="/exercises/create_exercise">Create an exercise</a>
     </div>
     <div class="column">
       <a class="button results column" href="/manage-exercises">Manage an exercise</a>
