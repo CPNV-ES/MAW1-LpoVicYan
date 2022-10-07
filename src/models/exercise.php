@@ -88,7 +88,7 @@ class Exercise
   static function deleteAnExercise($id)
   {
     $res  = getConnector();
-    $data = ['title' => 'id', 'value' => $id];
+    $data = ['name' => 'id', 'value' => $id];
     $res->delete("exercises", $data);
     unset($res);
   }
