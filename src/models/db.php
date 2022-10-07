@@ -13,9 +13,11 @@ class db
     protected $query_closed = true;
     public $query_count     = 0;
 
+
     protected $db_name;
 
     public function __construct( $dbhost = 'localhost', $dbuser = 'root', $dbpass = '', $dbname = '', $charset = 'utf8' )
+
     {
         $this->connection = new mysqli( $dbhost, $dbuser, $dbpass, $dbname );
         $this->db_name    = $dbname;

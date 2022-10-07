@@ -18,8 +18,8 @@ function dispatch($bag)
         $bag['handler'] = 'controllers/exercises/index';
     }
     //-----------------------------------------------------------------------------
-    elseif (preg_match('/^\/exercises\/new$/', $bag['route'], $matches)) {
-        $bag['view'] = 'views/exercises/create_exercice';
+    elseif (preg_match('/^\/exercises\/create_exercise$/', $bag['route'], $matches)) {
+        $bag['view'] = 'views/exercises/create_exercise';
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/answering$/', $bag['route'], $matches)) {

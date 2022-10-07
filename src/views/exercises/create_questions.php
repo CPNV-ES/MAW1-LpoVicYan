@@ -10,7 +10,7 @@
 <header class="heading managing">
     <section class="container">
         <a href="/"><img src="/images/logo.png" /></a>
-        <span class="exercise-label">Exercise: <a href="/exercises/750/fields">TestVM</a></span>
+        <span class="exercise-label">Exercise: <a href="/create_exercise"><?= $_POST['exercise_title']?></a></span>
     </section>
 </header>
 
@@ -37,7 +37,9 @@
                     <thead>
                         <tr>
                             <th>Label</th>
+                            <th> <a href="/create_questions"><?= $_POST['field_label']?></a></th>
                             <th>Value kind</th>
+                            <th> <a href="/create_questions"><?= $_POST['field_value_kind']?></a></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -51,7 +53,7 @@
             </section>
             <section class="column">
                 <h1>New Field</h1>
-                <form action="/exercises/750/fields" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="rb0PMhs4hMsL04IiyaU2HBzGnFbebUgu7Cs2A/9rJ9zUi12WX6SyWATpXSreU/xjJThJkzNJ35RfBL8jh+lRvg==" />
+                <form action="/exercises/create_questions" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="rb0PMhs4hMsL04IiyaU2HBzGnFbebUgu7Cs2A/9rJ9zUi12WX6SyWATpXSreU/xjJThJkzNJ35RfBL8jh+lRvg==" />
 
                     <div class="field">
                         <label for="field_label">Label</label>
