@@ -43,6 +43,7 @@
               <tr>
                 <td><?= $exercise->getTitle(); ?></td>
                 <td>
+                <a title="Manage fields" href="/exercises/<?= $exercise->getId(); ?>/fields"><i class="fa fa-edit"></i></a>
                 <a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete" href="/exercises/<?= $exercise->getId(); ?>"><i class="fa fa-trash"></i></a>
                 </td>
               </tr>
