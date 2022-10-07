@@ -1,7 +1,7 @@
 <?php
 /**
  * Project: MAW1-LpoVicYan
- * Title: modify_form.php
+ * Title: modify.php
  * Author: LPOdev
  * Version: 1.0 from the 07th 10 2022
  */
@@ -12,7 +12,8 @@
 <header class="heading managing">
     <section class="container">
         <a href="/"><img src="/images/logo.png"/></a>
-        <span class="exercise-label">Exercise: <a href="/exercises/789/fields">test maw vyl</a></span>
+        <span class="exercise-label">Exercise: <a
+                    href="/exercises/<?= $data[ 'exercise_id' ] ?>/fields">test maw vyl</a></span>
     </section>
 </header>
 
@@ -97,6 +98,5 @@
 
     </body>
     </html>
-
 </main>
 
