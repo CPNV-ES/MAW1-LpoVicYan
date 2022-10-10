@@ -70,14 +70,13 @@ class Exercise
     $res = getConnector();
     $exerciseToCreate = array('title' => $exercise['title'], 'creation_date' => $exercise['creation_date'], 'modification_date' => $exercise['modification_date'], 'status' => $exercise['status']);
 
-
-
     if ($exercise->getId() == 0 || $exercise->getId() == null) {
       $query_result = $res->insert('exercises', $exerciseToCreate);
       $query_result = $res->lastInsertID();
-      unset($query_result);
+      unset($res);
     } else {
       $query_result = $res->update('exercise', $exercise, 'WHERE id = ' . $exercise->getId);
+      unset($res);
     }
   }
 
@@ -88,8 +87,9 @@ class Exercise
   static function deleteAnExercise($id)
   {
     $res  = getConnector();
-    $data = ['name' => 'id', 'value' => $id];
-    $res->delete("exercises", $data);
+    $deletedQuestions = $res->query('DELETE FROM questions WHERE exercise_id = ?;', $id);
+    $dataExercises = ['name' => 'id', 'value' => $id];
+    $res->delete("exercises", $dataExercises);
     unset($res);
   }
 
