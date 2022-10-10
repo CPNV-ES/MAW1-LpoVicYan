@@ -65,19 +65,20 @@ class Exercise
   /**
    * Create an exercise
    */
-  static function save($exercise)
+   function save()
   {
     $res = getConnector();
-    $exerciseToCreate = array('title' => $exercise['title'], 'creation_date' => $exercise['creation_date'], 'modification_date' => $exercise['modification_date'], 'status' => $exercise['status']);
+    $exerciseToCreate = array('title' => $this->title, 'creation_date' => $this->creation_date, 'modification_date' => $this->modification_date, 'status' => $this->status);
 
 
 
-    if ($exercise->getId() == 0 || $exercise->getId() == null) {
+    if ($this->id == 0 || $this->id->getId() == null) {
       $query_result = $res->insert('exercises', $exerciseToCreate);
       $query_result = $res->lastInsertID();
-      unset($query_result);
+      unset($res);
     } else {
-      $query_result = $res->update('exercise', $exercise, 'WHERE id = ' . $exercise->getId);
+      $query_result = $res->update('exercises', $exerciseToCreate, 'WHERE id = ' . $this->getId);
+      unset($res);
     }
   }
 

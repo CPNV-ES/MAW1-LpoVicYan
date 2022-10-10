@@ -9,10 +9,9 @@
  * create question en manage it before posting it 
  */
 if ($bag['handler']) {
-    $bag['data'] = [];
-    $bag['data'] = ['createQuestion'] = Question::save(new);
-    $bag['data'] = ['loadQuestion'] = Question::loadById($id);
-    $bag['data'] = ['displayQuestions'] = Question::getAll("fields");
+    $bag['data']['createQuestion'] = Question::save();
+    $bag['data']['loadQuestion'] = Question::loadById($id);
+    $bag['data']['displayQuestions'] = Question::getAll("fields");
     $bag['view'] = 'view/exercices/create_question';
 
 }

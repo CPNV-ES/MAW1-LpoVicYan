@@ -20,6 +20,8 @@ function dispatch($bag)
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/create_exercise$/', $bag['route'], $matches)) {
         $bag['view'] = 'views/exercises/create_exercise';
+        
+        
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/answering$/', $bag['route'], $matches)) {
@@ -28,6 +30,8 @@ function dispatch($bag)
         //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/create_questions$/', $bag['route'], $matches)) {
             $bag['view'] = 'views/exercises/create_questions';
+            $bag['handler'] = 'controllers/exercises/create_exercises';
+            $bag['post_data'] = $_POST['exercise_title'];
         }
     //-----------------------------------------------------------------------------
     else {

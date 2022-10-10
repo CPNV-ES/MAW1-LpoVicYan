@@ -37,10 +37,10 @@
                     <thead>
                         <tr>
                             <th>Label</th>
-                            <th><?php foreach ($data['displayQuestion'] as $question) : ?></th>
+                            <th><?php foreach ($data['displayQuestion'] as $label) : ?></th>
                                 <?php endforeach; ?>
                             <th>Value kind</th>
-                            <th><?php foreach ($data['displayQuestion'] as $question) : ?></th>
+                            <th><?php foreach ($data['displayQuestion'] as $value) : ?></th>
                                 <?php endforeach; ?>
                             <th></th>
                         </tr>
@@ -65,9 +65,9 @@
                     <div class="field">
                         <label for="field_value_kind">Value kind</label>
                         <select name="field[value_kind]" id="field_value_kind">
-                            <option selected="selected" value="single_line">Single line text</option>
-                            <option value="single_line_list">List of single lines</option>
-                            <option value="multi_line">Multi-line text</option>
+                            <option selected="selected" value="inline">Single line text</option>
+                            <option value="choice">List of single lines</option>
+                            <option value="multiline">Multi-line text</option>
                         </select>
                     </div>
 
