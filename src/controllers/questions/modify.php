@@ -11,7 +11,7 @@ require_once SOURCE_DIR . '/models/question.php';
 if ( $bag[ 'handler' ] )
 {
     $bag[ 'data' ] = [];
-    $bag[ 'data' ] = [ 'question' => Question::loadById( $bag[ 'question_id' ] ) ];
-    $bag[ 'view' ] = 'views/exercises/modify_form';
+    $bag[ 'data' ] = [ "exercise_id" => $bag['exercise_id'], 'question' => Question::loadById( $bag[ 'question_id' ] ) ];
+    $bag[ 'view' ] = 'views/questions/modify_form';
     return $bag;
 }

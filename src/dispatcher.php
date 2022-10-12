@@ -9,41 +9,75 @@ function dispatch( $bag )
 {
     $matches = [];
 
+//-----------------------------------------------------------------------------
+    if ( preg_match( '/^\/?$/', $bag['route'] ) )
+    {
+        $bag['view'] = 'views/site/index';
+    }
+
     //-----------------------------------------------------------------------------
-    if ( preg_match( '/^\/?$/', $bag[ 'route' ] ) )
+
+    elseif ( preg_match( '/^\/manage-exercises$/', $bag['route'], $matches ) )
     {
-        $bag[ 'view' ] = 'views/site/index';
-    } //-----------------------------------------------------------------------------
-    elseif ( preg_match( '/^\/manage-exercises$/', $bag[ 'route' ], $matches ) )
+        $bag['handler'] = 'controllers/exercises/index';
+    }
+
+    //-----------------------------------------------------------------------------
+
+    elseif ( preg_match( '/^\/exercises\/create_exercise$/', $bag['route'], $matches ) )
     {
-        $bag[ 'handler' ] = 'controllers/exercises/index';
-    } //-----------------------------------------------------------------------------
-    elseif ( preg_match( '/^\/exercises\/create_exercise$/', $bag[ 'route' ], $matches ) )
+        $bag['view'] = 'views/exercises/create_exercise';
+    }
+
+    //-----------------------------------------------------------------------------
+
+    elseif ( preg_match( '/^\/exercises\/answering$/', $bag['route'], $matches ) )
     {
-        $bag[ 'view' ] = 'views/exercises/create_exercise';
-    } //-----------------------------------------------------------------------------
-    elseif ( preg_match( '/^\/exercises\/answering$/', $bag[ 'route' ], $matches ) )
+        $bag['view'] = 'views/exercises/take_exercice';
+    }
+
+    //-----------------------------------------------------------------------------
+
+    elseif ( preg_match( '/^\/exercises\/(\w+)\/fields$/', $bag['route'], $matches ) )
     {
-        $bag[ 'view' ] = 'views/exercises/take_exercice';
-    } //-----------------------------------------------------------------------------
-    elseif ( preg_match( '/^\/exercises\/(\w+)\/questions$/', $bag[ 'route' ], $matches ) )
+        $bag['post_data']   = [];
+
+        if ( $_SERVER['REQUEST_METHOD'] === 'POST' )
+        {
+            $bag['handler']     = 'controllers/exercises/modify';
+            $bag['exercise_id'] = $matches[1];
+            $bag['post_data']   = $_POST['field'];
+            var_dump( $bag['post_data'] );
+        }
+        else
+        {
+            $bag['handler']     = 'controllers/exercises/modify';
+            $bag['exercise_id'] = $matches[1];
+        }
+
+    }
+
+    //-----------------------------------------------------------------------------
+
+    elseif ( preg_match( '/^\/exercises\/(\w+)\/fields\/(\w+)\/edit$/', $bag['route'], $matches ) )
     {
-        $bag['handler']  = 'controllers/exercises/modify';
+        $bag['handler']     = 'controllers/questions/modify';
         $bag['exercise_id'] = $matches[1];
-    } //-----------------------------------------------------------------------------
-    elseif ( preg_match( '/^\/exercises\/(\w+)\/questions\/(\w+)$/', $bag[ 'route' ], $matches ) )
+        $bag['question_id'] = $matches[2];
+    }
+
+    //-----------------------------------------------------------------------------
+
+    elseif ( preg_match( '/^\/exercises\/create_questions$/', $bag['route'], $matches ) )
     {
-        $bag['handler']  = 'controllers/exercises/modify';
-        $bag['exercise_id'] = $matches[1];
-        $bag['field_id'] = $matches[2];
-    } //-----------------------------------------------------------------------------
-    elseif ( preg_match( '/^\/exercises\/create_questions$/', $bag[ 'route' ], $matches ) )
-    {
-        $bag[ 'view' ] = 'views/exercises/create_questions';
-    } //-----------------------------------------------------------------------------
+        $bag['view'] = 'views/exercises/create_questions';
+    }
+
+    //-----------------------------------------------------------------------------
+
     else
     {
-        $bag[ 'status_code' ] = 404;
+        $bag['status_code'] = 404;
     }
 
     return $bag;

@@ -6,6 +6,7 @@
  * Version: 1.0 from the 07th 10 2022
  */
 
+ var_dump($data);
 ?>
 
 <header class="heading managing">
@@ -26,29 +27,30 @@
 
 
         <link rel="stylesheet" media="all"
-              href="/assets/application-264507a893987846393b8514969b89293817c54265354e63e6ab61fb46193f89.css"/>
-        <script src="/assets/application-212289bcba525f2374cdbd70755ea38f2cfdd35d479e9638fae0b2832fac5dac.js"></script>
+              href="/css/stylesheet.css"/>
+        <script src="/js/script.js"></script>
     </head>
 
     <body>
     <h1>Editing Field</h1>
 
-    <form action="/exercises/789/fields/1105" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden"
+    <form action="/exercises/<?= $data['exercise_id']?>/fields" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden"
                                                                                           value="&#x2713;"/><input
-                type="hidden" name="_method" value="patch"/><input type="hidden" name="authenticity_token"
-                                                                   value="Ljkm2U/arKjhqKa61oUHA/CpF3ldG8IHW5zfsEHCS2njaE+EAyXeBDvJQhshNhccm+4kxJIpSgLCyGKLfey4FA=="/>
+                type="hidden" name="_method" value="patch"/><input type="hidden" name="field[id]"
+                                                                   value="<?= $data['question']->__get('id') ?>"/>
 
         <div class="field">
             <label for="field_label">Label</label>
-            <input type="text" value="modifié!" name="field[label]" id="field_label"/>
+            <input type="text" value="<?= $data['question']->__get('name') ?>" name="field[name]" id="field_label"/>
         </div>
 
         <div class="field">
             <label for="field_value_kind">Value kind</label>
-            <select name="field[value_kind]" id="field_value_kind">
-                <option selected="selected" value="single_line">Single line text</option>
-                <option value="single_line_list">List of single lines</option>
-                <option value="multi_line">Multi-line text</option>
+            <select name="field[type]" id="field_value_kind">
+
+                <option <?php if($data['question']->__get('type')=='inline') echo "selected";?> value="inline">Single line text</option>
+                <option <?php if($data['question']->__get('type')=='choice') echo "selected";?> value="choice">List of single lines</option>
+                <option <?php if($data['question']->__get('type')=='multiline') echo "selected";?> value="multiline">Multi-line text</option>
             </select>
         </div>
 
