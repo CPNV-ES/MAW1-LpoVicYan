@@ -1,7 +1,8 @@
 <?php
 /**
  * Title: dispatcher
- * Author: Yann Menoud
+ * Author: Pascal Hurni
+ * Last modification by Yann Menoud
  * Version: 1.0 from 7th September 2022
  */
 
@@ -16,9 +17,12 @@ function dispatch( $bag )
     }
 
     //-----------------------------------------------------------------------------
-
-    elseif ( preg_match( '/^\/manage-exercises$/', $bag['route'], $matches ) )
-    {
+    elseif (preg_match('/^\/exercises\/(.+)$/', $bag['route'], $matches)) {
+        $bag['handler'] = 'controllers/exercises/delete_exercise';
+        $bag['id'] = $matches[1];
+    }
+    //-----------------------------------------------------------------------------
+    elseif (preg_match('/^\/manage-exercises$/', $bag['route'], $matches)) {
         $bag['handler'] = 'controllers/exercises/index';
     }
 
