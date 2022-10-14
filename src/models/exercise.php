@@ -35,7 +35,21 @@ class Exercise
   /**
    * Get all exercises of a status
    */
-  static function getAllExercises($status)
+  static function getAllExercises($status){
+    try {
+      $exercisesAsObjects = [];
+      $query = "SELECT * FROM exercises";
+      $pdo = new Database();
+      $exercisesAsObjects = $pdo->query($query, 'Exercise');
+      return $exercisesAsObjects;
+    } catch (\Throwable $th) {
+      var_dump('Impossible boss');
+    }
+  }
+  
+  
+  
+  /*  static function getAllExercises($status)
   {
     try {
       $exercisesAsObjects = [];
@@ -49,7 +63,7 @@ class Exercise
       return $exercisesAsObjects;
     } catch (Exception $e) {
     }
-  }
+  } */
 
   /**
    * Get an exercise
