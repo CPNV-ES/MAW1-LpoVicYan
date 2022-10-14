@@ -9,11 +9,14 @@
  * create question en manage it before posting it 
  */
 if ($bag['handler']) {
-    $bag['data']['createQuestion'] = Question::save();
-    $bag['data']['loadQuestion'] = Question::loadById($id);
-    $bag['data']['displayQuestions'] = Question::getAll("fields");
-    $bag['view'] = 'view/exercices/create_question';
+    var_dump ($bag['post_exercise']);
+    $question = new Question($bag['post_question']['label'],$bag['post_question']['value_kind'], 1, $exercise_id);
+    
+
+
+    // $bag['data']['createQuestion'] = Question::save();
+    // $bag['data']['loadQuestion'] = Question::loadById($id);
+    // $bag['data']['displayQuestions'] = Question::getAll("fields");
+    // $bag['view'] = 'view/exercices/create_question';
 
 }
-
-?>

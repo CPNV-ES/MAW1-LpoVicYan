@@ -28,10 +28,17 @@ function dispatch($bag)
         $bag['view'] = 'views/exercises/take_exercice';
     }
         //-----------------------------------------------------------------------------
-    elseif (preg_match('/^\/exercises\/create_questions$/', $bag['route'], $matches)) {
-            $bag['view'] = 'views/exercises/create_questions';
+    elseif (preg_match('/^\/exercises\/(.+)\/create_questions$/', $bag['route'], $matches)) {
+        $bag['post_exercise'] = $_POST['exercise_title'];
+        $bag['post_question'] = $_POST['field'];
+        
+        if  ($bag['post_exercise']){
             $bag['handler'] = 'controllers/exercises/create_exercises';
-            $bag['post_data'] = $_POST['exercise_title'];
+        }
+        elseif ($bag['post_question']){
+            $bag['handler'] = 'controllers/questions/index';
+        }
+            $bag['view'] = 'views/exercises/create_questions';           
         }
     //-----------------------------------------------------------------------------
     else {
