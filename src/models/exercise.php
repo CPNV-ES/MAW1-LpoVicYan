@@ -87,7 +87,7 @@ class Exercise
   static function deleteAnExercise($id)
   {
     $res  = getConnector();
-    $deletedQuestions = $res->query('DELETE FROM questions WHERE exercise_id = ?;', $id);
+    //$deletedQuestions = $res->query('DELETE FROM questions WHERE exercise_id = ?;', $id);
     $dataExercises = ['name' => 'id', 'value' => $id];
     $res->delete("exercises", $dataExercises);
     unset($res);

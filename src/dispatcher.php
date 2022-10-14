@@ -1,7 +1,8 @@
 <?php
 /**
  * Title: dispatcher
- * Author: Yann Menoud
+ * Author: Pascal Hurni
+ * Last modification by Yann Menoud
  * Version: 1.0 from 7th September 2022
  */
 
