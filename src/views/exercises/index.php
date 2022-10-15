@@ -21,10 +21,8 @@
     <title>ExerciseLooper</title>
     <meta name="csrf-param" content="authenticity_token" />
     <meta name="csrf-token" content="cTQ75Yh5yYTc3Q4xxJg0ows2Aa/orSIAKGibpK6NoZsOqGtVPo8xNRCFWLSaCJw4j5SZ1er9yQnuHtlO+X4nSw==" />
-
-
     <link rel="stylesheet" media="all" href="/css/stylesheet.css" />
-    <script src="js/script.js"></script>
+    <script src="/js/script.js"></script>
   </head>
 
   <body>
@@ -41,10 +39,10 @@
           <tbody>
             <?php foreach ($data['exercisesBuilding'] as $exercise) : ?>
               <tr>
-                <td><?= $exercise->getTitle(); ?></td>
+                <td><?= $exercise->getTitle() ?></td>
                 <td>
-                <a title="Manage fields" href="/exercises/<?= $exercise->getId(); ?>/fields"><i class="fa fa-edit"></i></a>
-                <a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete" href="/exercises/<?= $exercise->getId(); ?>"><i class="fa fa-trash"></i></a>
+                  <a title="Manage fields" href="/exercises/<?= $exercise->getId() ?>/fields"><i class="fa fa-edit"></i></a>
+                  <a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete" href="/exercises/<?= $exercise->getId() ?>"><i class="fa fa-trash"></i></a>
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -64,8 +62,12 @@
           <tbody>
             <?php foreach ($data['exercisesAnswering'] as $exercise) : ?>
               <tr>
-                <td><?= $exercise->getTitle(); ?></td>
-                <td><?= 'icon' ?></td>
+                <td><?= $exercise->getTitle() ?></td>
+                <td>
+                  <a title="Manage fields" href="/exercises/<?= $exercise->getId() ?>/fields"><i class="fa fa-edit"></i></a>
+                  <a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete" href="/exercises/<?= $exercise->getId() ?>"><i class="fa fa-trash"></i></a>
+                </td>
+                </td>
               </tr>
             <?php endforeach; ?>
           </tbody>
@@ -84,8 +86,12 @@
           <tbody>
             <?php foreach ($data['exercisesClosed'] as $exercise) : ?>
               <tr>
-                <td><?= $exercise->getTitle(); ?></td>
-                <td><?= 'icon' ?></td>
+                <td><?= $exercise->getTitle() ?></td>
+                <td>
+                  <a title="Manage fields" href="/exercises/<?= $exercise->getId() ?>/fields"><i class="fa fa-edit"></i></a>
+                  <a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete" href="/exercises/<?= $exercise->getId() ?>"><i class="fa fa-trash"></i></a>
+                <td>
+                </td>
               </tr>
             <?php endforeach; ?>
           </tbody>
