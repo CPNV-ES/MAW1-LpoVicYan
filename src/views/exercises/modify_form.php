@@ -1,12 +1,12 @@
 <?php
-/**
-* Project: MAW1-LpoVicYan
-* Title: modify.php
-* Author: LPOdev
-* Version: 1.0 from the 07th 10 2022
-*/
+    /**
+     * Project: MAW1-LpoVicYan
+     * Title: modify.php
+     * Author: LPOdev
+     * Version: 1.0 from the 07th 10 2022
+     */
 
-?>
+;?>
 
 
 <header class="heading managing">
@@ -21,6 +21,7 @@
 <main class="container">
     <!DOCTYPE html>
     <html>
+
     <head>
         <title>ExerciseLooper</title>
         <meta name="csrf-param" content="authenticity_token" />
@@ -72,8 +73,8 @@
             </section>
             <section class="column">
                 <h1>New Field</h1>
-                <form action="/exercises/789/fields" accept-charset="UTF-8" method="post"><input name="utf8"
-                        type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token"
+                <form action="/exercises/<?=$data['exercise_id'];?>/fields" accept-charset="UTF-8" method="post"><input
+                        name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token"
                         value="dHt1q3fSnM1NXO344vHuHW5LpwOOrGG/GOJhLZJGHDwUrFWhF7KAo4teeRBModaf3x0Jmq9xC34MNjsfALADBg==" />
 
                     <div class="field">

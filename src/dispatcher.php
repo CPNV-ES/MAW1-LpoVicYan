@@ -10,7 +10,6 @@ function dispatch( $bag )
 {
     $matches = [];
 
-
     //-----------------------------------------------------------------------------
 
     if ( preg_match( '/^\/?$/', $bag['route'] ) )
@@ -28,8 +27,7 @@ function dispatch( $bag )
         {
             $bag['handler']     = 'controllers/exercises/modify';
             $bag['exercise_id'] = $matches[1];
-            $bag['post_data']   = $_POST['field'];
-            var_dump( $bag['post_data'] );
+            $bag['post_data']   = [$_POST['field'], 'commit' => $_POST['commit']];
         }
         else
         {
@@ -38,6 +36,26 @@ function dispatch( $bag )
         }
 
     }
+    //-----------------------------------------------------------------------------
+
+    elseif ( preg_match( '/^\/exercises\/(\w+)\/fields\/(\w+)\/edit$/', $bag['route'], $matches ) )
+    {
+        $bag['handler']     = 'controllers/questions/modify';
+        $bag['exercise_id'] = $matches[1];
+        $bag['question_id'] = $matches[2];
+
+    }
+
+    //-----------------------------------------------------------------------------
+
+    elseif ( preg_match( '/^\/exercises\/(\w+)\/fields\/(\w+)/', $bag['route'], $matches ) )
+    {
+        $bag['handler']     = 'controllers/questions/modify';
+        $bag['exercise_id'] = $matches[1];
+        $bag['question_id'] = $matches[2];
+
+    }
+
     //-----------------------------------------------------------------------------
 
     elseif ( preg_match( '/^\/exercises\/(.+)$/', $bag['route'], $matches ) )

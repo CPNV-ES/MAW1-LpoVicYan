@@ -8,11 +8,18 @@
 
 if ( $bag['post_data'] )
 {
-    $data     = $bag['post_data'];
-    $question = Question::getAll( $data['id'] );
-    $question->__set( 'name', $data['name'] );
-    $question->__set( 'type', $data['type'] );
-    var_dump( $question );
+    $data = $bag['post_data'][0];
+
+    if ( $bag['post_data']['commit'] === 'Update Field' )
+    {
+        $question = Question::getById( $data['id'] );
+        $question->setName( $data['name'] );
+        $question->setType( $data['type'] );
+    }
+    else
+    {
+        $question = new Question( 0, $data['label'], $data['value_kind'], count( Question::getAll( $bag['exercise_id'] ) ) + 1, $bag['exercise_id'] );
+    }
     $question->save();
 }
 
@@ -21,4 +28,3 @@ $bag['data'] = ['exercise_id' => $bag['exercise_id'], 'questions' => Question::g
 $bag['view'] = 'views/exercises/modify_form';
 
 return $bag;
-
