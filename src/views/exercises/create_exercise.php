@@ -29,7 +29,7 @@
   <body>
     <h1>New Exercise</h1>
 
-<form action="/exercises/<?= $_POST ($bag['post_data'])?>/create_questions" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="fKJWz2xwmy0CsjZNyAx9IVj1dgX274vMobANwR7EIv0bjFweCGmftjVmtO1R6N35E4ZkfuDhOSpvQ8OsZ8J9pA==" />
+<form action="/exercises/create_questions" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="fKJWz2xwmy0CsjZNyAx9IVj1dgX274vMobANwR7EIv0bjFweCGmftjVmtO1R6N35E4ZkfuDhOSpvQ8OsZ8J9pA==" />
 
   <div class="field">
     <label for="exercise_title">Title</label>
