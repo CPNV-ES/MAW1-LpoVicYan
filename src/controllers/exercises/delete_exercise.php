@@ -12,7 +12,7 @@
  */
 if ($bag['handler']) {
     Exercise::delete($bag['id']);
-    header('Location: /manage-exercises');
+    header('Location: /exercises');
     $bag['view'] = 'views/exercises/index';
     return $bag;
 }

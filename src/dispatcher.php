@@ -15,23 +15,21 @@ function dispatch($bag)
         $bag['view'] = 'views/site/index';
     }
     //-----------------------------------------------------------------------------
-    elseif (preg_match('/^\/exercises\/(.+)$/', $bag['route'], $matches)) {
+    elseif (preg_match('/^\/exercises\/(\d+)$/', $bag['route'], $matches)) {
         $bag['handler'] = 'controllers/exercises/delete_exercise';
         $bag['id'] = $matches[1];
     }
     //-----------------------------------------------------------------------------
-    elseif (preg_match('/^\/manage-exercises$/', $bag['route'], $matches)) {
+    elseif (preg_match('/^\/exercises$/', $bag['route'], $matches)) {
         $bag['handler'] = 'controllers/exercises/index';
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/create_exercise$/', $bag['route'], $matches)) {
         $bag['view'] = 'views/exercises/create_exercise';
-        
-        
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/answering$/', $bag['route'], $matches)) {
-        $bag['view'] = 'views/exercises/take_exercice';
+        $bag['handler'] = 'controllers/exercises/take_exercise';
     }
         //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/(.+)\/create_questions$/', $bag['route'], $matches)) {
