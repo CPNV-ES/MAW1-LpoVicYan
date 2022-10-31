@@ -121,6 +121,7 @@ class Exercise
         return $this->id;
     }
 
+
     /**
      * Get title
      */

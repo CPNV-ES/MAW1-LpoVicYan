@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Title : create_exercice2
+ * Title : create_question
  * Author : Victorien Montavon
  * Verison : 1.0 from 0.9.09.2022
  */
@@ -37,9 +37,11 @@
                     <thead>
                         <tr>
                             <th>Label</th>
-                            <th> <a href="/create_questions"><?= $_POST['field_label']?></a></th>
+                            <th><?php foreach ($data['displayQuestion'] as $label) : ?></th>
+                                <?php endforeach; ?>
                             <th>Value kind</th>
-                            <th> <a href="/create_questions"><?= $_POST['field_value_kind']?></a></th>
+                            <th><?php foreach ($data['displayQuestion'] as $value) : ?></th>
+                                <?php endforeach; ?>
                             <th></th>
                         </tr>
                     </thead>
@@ -63,9 +65,9 @@
                     <div class="field">
                         <label for="field_value_kind">Value kind</label>
                         <select name="field[value_kind]" id="field_value_kind">
-                            <option selected="selected" value="single_line">Single line text</option>
-                            <option value="single_line_list">List of single lines</option>
-                            <option value="multi_line">Multi-line text</option>
+                            <option selected="selected" value="inline">Single line text</option>
+                            <option value="choice">List of single lines</option>
+                            <option value="multiline">Multi-line text</option>
                         </select>
                     </div>
 
@@ -79,5 +81,4 @@
     </body>
 
     </html>
-
 </main>
