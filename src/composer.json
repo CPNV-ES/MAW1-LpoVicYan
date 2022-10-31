@@ -1,7 +1,6 @@
 {
     "autoload": {
         "files": [
-            "models/Database.php",
             "models/.const.php",
             "models/exercise.php",
             "models/question.php"

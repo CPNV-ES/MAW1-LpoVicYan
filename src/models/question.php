@@ -16,7 +16,7 @@ class Question
     protected $order;
     protected $exercise_id;
 
-    public function __construct( $name, $type, $order, $exercise_id, $id = 0 )
+    public function __construct($name, $type, $order, $exercise_id, $id = 0)
     {
         $this->id          = $id;
         $this->name        = $name;
@@ -25,21 +25,18 @@ class Question
         $this->exercise_id = $exercise_id;
     }
 
-    public function __get( $property )
+    public function __get($property)
     {
 
-        if ( property_exists( $this, $property ) )
-        {
+        if (property_exists($this, $property)) {
             return $this->$property;
         }
-
     }
 
-    public function __set( $property, $value )
+    public function __set($property, $value)
     {
 
-        if ( property_exists( $this, $property ) )
-        {
+        if (property_exists($this, $property)) {
             $this->$property = $value;
         }
 
@@ -50,38 +47,34 @@ class Question
     {
         // Updates or creates a question depending if it exists or not
         $res      = getConnector();
-        $question = array( 'name' => $this->name, 'type' => $this->type, 'order' => $this->order, 'exercise_id' => $this->exercise_id );
+        $question = array('name' => $this->name, 'type' => $this->type, 'order' => $this->order, 'exercise_id' => $this->exercise_id);
 
-        if ( $this->id === 0 )
-        {
-            $query_result = $res->insert( 'questions', $question );
+        if ($this->id === 0) {
+            $query_result = $res->insert('questions', $question);
             $query_result = $res->lastInsertID();
-            $question     = Question::loadById( $query_result );
-            unset( $query_result );
+            $question     = Question::loadById($query_result);
+            unset($query_result);
             return $question;
+        } else {
+            $query_result = $res->update('questions', $question, 'WHERE id = ' . $this->id);
         }
-        else
-        {
-            $query_result = $res->update( 'questions', $question, 'WHERE id = ' . $this->id );
-        }
-
     }
 
     public function delete()
     {
         $res  = getConnector();
         $data = ['name' => 'id', 'value' => $this->id];
-        $res->delete( "questions", $data );
-        unset( $res );
+        $res->delete("questions", $data);
+        unset($res);
     }
 
-    public static function loadById( $id )
+    public static function loadById($id)
     {
         // loads a question from database using id
         $res      = getConnector();
-        $question = $res->query( "Select * from questions Where id = ?", $id )->fetchArray();
-        $question = new Question( $question['name'], $question['type'], $question['order'], $question['exercise_id'], $question['id'] );
-        unset( $res );
+        $question = $res->query("Select * from questions Where id = ?", $id)->fetchArray();
+        $question = new Question($question['name'], $question['type'], $question['order'], $question['exercise_id'], $question['id']);
+        unset($res);
         return $question;
     }
 
@@ -89,17 +82,16 @@ class Question
     {
         // returns an array with all the questions
         $res            = getConnector();
-        $questions_list = $res->query( "Select * from questions" )->fetchAll();
-        unset( $res );
+        $questions_list = $res->query("Select * from questions")->fetchAll();
+        unset($res);
         return $questions_list;
     }
 
-    public static function deleteById( $id )
+    public static function deleteById($id)
     {
         $res  = getConnector();
         $data = ['name' => 'id', 'value' => $id];
-        $res->delete( "questions", $data );
-        unset( $res );
+        $res->delete("questions", $data);
+        unset($res);
     }
-    
 }
