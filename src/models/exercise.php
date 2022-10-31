@@ -2,161 +2,179 @@
 
 /**
  * Title: exercise.php
- * Author: Menoud Yann  
+ * Author: Menoud Yann
  * Version: 3.0 from 16th September 2022
  */
 
 define('USERS_DATA_PATHNAME', BASE_DIR . '/data/exercises.json');
-
 
 /**
  * Contructor of Exercise
  */
 class Exercise
 {
-  protected $id;
-  protected $title;
-  protected $creation_date;
-  protected $modification_date;
-  protected $status;
+    protected $id;
+    protected $title;
+    protected $creation_date;
+    protected $modification_date;
+    protected $status;
 
-  /**
-   * Constructor of Exercise
-   */
-  public function __construct($id, $title, $creation_date, $modification_date, $status)
-  {
-    $this->id = $id;
-    $this->title = $title;
-    $this->creation_date = $creation_date;
-    $this->modification_date = $modification_date;
-    $this->status = $status;
-  }
-
-  /**
-   * Get all exercises of a status
-   */
-  static function getAllExercises($status)
-  {
-    try {
-      $exercisesAsObjects = [];
-      $res = getConnector();
-      $exercises = $res->query('SELECT * FROM exercises WHERE status = ? ;', $status)->fetchAll();
-      foreach ($exercises as $exercise) {
-        $exerciseAsObject = new Exercise($exercise['id'], $exercise['title'], $exercise['creation_date'], $exercise['modification_date'], $exercise['status']);
-        array_push($exercisesAsObjects, $exerciseAsObject);
-      }
-      unset($res);
-      return $exercisesAsObjects;
-    } catch (Exception $e) {
+    /**
+     * Constructor of Exercise
+     */
+    public function __construct(
+        $id,
+        $title,
+        $creation_date,
+        $modification_date,
+        $status
+    ) {
+        $this->id = $id;
+        $this->title = $title;
+        $this->creation_date = $creation_date;
+        $this->modification_date = $modification_date;
+        $this->status = $status;
     }
-  }
 
-  /**
-   * Get an exercise
-   */
-  static function getAnExercise($id)
-  {
-    $res = getConnector();
-    $exercise = $res->query('SELECT * FROM exercises WHERE id = ?', $id)->fetchArray();
-    $exerciseAsObject = new Exercise($exercise['id'], $exercise['title'], $exercise['creation_date'], $exercise['modification_date'], $exercise['status']);
-    return $exerciseAsObject;
-  }
+    /**
+     * Get all exercises of a status
+     */
+    static function getAllExercises($status)
+    {
+        $exercisesAsObjects = [];
+        $pdo = getConnector();
+        $query = 'SELECT * FROM exercises WHERE status=?';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$status]);
+        $exercises = $stmt->fetchAll();
 
-  /**
-   * Create an exercise
-   */
-   function save()
-  {
-    $res = getConnector();
-    $exerciseToCreate = array('title' => $this->title, 'creation_date' => $this->creation_date, 'modification_date' => $this->modification_date, 'status' => $this->status);
+        foreach ($exercises as $exercise) {
+          $exerciseAsObject = new Exercise($exercise['id'],$exercise['title'], $exercise['creation_date'], $exercise['modification_date'], $exercise['status']);
+          array_push($exercisesAsObjects, $exerciseAsObject);
+        }
+        return $exercisesAsObjects;
 
-
-
-    if ($this->id == 0 || $this->id->getId() == null) {
-      $query_result = $res->insert('exercises', $exerciseToCreate);
-      $query_result = $res->lastInsertID();
-      unset($res);
-    } else {
-      $query_result = $res->update('exercises', $exerciseToCreate, 'WHERE id = ' . $this->getId);
-      unset($res);
     }
-  }
+
+    /**
+     * Get an exercise
+     */
+    static function getAnExercise($id)
+    {
+        $pdo = getConnector();
+        $query = 'SELECT * FROM exercises WHERE id = ?';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$id]);
+        $exercise = $stmt->fetch();
+        $exerciseAsObject = new Exercise($exercise['id'],$exercise['title'],$exercise['creation_date'],$exercise['modification_date'],$exercise['status']);
+        return $exerciseAsObject;
+    }
+
+    /**
+     * Create an exercise
+     */
+    function save()
+    {
+        $pdo = getConnector();
+        $query = 'SELECT * FROM exercises WHERE id = ?';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$this->id]);
+
+        if ($stmt->fetch() == null) {
+          $query = 'INSERT INTO exercises (id, title, creation_date, modification_date, status) VALUES (?, ?, ?, ?, ?)';
+          $stmt = $pdo->prepare($query);
+          $stmt->execute([$this->id, $this->title, $this->creation_date, $this->modification_date, $this->status]);
+        } else {
+          $query = 'UPDATE exercises SET title=?, creation_date=?, modification_date=?, status=? WHERE id=?';
+          $stmt = $pdo->prepare($query);
+          $stmt->execute([$this->title, $this->creation_date, $this->modification_date, $this->status, $this->id]);
+        }
+    }
+
+    /**
+     * Delete an exercise
+     */
+    static function delete($id)
+    {
+        $pdo = getConnector();
+        $query = 'DELETE FROM exercises WHERE id=?';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$id]);
+    }
+
+    /**
+     * Delete an exercise
+     */
+    function destroy()
+    {
+        $pdo = getConnector();
+        $query = 'DELETE FROM exercises WHERE id=?';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$this->id]);
+    }
+
+    /**
+     * Get id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
 
-  /**
-   * Delete an exercise
-   */
-  static function deleteAnExercise($id)
-  {
-    $res  = getConnector();
-    $data = ['title' => 'id', 'value' => $id];
-    $res->delete("exercises", $data);
-    unset($res);
-  }
+    /**
+     * Get title
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
 
+    /**
+     * Get creation date
+     */
+    public function getCreationDate()
+    {
+        return $this->creation_date;
+    }
 
-  /**
-   * Get id
-   */
-  public function getId()
-  {
-    return $this->id;
-  }
+    /**
+     * Get last modification date
+     */
+    public function getModificationDate()
+    {
+        return $this->modification_date;
+    }
 
-  /**
-   * Get title
-   */
-  public function getTitle()
-  {
-    return $this->title;
-  }
+    /**
+     * Get status of exercise
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 
-  /**
-   * Get creation date
-   */
-  public function getCreationDate()
-  {
-    return $this->creation_date;
-  }
+    /**
+     * Set Title of exercise
+     */
+    public function setTitle($newTitle)
+    {
+        $this->title = $newTitle;
+    }
 
-  /**
-   * Get last modification date
-   */
-  public function getModificationDate()
-  {
-    return $this->modification_date;
-  }
+    /**
+     * Set modification date of exercise
+     */
+    public function setModificationDate($newModificationDAte)
+    {
+        $this->modification_date = $newModificationDAte;
+    }
 
-  /**
-   * Get status of exercise
-   */
-  public function getStatus()
-  {
-    return $this->status;
-  }
-
-  /**
-   * Set Title of exercise
-   */
-  public function setTitle($newTitle)
-  {
-    $this->title = $newTitle;
-  }
-
-  /**
-   * Set modification date of exercise
-   */
-  public function setModificationDate($newModificationDAte)
-  {
-    $this->modification_date = $newModificationDAte;
-  }
-
-
-  /**
-   * Set status of exercise
-   */
-  public function setStatus($newStatus)
-  {
-    $this->status = $newStatus;
-  }
+    /**
+     * Set status of exercise
+     */
+    public function setStatus($newStatus)
+    {
+        $this->status = $newStatus;
+    }
 }
