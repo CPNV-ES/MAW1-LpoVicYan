@@ -1,4 +1,4 @@
-?php
+<?php
 /**
 * Project: MAW1-LpoVicYan
 * Title: modify.php
@@ -11,6 +11,7 @@
 
 <header class="heading managing">
     <section class="container">
+
         <a href="/"><img src="/images/logo.png" /></a>
         <span class="exercise-label">Exercise: <a href="/exercises/<?=$data['exercise_id'];?>/fields">test maw
                 vyl</a></span>
@@ -20,7 +21,6 @@
 <main class="container">
     <!DOCTYPE html>
     <html>
-
     <head>
         <title>ExerciseLooper</title>
         <meta name="csrf-param" content="authenticity_token" />

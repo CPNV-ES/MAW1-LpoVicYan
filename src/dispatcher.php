@@ -10,7 +10,9 @@ function dispatch( $bag )
 {
     $matches = [];
 
+
     //-----------------------------------------------------------------------------
+
     if ( preg_match( '/^\/?$/', $bag['route'] ) )
     {
         $bag['view'] = 'views/site/index';
@@ -49,6 +51,7 @@ function dispatch( $bag )
     {
         $bag['handler'] = 'controllers/exercises/index';
     }
+
     //-----------------------------------------------------------------------------
 
     elseif ( preg_match( '/^\/exercises\/create_exercise$/', $bag['route'], $matches ) )
@@ -56,12 +59,14 @@ function dispatch( $bag )
         $bag['view'] = 'views/exercises/create_exercise';
 
     }
+
     //-----------------------------------------------------------------------------
 
     elseif ( preg_match( '/^\/exercises\/answering$/', $bag['route'], $matches ) )
     {
         $bag['view'] = 'views/exercises/take_exercice';
     }
+
     //-----------------------------------------------------------------------------
 
     elseif ( preg_match( '/^\/exercises\/(.+)\/create_questions$/', $bag['route'], $matches ) )

@@ -21,3 +21,4 @@ $bag['data'] = ['exercise_id' => $bag['exercise_id'], 'questions' => Question::g
 $bag['view'] = 'views/exercises/modify_form';
 
 return $bag;
+
