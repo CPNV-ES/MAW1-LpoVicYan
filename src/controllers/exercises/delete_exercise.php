@@ -11,7 +11,7 @@
  * If $bag['handler] is receive
  */
 if ($bag['handler']) {
-    Exercise::deleteAnExercise($bag['id']);
+    Exercise::delete($bag['id']);
     header('Location: /manage-exercises');
     $bag['view'] = 'views/exercises/index';
     return $bag;
