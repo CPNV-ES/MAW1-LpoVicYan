@@ -93,23 +93,6 @@ function dispatch( $bag )
 
     //-----------------------------------------------------------------------------
 
-    elseif ( preg_match( '/^\/exercises\/(.+)\/create_questions$/', $bag['route'], $matches ) )
-    {
-        $bag['post_exercise'] = $_POST['exercise_title'];
-        $bag['post_question'] = $_POST['field'];
-
-        if ( $bag['post_exercise'] )
-        {
-            $bag['handler'] = 'controllers/exercises/create_exercises';
-        }
-        elseif ( $bag['post_question'] )
-        {
-            $bag['handler'] = 'controllers/questions/index';
-        }
-        $bag['view'] = 'views/exercises/create_questions';
-    }
-    //-----------------------------------------------------------------------------
-
     else
     {
         $bag['status_code'] = 404;
