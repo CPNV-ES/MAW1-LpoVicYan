@@ -1,4 +1,4 @@
- <?php
+<?php
 /**
  * Title: dispatcher
  * Author: Pascal Hurni
@@ -10,7 +10,6 @@ function dispatch( $bag )
 {
     $matches = [];
 
-
     //-----------------------------------------------------------------------------
 
     if ( preg_match( '/^\/?$/', $bag['route'] ) )
@@ -18,6 +17,7 @@ function dispatch( $bag )
         $bag['view'] = 'views/site/index';
     }
     //-----------------------------------------------------------------------------
+
     elseif ( preg_match( '/^\/exercises\/(\w+)\/fields$/', $bag['route'], $matches ) )
     {
         $bag['post_data'] = [];
@@ -38,14 +38,14 @@ function dispatch( $bag )
     }
     //-----------------------------------------------------------------------------
 
-    elseif ( preg_match( '/^\/exercises\/(.+)$/', $bag['route'], $matches ) )
+    elseif ( preg_match( '/^\/exercises\/(\d+)$/', $bag['route'], $matches ) )
     {
         $bag['handler'] = 'controllers/exercises/delete_exercise';
         $bag['id']      = $matches[1];
     }
     //-----------------------------------------------------------------------------
 
-    elseif ( preg_match( '/^\/manage-exercises$/', $bag['route'], $matches ) )
+    elseif ( preg_match( '/^\/exercises$/', $bag['route'], $matches ) )
     {
         $bag['handler'] = 'controllers/exercises/index';
     }
@@ -58,9 +58,10 @@ function dispatch( $bag )
     }
 
     //-----------------------------------------------------------------------------
+
     elseif ( preg_match( '/^\/exercises\/answering$/', $bag['route'], $matches ) )
     {
-        $bag['view'] = 'views/exercises/take_exercice';
+        $bag['handler'] = 'controllers/exercises/take_exercise';
     }
 
     //-----------------------------------------------------------------------------
