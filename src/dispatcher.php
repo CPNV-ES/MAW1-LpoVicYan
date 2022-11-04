@@ -20,7 +20,7 @@ function dispatch($bag)
         $bag['id'] = $matches[1];
     }
     //-----------------------------------------------------------------------------
-    elseif (preg_match('/^\/manage-exercises$/', $bag['route'], $matches)) {
+    elseif (preg_match('/^\/exercises$/', $bag['route'], $matches)) {
         $bag['handler'] = 'controllers/exercises/index';
     }
     //-----------------------------------------------------------------------------
