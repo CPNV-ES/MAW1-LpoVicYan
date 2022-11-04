@@ -34,7 +34,7 @@ class Question
         // returns an array with all the questions
         $questionsAsObjects = [];
         $pdo                = getConnector();
-        $query              = 'SELECT * FROM questions WHERE exercise_id=?';
+        $query              = 'SELECT * FROM questions WHERE exercise_id=? ORDER BY `order`';
         $stmt               = $pdo->prepare( $query );
         $stmt->execute( [$exercise_id] );
         $questions = $stmt->fetchAll();
@@ -46,6 +46,18 @@ class Question
         }
 
         return $questionsAsObjects;
+    }
+
+    public static function getById( $id )
+    {
+        $pdo   = getConnector();
+        $query = 'SELECT * FROM questions WHERE id = ?';
+        $stmt  = $pdo->prepare( $query );
+        $stmt->execute( [$id] );
+        $question = $stmt->fetchAll()[0];
+
+        return new Question( $question['id'], $question['name'], $question['type'], $question['order'], $question['exercise_id'] );
+
     }
 
     public function getExerciseId()
@@ -67,5 +79,35 @@ class Question
     {
         return $this->type;
     }
-}
 
+    public function save()
+    {
+        $pdo   = getConnector();
+        $query = 'SELECT * FROM questions WHERE id = ?';
+        $stmt  = $pdo->prepare( $query );
+        $stmt->execute( [$this->id] );
+
+        if ( $stmt->fetch() == null )
+        {
+            $query = 'INSERT INTO questions (`name`, `type`, `order`, `exercise_id`) VALUES (?, ?, ?, ?)';
+            $stmt  = $pdo->prepare( $query );
+            $stmt->execute( [$this->name, $this->type, $this->order, $this->exercise_id] );
+        }
+        else
+        {
+            $query = 'UPDATE questions SET name=?, type=? WHERE id=?';
+            $stmt  = $pdo->prepare( $query );
+            $stmt->execute( [$this->name, $this->type, $this->id] );
+        }
+    }
+
+    public function setName( $name )
+    {
+        $this->name = $name;
+    }
+
+    public function setType( $type )
+    {
+        $this->type = $type;
+    }
+}
