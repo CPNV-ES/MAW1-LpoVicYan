@@ -89,8 +89,14 @@ function dispatch( $bag )
         }
         $bag['view'] = 'views/exercises/create_questions';
     }
-    //-----------------------------------------------------------------------------
+     //-----------------------------------------------------------------------------
 
+     elseif ( preg_match( '/^\/exercises\/(\d+)\/fulfillments\/new$/', $bag['route'], $matches) )
+     {
+         $bag['handler'] = 'controllers/exercises/fulfillment';
+         $bag['id'] = $matches[1];
+     }
+    //-----------------------------------------------------------------------------
     else
     {
         $bag['status_code'] = 404;
