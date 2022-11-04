@@ -54,10 +54,10 @@
                             <td><?=$field->getType();?></td>
                             <td>
                                 <a title="Edit"
-                                    href="/exercises/<?=$field->getExerciseId();?>/fields/<?=$field->getId();?>/edit"><i
+                                    href="/exercises/<?=$data['exercise']->getId();?>/fields/<?=$field->getId();?>/edit"><i
                                         class="fa fa-edit"></i></a>
                                 <a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete"
-                                    href="/exercises/<?=$field->getExerciseId();?> /fields/<?=$field->getId();?>/edit"><i
+                                    href="/exercises/<?=$data['exercise']->getId();?>/fields/<?=$field->getId();?>"><i
                                         class="fa fa-trash"></i></a>
                             </td>
                         </tr>
