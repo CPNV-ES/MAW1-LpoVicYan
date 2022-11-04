@@ -46,17 +46,17 @@
                 <label for="field_value_kind">Value kind</label>
                 <select name="field[type]" id="field_value_kind">
 
-                    <option <?php if ( $data['question']->getType() == 'inline' )
+                    <option <?php if ( $data['question']->getType() == 'single_line' )
                                 {
                                     echo 'selected';
                             }
                             ?> value="inline">Single line text</option>
-                    <option <?php if ( $data['question']->getType() == 'choice' )
+                    <option <?php if ( $data['question']->getType() == 'single_line_list' )
                                 {
                                     echo 'selected';
                             }
                             ?> value="choice">List of single lines</option>
-                    <option <?php if ( $data['question']->getType() == 'multiline' )
+                    <option <?php if ( $data['question']->getType() == 'multi_line' )
                                 {
                                     echo 'selected';
                             }
