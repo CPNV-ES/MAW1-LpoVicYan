@@ -22,9 +22,10 @@ if ( $bag['post_data'] )
     }
     $question->save();
 }
+$exercise = Exercise::getAnExercise( $bag['exercise_id'] );
 
 $bag['data'] = [];
-$bag['data'] = ['exercise_id' => $bag['exercise_id'], 'questions' => Question::getAll( $bag['exercise_id'] )];
+$bag['data'] = ['exercise' => $exercise, 'questions' => Question::getAll( $bag['exercise_id'] )];
 $bag['view'] = 'views/exercises/modify_form';
 
 return $bag;
