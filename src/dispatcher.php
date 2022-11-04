@@ -47,16 +47,6 @@ function dispatch( $bag )
 
     //-----------------------------------------------------------------------------
 
-    elseif ( preg_match( '/^\/exercises\/(\w+)\/fields\/(\w+)/', $bag['route'], $matches ) )
-    {
-        $bag['handler']     = 'controllers/questions/modify';
-        $bag['exercise_id'] = $matches[1];
-        $bag['question_id'] = $matches[2];
-
-    }
-
-    //-----------------------------------------------------------------------------
-
     elseif ( preg_match( '/^\/exercises\/(\d+)$/', $bag['route'], $matches ) )
     {
         $bag['handler'] = 'controllers/exercises/delete_exercise';
