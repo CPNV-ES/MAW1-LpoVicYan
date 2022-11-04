@@ -47,14 +47,22 @@ function dispatch( $bag )
 
     elseif ( preg_match( '/^\/exercises$/', $bag['route'], $matches ) )
     {
-        $bag['handler'] = 'controllers/exercises/index';
+        if ( isset( $_POST['exercise_title'] ) )
+        {
+            $bag['post_exercise'] = $_POST['exercise_title'];
+            $bag['handler']       = 'controllers/exercises/create_exercises';
+        }
+        else
+        {
+            $bag['handler'] = 'controllers/exercises/index';
+        }
     }
 
     //-----------------------------------------------------------------------------
 
-    elseif ( preg_match( '/^\/exercises\/create_exercise$/', $bag['route'], $matches ) )
+    elseif ( preg_match( '/^\/exercises\/new$/', $bag['route'], $matches ) )
     {
-        $bag['view'] = 'views/exercises/create_exercise';
+        $bag['view'] = 'views/exercises/new';
     }
 
     //-----------------------------------------------------------------------------
