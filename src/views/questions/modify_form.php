@@ -50,17 +50,17 @@
                                 {
                                     echo 'selected';
                             }
-                            ?> value="inline">Single line text</option>
+                            ?> value="single_line">Single line text</option>
                     <option <?php if ( $data['question']->getType() == 'single_line_list' )
                                 {
                                     echo 'selected';
                             }
-                            ?> value="choice">List of single lines</option>
+                            ?> value="single_line_list">List of single lines</option>
                     <option <?php if ( $data['question']->getType() == 'multi_line' )
                                 {
                                     echo 'selected';
                             }
-                            ?> value="multiline">Multi-line text</option>
+                            ?> value="multi_line">Multi-line text</option>
                 </select>
             </div>
 
