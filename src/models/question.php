@@ -29,6 +29,17 @@ class Question
         $this->exercise_id = $exercise_id;
     }
 
+    /**
+     * Delete an exercise
+     */
+    function delete()
+    {
+        $pdo   = getConnector();
+        $query = 'DELETE FROM questions WHERE id=?';
+        $stmt  = $pdo->prepare( $query );
+        $stmt->execute( [$this->id] );
+    }
+
     public static function getAll( $exercise_id )
     {
         // returns an array with all the questions

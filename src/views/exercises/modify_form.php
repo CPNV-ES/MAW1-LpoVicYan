@@ -13,8 +13,8 @@
     <section class="container">
 
         <a href="/"><img src="/images/logo.png" /></a>
-        <span class="exercise-label">Exercise: <a href="/exercises/<?=$data['exercise_id'];?>/fields">test maw
-                vyl</a></span>
+        <span class="exercise-label">Exercise: <a
+                href="/exercises/<?=$data['exercise']->getId();?>/fields"><?=$data['exercise']->getTitle();?></a></span>
     </section>
 </header>
 
@@ -54,10 +54,10 @@
                             <td><?=$field->getType();?></td>
                             <td>
                                 <a title="Edit"
-                                    href="/exercises/<?=$field->getExerciseId();?>/fields/<?=$field->getId();?>/edit"><i
+                                    href="/exercises/<?=$data['exercise']->getId();?>/fields/<?=$field->getId();?>/edit"><i
                                         class="fa fa-edit"></i></a>
                                 <a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete"
-                                    href="/exercises/<?=$field->getExerciseId();?> /fields/<?=$field->getId();?>/edit"><i
+                                    href="/exercises/<?=$data['exercise']->getId();?>/fields/<?=$field->getId();?>"><i
                                         class="fa fa-trash"></i></a>
                             </td>
                         </tr>
@@ -73,8 +73,8 @@
             </section>
             <section class="column">
                 <h1>New Field</h1>
-                <form action="/exercises/<?=$data['exercise_id'];?>/fields" accept-charset="UTF-8" method="post"><input
-                        name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token"
+                <form action="/exercises/<?=$data['exercise']->getId();?>/fields" accept-charset="UTF-8" method="post">
+                    <input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token"
                         value="dHt1q3fSnM1NXO344vHuHW5LpwOOrGG/GOJhLZJGHDwUrFWhF7KAo4teeRBModaf3x0Jmq9xC34MNjsfALADBg==" />
 
                     <div class="field">
