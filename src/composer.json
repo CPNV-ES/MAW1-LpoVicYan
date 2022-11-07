@@ -1,0 +1,9 @@
+{
+    "autoload": {
+        "files": [
+            "models/.const.php",
+            "models/exercise.php",
+            "models/question.php"
+        ]
+    }
+}

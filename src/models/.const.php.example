@@ -1,0 +1,28 @@
+<?php
+/**
+ *  Title: .const
+ *  Author: YOU
+ *  Version: 1.0 from DATE
+ */
+
+//TODO: Fill the following informations for the database, debug mode and other configurations, and rename the file ".const.php.example" to ".const.php".
+
+function getConnector()
+{
+    //Database informations
+    $dbuser = '....';
+    $dbpass = '....';
+    $dbhost = '....';
+    $dbname = '....';
+
+    /**
+     * We try to connect, if it goes well we return the connection, if not we stop it.
+     */
+    try {
+        $conn = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $dbuser, $dbpass);
+        return $conn;
+    } catch (PDOException $e) {
+        $e->getMessage();
+        die();
+    }
+}
