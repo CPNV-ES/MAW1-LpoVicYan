@@ -68,7 +68,6 @@ class Question
         $question = $stmt->fetchAll()[0];
 
         return new Question( $question['id'], $question['name'], $question['type'], $question['order'], $question['exercise_id'] );
-
     }
 
     public function getExerciseId()
@@ -121,4 +120,3 @@ class Question
     {
         $this->type = $type;
     }
-}

@@ -17,7 +17,7 @@ function dispatch( $bag )
         $bag['view'] = 'views/site/index';
     }
     //-----------------------------------------------------------------------------
-
+    
     elseif ( preg_match( '/^\/exercises\/(\w+)\/fields$/', $bag['route'], $matches ) )
     {
         $bag['post_data'] = [];
@@ -42,7 +42,6 @@ function dispatch( $bag )
         $bag['handler']     = 'controllers/questions/modify';
         $bag['exercise_id'] = $matches[1];
         $bag['question_id'] = $matches[2];
-
     }
 
     //-----------------------------------------------------------------------------

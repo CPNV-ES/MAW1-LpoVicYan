@@ -27,7 +27,7 @@
             <h1>Exercise<br>Looper</h1>
         </section>
     </header>
-
+    
     <div class="container dashboard">
         <section class="row">
             <div class="column">
