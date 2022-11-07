@@ -63,7 +63,7 @@
           <tbody>
             <?php foreach ($data['exercisesAnswering'] as $exercise) : ?>
               <tr>
-                <td><?= $exercise->getTitle() ?></td>
+                <td><?= $exercise->getTitle(); ?></td>
                 <td>
                   <a title="Show results" href="/exercises/<?= $exercise->getId() ?>/fields"><i class="fa fa-chart-bar"></i></a>
                   <a data-confirm="Are you sure to close?" title="Close" rel="nofollow" data-method="put" href="/exercises/<?= $exercise->getId() ?>"><i class="fa fa-minus-circle"></i></a>

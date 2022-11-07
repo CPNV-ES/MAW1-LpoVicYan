@@ -6,17 +6,21 @@
  * Version: 1.0 from 29th September 2022
  */
 
-require_once ".const.php";
+require_once '.const.php';
 
 class Question
 {
-    protected $id;
-    protected $name;
-    protected $type;
-    protected $order;
     protected $exercise_id;
 
-    public function __construct($name, $type, $order, $exercise_id, $id = 0)
+    protected $id;
+
+    protected $name;
+
+    protected $order;
+
+    protected $type;
+
+    public function __construct( $id, $name, $type, $order, $exercise_id )
     {
         $this->id          = $id;
         $this->name        = $name;
@@ -25,73 +29,94 @@ class Question
         $this->exercise_id = $exercise_id;
     }
 
-    public function __get($property)
+    /**
+     * Delete an exercise
+     */
+    function delete()
     {
-
-        if (property_exists($this, $property)) {
-            return $this->$property;
-        }
+        $pdo   = getConnector();
+        $query = 'DELETE FROM questions WHERE id=?';
+        $stmt  = $pdo->prepare( $query );
+        $stmt->execute( [$this->id] );
     }
 
-    public function __set($property, $value)
+    public static function getAll( $exercise_id )
     {
+        // returns an array with all the questions
+        $questionsAsObjects = [];
+        $pdo                = getConnector();
+        $query              = 'SELECT * FROM questions WHERE exercise_id=? ORDER BY `order`';
+        $stmt               = $pdo->prepare( $query );
+        $stmt->execute( [$exercise_id] );
+        $questions = $stmt->fetchAll();
 
-        if (property_exists($this, $property)) {
-            $this->$property = $value;
+        foreach ( $questions as $question )
+        {
+            $questionsAsObject = new Question( $question['id'], $question['name'], $question['type'], $question['order'], $question['exercise_id'] );
+            array_push( $questionsAsObjects, $questionsAsObject );
         }
 
-        return $this;
+        return $questionsAsObjects;
+    }
+
+    public static function getById( $id )
+    {
+        $pdo   = getConnector();
+        $query = 'SELECT * FROM questions WHERE id = ?';
+        $stmt  = $pdo->prepare( $query );
+        $stmt->execute( [$id] );
+        $question = $stmt->fetchAll()[0];
+
+        return new Question( $question['id'], $question['name'], $question['type'], $question['order'], $question['exercise_id'] );
+    }
+
+    public function getExerciseId()
+    {
+        return $this->exercise_id;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getType()
+    {
+        return $this->type;
     }
 
     public function save()
     {
-        // Updates or creates a question depending if it exists or not
-        $res      = getConnector();
-        $question = array('name' => $this->name, 'type' => $this->type, 'order' => $this->order, 'exercise_id' => $this->exercise_id);
+        $pdo   = getConnector();
+        $query = 'SELECT * FROM questions WHERE id = ?';
+        $stmt  = $pdo->prepare( $query );
+        $stmt->execute( [$this->id] );
 
-        if ($this->id === 0) {
-            $query_result = $res->insert('questions', $question);
-            $query_result = $res->lastInsertID();
-            $question     = Question::loadById($query_result);
-            unset($query_result);
-            return $question;
-        } else {
-            $query_result = $res->update('questions', $question, 'WHERE id = ' . $this->id);
+        if ( $stmt->fetch() == null )
+        {
+            $query = 'INSERT INTO questions (`name`, `type`, `order`, `exercise_id`) VALUES (?, ?, ?, ?)';
+            $stmt  = $pdo->prepare( $query );
+            $stmt->execute( [$this->name, $this->type, $this->order, $this->exercise_id] );
+        }
+        else
+        {
+            $query = 'UPDATE questions SET name=?, type=? WHERE id=?';
+            $stmt  = $pdo->prepare( $query );
+            $stmt->execute( [$this->name, $this->type, $this->id] );
         }
     }
 
-    public function delete()
+    public function setName( $name )
     {
-        $res  = getConnector();
-        $data = ['name' => 'id', 'value' => $this->id];
-        $res->delete("questions", $data);
-        unset($res);
+        $this->name = $name;
     }
 
-    public static function loadById($id)
+    public function setType( $type )
     {
-        // loads a question from database using id
-        $res      = getConnector();
-        $question = $res->query("Select * from questions Where id = ?", $id)->fetchArray();
-        $question = new Question($question['name'], $question['type'], $question['order'], $question['exercise_id'], $question['id']);
-        unset($res);
-        return $question;
+        $this->type = $type;
     }
-
-    public static function getAll()
-    {
-        // returns an array with all the questions
-        $res            = getConnector();
-        $questions_list = $res->query("Select * from questions")->fetchAll();
-        unset($res);
-        return $questions_list;
-    }
-
-    public static function deleteById($id)
-    {
-        $res  = getConnector();
-        $data = ['name' => 'id', 'value' => $id];
-        $res->delete("questions", $data);
-        unset($res);
-    }
-}
