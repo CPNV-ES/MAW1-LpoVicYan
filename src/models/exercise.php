@@ -46,7 +46,14 @@ class Exercise
      */
     static function delete( $id )
     {
-        $pdo   = getConnector();
+        $pdo = getConnector();
+
+        // check if current exercise has fields.
+
+        // if true
+
+        // delete all fields
+
         $query = 'DELETE FROM exercises WHERE id=?';
         $stmt  = $pdo->prepare( $query );
         $stmt->execute( [$id] );
