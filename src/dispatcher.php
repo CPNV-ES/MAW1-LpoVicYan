@@ -91,6 +91,14 @@ function dispatch( $bag )
 
     //-----------------------------------------------------------------------------
 
+    elseif ( preg_match('/^\/exercises\/(\d+)\/results$/', $bag['route'], $matches ) )
+    {
+        $bag['handler'] = 'controllers/exercises/results';
+        $bag['view'] = 'views/exercises/results';
+    }
+
+    //-----------------------------------------------------------------------------
+
     else
     {
         $bag['status_code'] = 404;
