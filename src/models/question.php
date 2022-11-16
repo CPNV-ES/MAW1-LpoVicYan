@@ -40,14 +40,6 @@ class Question
         $stmt->execute( [$this->id] );
     }
 
-    static function destroy( $id )
-    {
-        $pdo   = getConnector();
-        $query = 'DELETE FROM questions WHERE id=?';
-        $stmt  = $pdo->prepare( $query );
-        $stmt->execute( [$id] );
-    }
-
     public static function getAll( $exercise_id )
     {
         // returns an array with all the questions
