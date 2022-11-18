@@ -1,7 +1,7 @@
 <header class="heading answering">
   <section class="container">
     <a href="/"><img src="/images/logo.png" /></a>
-    <span class="exercise-label">Exercise: <span class="exercise-title"><?= $data['exercise_name']?></span></span>
+    <span class="exercise-label">Exercise: <span class="exercise-title"><?= $data['exercise_name'] ?></span></span>
   </section>
 </header>
 
@@ -24,22 +24,17 @@
     <form action="/exercises/430/fulfillments" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="7kS02MjD2BIIOO+UfFYnBCxOwqs5/pfa5tha6oR4ffEK5qUwZznqASYGK3AmokGLgofblOWtIBNV3XOWAxujVA==" />
 
       <?php foreach ($data['questions'] as $question) : ?>
-
         <input type="hidden" value="620" name="fulfillment[answers_attributes][][field_id]" id="fulfillment_answers_attributes__field_id" />
         <div class="field">
           <label for="fulfillment_answers_attributes__value"><?= $question->getName(); ?></label>
           <input type="text" name="fulfillment[answers_attributes][][value]" id="fulfillment_answers_attributes__value" />
         </div>
-
       <?php endforeach; ?>
 
       <div class="actions">
-        <input type="submit" name="commit" value="Save" data-disable-with="Save" />
+        <input type="submit" name="commit" value="Save" data-disable-with="Save"/>
       </div>
     </form>
-
   </body>
-
   </html>
-
 </main>

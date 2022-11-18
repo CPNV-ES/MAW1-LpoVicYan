@@ -150,16 +150,14 @@ class Exercise
         $stmt  = $pdo->prepare( $query );
         $stmt->execute( [$this->id] );
 
-        if ( $stmt->fetch() == null )
-        {
+        if ( $stmt->fetch() == null ) {
             $query = 'INSERT INTO exercises (id, title, creation_date, modification_date, status) VALUES (?, ?, ?, ?, ?)';
             $stmt  = $pdo->prepare( $query );
             $stmt->execute( [$this->id, $this->title, $this->creation_date, $this->modification_date, $this->status] );
 
             return $pdo->lastInsertId();
         }
-        else
-        {
+        else {
             $query = 'UPDATE exercises SET title=?, creation_date=?, modification_date=?, status=? WHERE id=?';
             $stmt  = $pdo->prepare( $query );
             $stmt->execute( [$this->title, $this->creation_date, $this->modification_date, $this->status, $this->id] );
