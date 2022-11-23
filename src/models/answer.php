@@ -18,26 +18,6 @@ class Answer
         $this->question_id = $question_id;
     }
 
-    public function __get( $property )
-    {
-
-        if ( property_exists( $this, $property ) )
-        {
-            return $this->$property;
-        }
-    }
-
-    public function __set( $property, $value )
-    {
-
-        if ( property_exists( $this, $property ) )
-        {
-            $this->$property = $value;
-        }
-
-        return $this;
-    }
-
     public function delete()
     {
         $pdo   = getConnector();
@@ -53,15 +33,25 @@ class Answer
         $stmt  = $pdo->prepare( $query );
         $stmt->execute( [$id] );
     }
-
-    public static function getAll()
+    
+    public function save()
     {
-        // returns an array with all the answers
-        $res          = getConnector();
-        $answers_list = $res->query( 'Select * from answers' )->fetchAll();
-        unset( $res );
+        // Updates or creates a answer depending if it exists or not
+        $pdo = getConnector();
+        $query = 'SELECT * FROM exercises WHERE id=?';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$this->id]);
 
-        return $answers_list;
+        if ( $stmt->fetch() == null ) {
+            $query = 'INSERT INTO answer (id, date, answer, question_id) VALUES (?, ?, ?, ?)';
+            $stmt = $pdo->prepare($query);
+            $stmt->execute([$this->id, date("Y-m-d H:i:s"), $this->answer_text, $this->question_id]);
+            return $pdo->lastInsertId();
+        } else {
+            $query = 'UPDATE answer SET date=?, answer=? WHERE id=?';
+            $stmt = $pdo->prepare($query);
+            $stmt->execute([date("Y-m-d H:i:s"), $this->answer_text, $this->id]);
+        }
     }
 
     public static function getAllByQuestionId( $question_id )
@@ -84,34 +74,32 @@ class Answer
 
     public static function loadById( $id )
     {
-        // loads a answer from database using id
-        $res    = getConnector();
-        $answer = $res->query( 'Select * from answers Where id = ?', $id )->fetchArray();
-        $answer = new Answer( $answer['date'], $answer['answer'], $answer['question_id'], $answer['id'] );
-        unset( $res );
+        $pdo = getConnector();
+        $query = 'SELECT * FROM answer WHERE id = ?';
+        $stmt = $pdo->prepare( $query );
+        $stmt->execute( [$id] );
+        $answer = $stmt->fetch();
+        $answerAsObject = new Answer( $answer['id'], $answer['date'], $answer['answer_text'], $answer['question_id']);
 
-        return $answer;
+        return $answerAsObject;
     }
-
-    public function save()
+    
+    public static function getAll()
     {
-        // Updates or creates a answer depending if it exists or not
-        $res    = getConnector();
-        $answer = ['date' => $this->date, 'answer' => $this->answer, 'question_id' => $this->question_id];
+        $answersAsObjects = [];
+        $pdo = getConnector();
+        $query = 'SELECT * FROM answer;';
+        $stmt = $pdo->prepare( $query );
+        $stmt->execute();
+        $answers = $stmt->fetchAll();
 
-        if ( $this->id === 0 )
+        foreach ( $answers as $answer )
         {
-            $query_result = $res->insert( 'answers', $answer );
-            $query_result = $res->lastInsertID();
-            $answer       = Answer::loadById( $query_result );
-            unset( $query_result );
-
-            return $answer;
-        }
-        else
-        {
-            $query_result = $res->update( 'answers', $answer, 'WHERE id = ' . $this->id );
+            $answerAsObject = new Answer($answer['id'], $answer['date'], $answer['answer_text'], $answer['question_id']);
+            array_push( $answersAsObjects, $answerAsObject);
         }
 
+        return $answersAsObjects;
     }
+
 }

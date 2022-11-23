@@ -87,6 +87,7 @@
                 </table>
             </section>
 
+
             <section class="column">
                 <h1>Closed</h1>
                 <table class="records">
