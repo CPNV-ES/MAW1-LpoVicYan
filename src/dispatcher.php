@@ -17,7 +17,7 @@ function dispatch( $bag )
         $bag['view'] = 'views/site/index';
     }
     //-----------------------------------------------------------------------------
-    
+
     elseif ( preg_match( '/^\/exercises\/(\w+)\/fields$/', $bag['route'], $matches ) )
     {
         $bag['post_data'] = [];
@@ -87,6 +87,14 @@ function dispatch( $bag )
     elseif ( preg_match( '/^\/exercises\/answering$/', $bag['route'], $matches ) )
     {
         $bag['handler'] = 'controllers/exercises/take_exercise';
+    }
+
+    //-----------------------------------------------------------------------------
+
+    elseif ( preg_match( '/^\/exercises\/(\d+)\/answering$/', $bag['route'], $matches ) )
+    {
+        $bag['handler']     = 'controllers/exercises/answering';
+        $bag['exercise_id'] = $matches[1];
     }
 
     //-----------------------------------------------------------------------------
