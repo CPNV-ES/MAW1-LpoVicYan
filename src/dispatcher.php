@@ -57,8 +57,16 @@ function dispatch( $bag )
 
     elseif ( preg_match( '/^\/exercises\/(\d+)$/', $bag['route'], $matches ) )
     {
-        $bag['handler'] = 'controllers/exercises/delete_exercise';
-        $bag['id']      = $matches[1];
+        $bag['id'] = $matches[1];
+        if ( $_GET['exercise'] )
+        {
+            $bag['handler'] = 'controllers/exercises/close';
+        }
+        else
+        {
+            $bag['handler'] = 'controllers/exercises/delete_exercise';
+        }
+
     }
     //-----------------------------------------------------------------------------
 
@@ -94,6 +102,14 @@ function dispatch( $bag )
     {
         $bag['post_exercise'] = $_POST['exercise_title'];
         $bag['post_question'] = $_POST['field'];
+
+    elseif ( preg_match( '/^\/exercises\/(\d+)\/answering$/', $bag['route'], $matches ) )
+    {
+        $bag['handler']     = 'controllers/exercises/answering';
+        $bag['exercise_id'] = $matches[1];
+    }
+
+    //-----------------------------------------------------------------------------
 
         if ( $bag['post_exercise'] )
         {
@@ -131,6 +147,7 @@ function dispatch( $bag )
         $bag['view'] = 'views/exercises/results';
     }
     //-----------------------------------------------------------------------------
+    
     else
     {
         $bag['status_code'] = 404;
