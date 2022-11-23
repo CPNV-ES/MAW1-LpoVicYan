@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Title: dispatcher
  * Author: Pascal Hurni
@@ -17,7 +18,7 @@ function dispatch( $bag )
         $bag['view'] = 'views/site/index';
     }
     //-----------------------------------------------------------------------------
-    
+
     elseif ( preg_match( '/^\/exercises\/(\w+)\/fields$/', $bag['route'], $matches ) )
     {
         $bag['post_data'] = [];
@@ -33,7 +34,6 @@ function dispatch( $bag )
             $bag['handler']     = 'controllers/exercises/modify';
             $bag['exercise_id'] = $matches[1];
         }
-
     }
     //-----------------------------------------------------------------------------
 
@@ -90,15 +90,47 @@ function dispatch( $bag )
     }
 
     //-----------------------------------------------------------------------------
+    elseif ( preg_match( '/^\/exercises\/(.+)\/create_questions$/', $bag['route'], $matches ) )
+    {
+        $bag['post_exercise'] = $_POST['exercise_title'];
+        $bag['post_question'] = $_POST['field'];
 
+        if ( $bag['post_exercise'] )
+        {
+            $bag['handler'] = 'controllers/exercises/create_exercises';
+        }
+        elseif ( $bag['post_question'] )
+        {
+            $bag['handler'] = 'controllers/questions/index';
+        }
+        $bag['view'] = 'views/exercises/create_questions';
+    }
+    //-----------------------------------------------------------------------------
+
+    elseif ( preg_match( '/^\/exercises\/(\d+)\/fulfillments\/new$/', $bag['route'], $matches ) )
+    {
+        if ( $_SERVER['REQUEST_METHOD'] === 'POST' )
+        {
+            $bag['handler'] = 'controllers/fulfillments/new';
+        }
+        elseif ( $_SERVER['REQUEST_METHOD'] === 'GET' )
+        {
+            $bag['handler'] = 'controllers/fulfillments/index';
+            $bag['id']      = $matches[1];
+        }
+    }
+    //-----------------------------------------------------------------------------
+    elseif ( preg_match( '/^\/exercises\/(\d+)\/fulfillments\/(\d+)\/edit$/', $bag['route'], $matches ) )
+    {
+        $bag['handler'] = 'controllers/fulfillments/modify';
+    }
+    //-----------------------------------------------------------------------------
     elseif ( preg_match('/^\/exercises\/(\d+)\/results$/', $bag['route'], $matches ) )
     {
         $bag['handler'] = 'controllers/exercises/results';
         $bag['view'] = 'views/exercises/results';
     }
-
     //-----------------------------------------------------------------------------
-
     else
     {
         $bag['status_code'] = 404;

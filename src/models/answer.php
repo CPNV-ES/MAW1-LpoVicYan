@@ -36,54 +36,67 @@ class Answer
     public function save()
     {
         // Updates or creates a answer depending if it exists or not
-        $res = getConnector();
-        $answer = array('date' => $this->date, 'answer' => $this->answer, 'question_id' => $this->question_id);
+        $pdo = getConnector();
+        $query = 'SELECT * FROM exercises WHERE id=?';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$this->id]);
 
-        if ($this->id === 0) {
-            $query_result = $res->insert('answers', $answer);
-            $query_result = $res->lastInsertID();
-            $answer = Answer::loadById($query_result);
-            unset($query_result);
-            return $answer;
+        if ( $stmt->fetch() == null ) {
+            $query = 'INSERT INTO answer (id, date, answer, question_id) VALUES (?, ?, ?, ?)';
+            $stmt = $pdo->prepare($query);
+            $stmt->execute([$this->id, date("Y-m-d H:i:s"), $this->answer_text, $this->question_id]);
+            return $pdo->lastInsertId();
         } else {
-            $query_result = $res->update('answers', $answer, 'WHERE id = ' . $this->id);
+            $query = 'UPDATE answer SET date=?, answer=? WHERE id=?';
+            $stmt = $pdo->prepare($query);
+            $stmt->execute([date("Y-m-d H:i:s"), $this->answer_text, $this->id]);
         }
-
     }
 
     public function delete()
     {
-        $res = getConnector();
-        $data = ['name' => 'id', 'value' => $this->id];
-        $res->delete("answers", $data);
-        unset($res);
+        $pdo = getConnector();
+        $query = 'DELETE FROM answer WHERE id=?';
+        $stmt = $pdo->prepare( $query );
+        $stmt->execute( [$this->id] );
     }
 
     public static function loadById($id)
     {
-        // loads a answer from database using id
-        $res = getConnector();
-        $answer = $res->query("Select * from answers Where id = ?", $id)->fetchArray();
-        $answer = new Answer($answer['date'], $answer['answer'], $answer['question_id'], $answer['id']);
-        unset($res);
-        return $answer;
+        $pdo = getConnector();
+        $query = 'SELECT * FROM answer WHERE id = ?';
+        $stmt = $pdo->prepare( $query );
+        $stmt->execute( [$id] );
+        $answer = $stmt->fetch();
+        $answerAsObject = new Answer( $answer['id'], $answer['date'], $answer['answer_text'], $answer['question_id']);
+
+        return $answerAsObject;
     }
 
     public static function getAll()
     {
-        // returns an array with all the questions
-        $res = getConnector();
-        $answers_list = $res->query("Select * from answers")->fetchAll();
-        unset($res);
-        return $answers_list;
+        $answersAsObjects = [];
+        $pdo = getConnector();
+        $query = 'SELECT * FROM answer;';
+        $stmt = $pdo->prepare( $query );
+        $stmt->execute();
+        $answers = $stmt->fetchAll();
+
+        foreach ( $answers as $answer )
+        {
+            $answerAsObject = new Answer($answer['id'], $answer['date'], $answer['answer_text'], $answer['question_id']);
+            array_push( $answersAsObjects, $answerAsObject);
+        }
+
+        return $answersAsObjects;
     }
 
     public static function deleteById($id)
     {
-        $res = getConnector();
-        $data = ['name' => 'id', 'value' => $id];
-        $res->delete("answers", $data);
-        unset($res);
+        $pdo = getConnector();
+        $query = 'DELETE FROM answer WHERE id=?';
+        $stmt = $pdo->prepare( $query );
+        $stmt->execute( [$id] );
     }
 
 }
