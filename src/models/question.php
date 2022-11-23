@@ -70,6 +70,22 @@ class Question
         return new Question( $question['id'], $question['name'], $question['type'], $question['order'], $question['exercise_id'] );
     }
 
+    public static function getAllById($id)
+    {
+        $pdo   = getConnector();
+        $questionsAsObjects = [];
+        $query = 'SELECT * FROM questions WHERE id = ?';
+        $stmt  = $pdo->prepare( $query );
+        $stmt->execute( [$id] );
+        $questions = $stmt->fetchAll();
+
+        foreach ($questions as $question) {
+            $questionAsObject = new Question( $question['id'], $question['name'], $question['type'], $question['order'], $question['exercise_id'] );
+            array_push($questionsAsObjects, $questionAsObject);
+        }
+        return $questionsAsObjects;
+    }
+
     public function getExerciseId()
     {
         return $this->exercise_id;

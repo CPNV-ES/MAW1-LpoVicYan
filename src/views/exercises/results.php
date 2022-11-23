@@ -22,7 +22,6 @@
   <main class="container">
 
 
-
     <title>ExerciseLooper</title>
     <meta name="csrf-param" content="authenticity_token">
     <meta name="csrf-token" content="BLjkGqGJW8WU1wASHt8IjAJ0JHUiugDVSz/+8DrrF9nluIDI1ZPFqpymow8rvEJM8MeRd0d0tYNQL92/5DuntQ==">
@@ -37,7 +36,15 @@
       <thead>
         <tr>
           <th>Take</th>
-          <th><a href="/exercises/<?= $data['exercise']->getId(); ?>/">la réponse d</a></th>
+          <tbody>
+            <?php
+            foreach ($data['answers'] as $results ): ?>
+            <tr>
+              <td><?=$results->getDate();?></td>
+            </tr>
+            <?php
+            endforeach;?>
+          </tbody>
         </tr>
       </thead>
 
@@ -45,14 +52,6 @@
         <tr>
           <td><a href="/exercises/344/fulfillments/292">2021-09-01 13:30:53 UTC</a></td>
           <td class="answer"><i class="fa fa-check short"></i></td>
-        </tr>
-        <tr>
-          <td><a href="/exercises/344/fulfillments/301">2021-09-05 14:42:31 UTC</a></td>
-          <td class="answer"><i class="fa fa-times empty"></i></td>
-        </tr>
-        <tr>
-          <td><a href="/exercises/344/fulfillments/305">2021-09-08 11:49:36 UTC</a></td>
-          <td class="answer"><i class="fa fa-check-double filled"></i></td>
         </tr>
       </tbody>
     </table>

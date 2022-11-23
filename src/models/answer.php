@@ -15,24 +15,6 @@ class Answer
         $this->question_id = $question_id;
     }
 
-    public function __get($property)
-    {
-
-        if (property_exists($this, $property)) {
-            return $this->$property;
-        }
-    }
-
-    public function __set($property, $value)
-    {
-
-        if (property_exists($this, $property)) {
-            $this->$property = $value;
-        }
-
-        return $this;
-    }
-
     public function save()
     {
         // Updates or creates a answer depending if it exists or not
@@ -41,13 +23,13 @@ class Answer
         $stmt = $pdo->prepare($query);
         $stmt->execute([$this->id]);
 
-        if ( $stmt->fetch() == null ) {
-            $query = 'INSERT INTO answer (id, date, answer, question_id) VALUES (?, ?, ?, ?)';
+        if ($stmt->fetch() == null) {
+            $query = 'INSERT INTO answers (id, date, answer, question_id) VALUES (?, ?, ?, ?)';
             $stmt = $pdo->prepare($query);
             $stmt->execute([$this->id, date("Y-m-d H:i:s"), $this->answer_text, $this->question_id]);
             return $pdo->lastInsertId();
         } else {
-            $query = 'UPDATE answer SET date=?, answer=? WHERE id=?';
+            $query = 'UPDATE answers SET date=?, answer=? WHERE id=?';
             $stmt = $pdo->prepare($query);
             $stmt->execute([date("Y-m-d H:i:s"), $this->answer_text, $this->id]);
         }
@@ -56,36 +38,51 @@ class Answer
     public function delete()
     {
         $pdo = getConnector();
-        $query = 'DELETE FROM answer WHERE id=?';
-        $stmt = $pdo->prepare( $query );
-        $stmt->execute( [$this->id] );
+        $query = 'DELETE FROM answers WHERE id=?';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$this->id]);
     }
 
     public static function loadById($id)
     {
         $pdo = getConnector();
-        $query = 'SELECT * FROM answer WHERE id = ?';
-        $stmt = $pdo->prepare( $query );
-        $stmt->execute( [$id] );
+        $query = 'SELECT * FROM answers WHERE id = ?';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$id]);
         $answer = $stmt->fetch();
-        $answerAsObject = new Answer( $answer['id'], $answer['date'], $answer['answer_text'], $answer['question_id']);
+        $answerAsObject = new Answer($answer['id'], $answer['date'], $answer['answer_text'], $answer['question_id']);
 
         return $answerAsObject;
+    }
+
+    public static function getAllById($id)
+    {
+        $pdo = getConnector();
+        $answersAsObjects = [];
+        $query = 'SELECT * FROM answers WHERE id = ?';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$id]);
+        $answers = $stmt->fetchAll();
+
+        foreach ($answers as $answer) {
+            $answerAsObject = new Answer($answer['id'], $answer['date'], $answer['answer_text'], $answer['question_id']);
+            array_push($answersAsObjects, $answerAsObject);
+        }
+        return $answersAsObjects;
     }
 
     public static function getAll()
     {
         $answersAsObjects = [];
         $pdo = getConnector();
-        $query = 'SELECT * FROM answer;';
-        $stmt = $pdo->prepare( $query );
+        $query = 'SELECT * FROM answers;';
+        $stmt = $pdo->prepare($query);
         $stmt->execute();
         $answers = $stmt->fetchAll();
 
-        foreach ( $answers as $answer )
-        {
-            $answerAsObject = new Answer($answer['id'], $answer['date'], $answer['answer_text'], $answer['question_id']);
-            array_push( $answersAsObjects, $answerAsObject);
+        foreach ($answers as $answer) {
+            $answerAsObject = new Answer($answer['id'], $answer['date'], $answer['answer'], $answer['question_id']);
+            array_push($answersAsObjects, $answerAsObject);
         }
 
         return $answersAsObjects;
@@ -94,9 +91,8 @@ class Answer
     public static function deleteById($id)
     {
         $pdo = getConnector();
-        $query = 'DELETE FROM answer WHERE id=?';
-        $stmt = $pdo->prepare( $query );
-        $stmt->execute( [$id] );
+        $query = 'DELETE FROM answers WHERE id=?';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$id]);
     }
-
 }

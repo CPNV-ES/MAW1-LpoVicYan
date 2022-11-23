@@ -6,10 +6,14 @@
  * Vs : 1.0 from 16.11.2022
  */
 
+$exercise = Exercise::getAnExercise( $bag['id']);
+$question = Question::getAllById( $bag['id']);
 
- $exercise = Exercise::getAnExercise( $bag['exercise_id']);
+//$answers = Answer::getAllById($question->id);
 
-$bag ['data'] = ['exercise' => $exercise, 'questions' => Exercise::getAnExercise( $bag['exercise_id'] ) ];
+$bag ['data'] = ['title' => $exercise->getTitle()];
+//$bag ['data'] = ['answers' => Answer::getAll( $bag['date'] ) ];
+//$bag ['data'] = ['answers' => Answer::getAll( $bag['date'] ) ];
 $bag ['view'] = 'views/exercises/results';
 
 return $bag;
