@@ -57,8 +57,16 @@ function dispatch( $bag )
 
     elseif ( preg_match( '/^\/exercises\/(\d+)$/', $bag['route'], $matches ) )
     {
-        $bag['handler'] = 'controllers/exercises/delete_exercise';
-        $bag['id']      = $matches[1];
+        $bag['id'] = $matches[1];
+        if ( $_GET['exercise'] )
+        {
+            $bag['handler'] = 'controllers/exercises/close';
+        }
+        else
+        {
+            $bag['handler'] = 'controllers/exercises/delete_exercise';
+        }
+
     }
     //-----------------------------------------------------------------------------
 
