@@ -12,5 +12,9 @@
  */
 if ( $bag['handler'] )
 {
+    
+    $answer = new Answer(0, date("Y-m-d H:i:s"), $bag['answer'], $bag['question_id']);
+
+
     $bag['view'] = 'views/fulfillments/index';
 }
