@@ -90,7 +90,6 @@ function dispatch( $bag )
     }
 
     //-----------------------------------------------------------------------------
-
     elseif ( preg_match( '/^\/exercises\/(.+)\/create_questions$/', $bag['route'], $matches ) )
     {
         $bag['post_exercise'] = $_POST['exercise_title'];
@@ -121,14 +120,17 @@ function dispatch( $bag )
         }
     }
     //-----------------------------------------------------------------------------
-
     elseif ( preg_match( '/^\/exercises\/(\d+)\/fulfillments\/(\d+)\/edit$/', $bag['route'], $matches ) )
     {
         $bag['handler'] = 'controllers/fulfillments/modify';
     }
-
     //-----------------------------------------------------------------------------
-
+    elseif ( preg_match('/^\/exercises\/(\d+)\/results$/', $bag['route'], $matches ) )
+    {
+        $bag['handler'] = 'controllers/exercises/results';
+        $bag['view'] = 'views/exercises/results';
+    }
+    //-----------------------------------------------------------------------------
     else
     {
         $bag['status_code'] = 404;
