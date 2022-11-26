@@ -1,11 +1,11 @@
 <?php
-
-    /**
+    /*
+     * Project: MAW1-LpoVicYan
      * Title: index
-     * Author: Luís Pedro Pinheiro
-     * Version: 1.0 from 7th September 2022
+     * Author: LPOdev
+     * Version: 1.0 from the 7th September 2022
      */
-;?>
+?>
 
 <header class="heading results">
     <section class="container">
@@ -38,21 +38,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ( $data['exercisesBuilding'] as $exercise ): ?>
+                        <?php foreach ($data['exercisesBuilding'] as $exercise): ?>
                         <tr>
-                            <td><?=$exercise->getTitle();?></td>
+                            <td><?php echo $exercise->getTitle(); ?></td>
                             <td>
-                                <?php if ( !empty( Question::getAll( $exercise->getId() ) ) )
-                                    {
+                                <?php if (!empty(Question::getAll($exercise->getId()))) {
                                     ?>
                                 <a title="Be ready for answers" rel="nofollow" data-method="put"
-                                    href="/exercises/<?=$exercise->getId();?>/answering"><i
+                                    href="/exercises/<?php echo $exercise->getId(); ?>/answering"><i
                                         class="fa fa-comment"></i></a>
                                 <?php }?>
-                                <a title="Manage fields" href="/exercises/<?=$exercise->getId();?>/fields"><i
+                                <a title="Manage fields" href="/exercises/<?php echo $exercise->getId(); ?>/fields"><i
                                         class="fa fa-edit"></i></a>
                                 <a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete"
-                                    href="/exercises/<?=$exercise->getId();?>"><i class="fa fa-trash"></i></a>
+                                    href="/exercises/<?php echo $exercise->getId(); ?>"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                         <?php endforeach;?>
@@ -70,14 +69,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ( $data['exercisesAnswering'] as $exercise ): ?>
+                        <?php foreach ($data['exercisesAnswering'] as $exercise): ?>
                         <tr>
-                            <td><?=$exercise->getTitle();?></td>
+                            <td><?php echo $exercise->getTitle(); ?></td>
                             <td>
-                                <a title="Show results" href="/exercises/<?=$exercise->getId();?>/fields"><i
+                                <a title="Show results" href="/exercises/<?php echo $exercise->getId(); ?>/fields"><i
                                         class="fa fa-chart-bar"></i></a>
                                 <a title="Close" rel="nofollow" data-method="put"
-                                    href="/exercises/<?=$exercise->getId();?>?exercise[status]=closed"><i
+                                    href="/exercises/<?php echo $exercise->getId(); ?>?exercise[status]=closed"><i
                                         class="fa fa-minus-circle"></i></a>
                             </td>
                             </td>
@@ -98,14 +97,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ( $data['exercisesClosed'] as $exercise ): ?>
+                        <?php foreach ($data['exercisesClosed'] as $exercise): ?>
                         <tr>
-                            <td><?=$exercise->getTitle();?></td>
+                            <td><?php echo $exercise->getTitle(); ?></td>
                             <td>
-                                <a title="Show results" href="/exercises/<?=$exercise->getId();?>/fields"><i
+                                <a title="Show results" href="/exercises/<?php echo $exercise->getId(); ?>/fields"><i
                                         class="fa fa-chart-bar"></i></a>
                                 <a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete"
-                                    href="/exercises/<?=$exercise->getId();?>"><i class="fa fa-trash"></i></a>
+                                    href="/exercises/<?php echo $exercise->getId(); ?>"><i class="fa fa-trash"></i></a>
                             <td>
                             </td>
                         </tr>
