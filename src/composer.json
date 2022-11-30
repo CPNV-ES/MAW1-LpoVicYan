@@ -3,7 +3,9 @@
         "files": [
             "models/.const.php",
             "models/exercise.php",
-            "models/question.php"
+            "models/question.php",
+            "models/answer.php"
+
         ]
     }
 }

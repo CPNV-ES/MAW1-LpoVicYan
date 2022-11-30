@@ -12,8 +12,7 @@
  */
 if ($bag['handler']) {
     $id = $bag['id'];
-    $bag['data']['questions'] = Question::getAll($id);
-    $bag['data']['exercise_name'] = Exercise::getAnExercise($id)->getTitle();
+    $bag['data'] = ['exercise_id' => $id, 'questions' => Question::getAll($id), 'exercise_name' => Exercise::getAnExercise($id)->getTitle()];
     $bag['view'] = 'views/fulfillments/index';
     return $bag;
 }

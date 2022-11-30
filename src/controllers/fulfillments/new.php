@@ -12,9 +12,12 @@
  */
 if ( $bag['handler'] )
 {
-    
-    $answer = new Answer(0, date("Y-m-d H:i:s"), $bag['answer'], $bag['question_id']);
+    var_dump($bag['fulfillments']);
 
-
-    $bag['view'] = 'views/fulfillments/index';
+    foreach ($bag['fulfillments']['answers_attributes'] as $fulfillment)
+    {
+        $answer = new Answer(0 ,date("Y-m-d H:i:s"), $fulfillment['value'], $fulfillment['question_id']);
+        $answer->save();
+    }
+    header( 'Location: /exercises/' . $bag['exercise_id'] . '/fulfillments/' . $answer->getId() . '/edit' );
 }

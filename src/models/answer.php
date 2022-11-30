@@ -19,17 +19,17 @@ class Answer
     {
         // Updates or creates a answer depending if it exists or not
         $pdo = getConnector();
-        $query = 'SELECT * FROM exercises WHERE id=?';
+        $query = 'SELECT * FROM answers WHERE id=?';
         $stmt = $pdo->prepare($query);
         $stmt->execute([$this->id]);
 
         if ($stmt->fetch() == null) {
-            $query = 'INSERT INTO answer (id, date, answer, question_id) VALUES (?, ?, ?, ?)';
+            $query = 'INSERT INTO answers (date, answer, question_id) VALUES (?, ?, ?)';
             $stmt = $pdo->prepare($query);
-            $stmt->execute([$this->id, date("Y-m-d H:i:s"), $this->answer_text, $this->question_id]);
+            $stmt->execute([date("Y-m-d H:i:s"), $this->answer_text, $this->question_id]);
             return $pdo->lastInsertId();
         } else {
-            $query = 'UPDATE answer SET date=?, answer=? WHERE id=?';
+            $query = 'UPDATE answers SET date=?, answer=? WHERE id=?';
             $stmt = $pdo->prepare($query);
             $stmt->execute([date("Y-m-d H:i:s"), $this->answer_text, $this->id]);
         }
@@ -38,7 +38,7 @@ class Answer
     public function delete()
     {
         $pdo = getConnector();
-        $query = 'DELETE FROM answer WHERE id=?';
+        $query = 'DELETE FROM answers WHERE id=?';
         $stmt = $pdo->prepare($query);
         $stmt->execute([$this->id]);
     }
@@ -46,7 +46,7 @@ class Answer
     public static function loadById($id)
     {
         $pdo = getConnector();
-        $query = 'SELECT * FROM answer WHERE id = ?';
+        $query = 'SELECT * FROM answers WHERE id = ?';
         $stmt = $pdo->prepare($query);
         $stmt->execute([$id]);
         $answer = $stmt->fetch();
@@ -59,7 +59,7 @@ class Answer
     {
         $answersAsObjects = [];
         $pdo = getConnector();
-        $query = 'SELECT * FROM answer;';
+        $query = 'SELECT * FROM answers;';
         $stmt = $pdo->prepare($query);
         $stmt->execute();
         $answers = $stmt->fetchAll();
@@ -74,8 +74,13 @@ class Answer
     public static function deleteById($id)
     {
         $pdo = getConnector();
-        $query = 'DELETE FROM answer WHERE id=?';
+        $query = 'DELETE FROM answers WHERE id=?';
         $stmt = $pdo->prepare($query);
         $stmt->execute([$id]);
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 }
