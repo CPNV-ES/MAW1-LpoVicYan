@@ -59,7 +59,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `exerciselooper`.`fulfillments` ;
 
 CREATE TABLE IF NOT EXISTS `exerciselooper`.`fulfillments` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `modification_date` VARCHAR(45) NOT NULL,
   `exercise_id` INT NOT NULL,
   PRIMARY KEY (`id`),
