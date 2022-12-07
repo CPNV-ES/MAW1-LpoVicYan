@@ -23,9 +23,9 @@ DROP TABLE IF EXISTS `exerciselooper`.`exercises` ;
 CREATE TABLE IF NOT EXISTS `exerciselooper`.`exercises` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NULL,
-  `status` VARCHAR(45) NOT NULL,
   `creation_date` DATETIME NOT NULL,
   `modification_date` DATETIME NOT NULL,
+  `status` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `idexercises_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB;
@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS `exerciselooper`.`fulfillments` (
   PRIMARY KEY (`id`),
   INDEX `fk_fulfillments_exercises1_idx` (`exercise_id` ASC) VISIBLE,
   UNIQUE INDEX `modification_date_UNIQUE` (`modification_date` ASC) VISIBLE,
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   CONSTRAINT `fk_fulfillments_exercises1`
     FOREIGN KEY (`exercise_id`)
     REFERENCES `exerciselooper`.`exercises` (`id`)
@@ -80,10 +81,10 @@ DROP TABLE IF EXISTS `exerciselooper`.`answers` ;
 
 CREATE TABLE IF NOT EXISTS `exerciselooper`.`answers` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `modification_date` DATETIME NOT NULL,
   `answer` VARCHAR(255) NOT NULL,
   `question_id` INT NOT NULL,
   `fulfillment_id` INT NOT NULL,
-  `modification_date` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_answers_questions_idx` (`question_id` ASC) VISIBLE,
   UNIQUE INDEX `idanswers_UNIQUE` (`id` ASC) VISIBLE,
