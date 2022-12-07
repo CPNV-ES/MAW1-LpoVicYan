@@ -91,7 +91,7 @@ function dispatch($bag)
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/(\d+)\/fulfillments\/new$/', $bag['route'], $matches)) {
         $bag['handler'] = 'controllers/fulfillments/index';
-        $bag['id'] = $matches[1];
+        $bag['exercise_id'] = $matches[1];
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/(\d+)\/fulfillments$/', $bag['route'], $matches)) {
@@ -102,10 +102,8 @@ function dispatch($bag)
     //-----------------------------------------------------------------------------
 
     elseif (preg_match('/^\/exercises\/(\d+)\/fulfillments\/(\d+)\/edit$/', $bag['route'], $matches)) {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        }
-        $bag['handler'] = 'controllers/fulfillments/modify';
+        $bag['handler'] = 'controllers/fulfillments/index';
+        $bag['exercise_id'] = $matches[1];
     }
 
     //-----------------------------------------------------------------------------

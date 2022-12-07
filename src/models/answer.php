@@ -15,7 +15,7 @@ class Answer
         $this->question_id = $question_id;
     }
 
-    public function save()
+    public function save($fulfimment_id)
     {
         // Updates or creates a answer depending if it exists or not
         $pdo = getConnector();
@@ -24,12 +24,12 @@ class Answer
         $stmt->execute([$this->id]);
 
         if ($stmt->fetch() == null) {
-            $query = 'INSERT INTO answers (date, answer, question_id) VALUES (?, ?, ?)';
+            $query = 'INSERT INTO answers (modification_date, answer, question_id, fulfillment_id) VALUES (?, ?, ?, ?)';
             $stmt = $pdo->prepare($query);
-            $stmt->execute([date("Y-m-d H:i:s"), $this->answer_text, $this->question_id]);
+            $stmt->execute([date("Y-m-d H:i:s"), $this->answer_text, $this->question_id, $fulfimment_id]);
             return $pdo->lastInsertId();
         } else {
-            $query = 'UPDATE answers SET date=?, answer=? WHERE id=?';
+            $query = 'UPDATE answers SET modification_date=?, answer=? WHERE id=?';
             $stmt = $pdo->prepare($query);
             $stmt->execute([date("Y-m-d H:i:s"), $this->answer_text, $this->id]);
         }
@@ -55,13 +55,13 @@ class Answer
         return $answerAsObject;
     }
 
-    public static function getAll()
+    public static function getAll($question_id)
     {
         $answersAsObjects = [];
         $pdo = getConnector();
-        $query = 'SELECT * FROM answers;';
+        $query = 'SELECT * FROM answers where question_id = ?;';
         $stmt = $pdo->prepare($query);
-        $stmt->execute();
+        $stmt->execute([$question_id]);
         $answers = $stmt->fetchAll();
 
         foreach ($answers as $answer) {

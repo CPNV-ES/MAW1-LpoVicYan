@@ -4,12 +4,14 @@ class Fulfillment
 {
 
     protected $id;
-    protected $answer_id;
+    protected $modification_date;
+    protected $exercise_id;
 
-    public function __construct($id, $answer_id)
+    public function __construct($id, $modification_date, $exercise_id)
     {
         $this->id = $id;
-        $this->title = $answer_id;
+        $this->modification_date = $modification_date;
+        $this->exercise_id = $exercise_id;
     }
 
     /**
@@ -22,7 +24,7 @@ class Fulfillment
         $stmt = $pdo->prepare($query);
         $stmt->execute([$id]);
         $fulfillment = $stmt->fetch();
-        $fulfillmentAsObject = new Fulfillment($fulfillment['id'], $fulfillment['answer_id']);
+        $fulfillmentAsObject = new Fulfillment($fulfillment['id'], $fulfillment['modification_date'],$fulfillment['exercise_id']);
         return $fulfillmentAsObject;
     }
 
@@ -37,9 +39,9 @@ class Fulfillment
         $stmt->execute([$this->id]);
 
         if ($stmt->fetch() == null) {
-            $query = 'INSERT INTO fulfillments (answer_id) VALUES (?)';
+            $query = 'INSERT INTO fulfillments (modification_date, exercise_id) VALUES ( ? , ? )';
             $stmt  = $pdo->prepare($query);
-            $stmt->execute([$this->answer_id]);
+            $stmt->execute([$this->modification_date, $this->exercise_id]);
             return $pdo->lastInsertId();
         }
     }
