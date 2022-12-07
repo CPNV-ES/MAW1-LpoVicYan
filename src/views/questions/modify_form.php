@@ -1,16 +1,16 @@
 <?php
-    /**
-     * Project: MAW1-LpoVicYan
-     * Title: modify.php
-     * Author: LPOdev
-     * Version: 1.0 from the 07th 10 2022
-     */
-;?>
+/**
+ * Project: MAW1-LpoVicYan
+ * Title: modify.php
+ * Author: LPOdev
+ * Version: 1.0 from the 07th 10 2022
+ */
+; ?>
 
 <header class="heading managing">
     <section class="container">
         <a href="/"><img src="/images/logo.png" /></a>
-        <span class="exercise-label">Exercise: <a href="/exercises/<?=$data['exercise_id'];?>/fields">test maw
+        <span class="exercise-label">Exercise: <a href="/exercises/<?= $data['exercise_id']; ?>/fields">test maw
                 vyl</a></span>
     </section>
 </header>
@@ -33,34 +33,25 @@
     <body>
         <h1>Editing Field</h1>
 
-        <form action="/exercises/<?=$data['exercise_id'];?>/fields" accept-charset="UTF-8" method="post"><input
+        <form action="/exercises/<?= $data['exercise_id']; ?>/fields" accept-charset="UTF-8" method="post"><input
                 name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="_method" value="patch" /><input
-                type="hidden" name="field[id]" value="<?=$data['question']->getId();?>" />
+                type="hidden" name="field[id]" value="<?= $data['question']->getId(); ?>" />
 
             <div class="field">
                 <label for="field_label">Label</label>
-                <input type="text" value="<?=$data['question']->getName();?>" name="field[name]" id="field_label" />
+                <input type="text" value="<?= $data['question']->getName(); ?>" name="field[name]" id="field_label" />
             </div>
 
             <div class="field">
                 <label for="field_value_kind">Value kind</label>
                 <select name="field[type]" id="field_value_kind">
-
-                    <option <?php if ( $data['question']->getType() == 'single_line' )
-                                {
-                                    echo 'selected';
-                            }
-                            ?> value="single_line">Single line text</option>
-                    <option <?php if ( $data['question']->getType() == 'single_line_list' )
-                                {
-                                    echo 'selected';
-                            }
-                            ?> value="single_line_list">List of single lines</option>
-                    <option <?php if ( $data['question']->getType() == 'multi_line' )
-                                {
-                                    echo 'selected';
-                            }
-                            ?> value="multi_line">Multi-line text</option>
+                    <option <?=($data['question']->getType() == 'single_line') ? 'selected' : ''; ?>
+                        value="single_line">
+                        Single line text</option>
+                    <option <?=($data['question']->getType() == 'single_line_list') ? 'selected' : ''; ?>
+                        value="single_line_list">List of single lines</option>
+                    <option <?=($data['question']->getType() == 'multi_line') ? 'selected' : ''; ?> value="multi_line">
+                        Multi-line text</option>
                 </select>
             </div>
 
