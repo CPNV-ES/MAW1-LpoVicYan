@@ -95,15 +95,18 @@ function dispatch($bag)
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/(\d+)\/fulfillments$/', $bag['route'], $matches)) {
-        $bag['fulfillments'] = $_POST['fulfillment'];
         $bag['handler'] = 'controllers/fulfillments/new';
+        $bag['fulfillments'] = $_POST['fulfillment'];
         $bag['exercise_id'] = $matches[1];
     }
     //-----------------------------------------------------------------------------
 
     elseif (preg_match('/^\/exercises\/(\d+)\/fulfillments\/(\d+)\/edit$/', $bag['route'], $matches)) {
-        $bag['handler'] = 'controllers/fulfillments/index';
         $bag['exercise_id'] = $matches[1];
+        $bag['fulfillment_id'] = $matches[2];
+        $bag['handler'] = 'controllers/fulfillments/edit';
+        $bag['fulfillments'] = $_POST['fulfillment'];
+
     }
 
     //-----------------------------------------------------------------------------
