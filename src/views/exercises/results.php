@@ -38,27 +38,22 @@
           <th>Take</th>
           <tbody>
             <?php
-            foreach ($data['answers'] as $results ): ?>
+            foreach ($data['answers'] as $answer ): ?>
             <tr>
-              <td><?=$results->getDate();?></td>
+              <td><a href="/exercices/<?= $data["exercise"]->getId() ?>/fulfillments/<?= $answer->getId()?>"><?=$answer->getDate();?></a></td>
             </tr>
             <?php
             endforeach;?>
           </tbody>
         </tr>
       </thead>
-
       <tbody>
         <tr>
-          <td><a href="/exercises/344/fulfillments/292">2021-09-01 13:30:53 UTC</a></td>
+          <!--<td><a href="/exercises/344/fulfillments/292">2021-09-01 13:30:53 UTC</a></td> -->
           <td class="answer"><i class="fa fa-check short"></i></td>
         </tr>
       </tbody>
     </table>
-
-
-
-
   </main>
 </body>
 

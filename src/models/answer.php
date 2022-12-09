@@ -65,7 +65,7 @@ class Answer
         $answers = $stmt->fetchAll();
 
         foreach ($answers as $answer) {
-            $answerAsObject = new Answer($answer['id'], $answer['date'], $answer['answer_text'], $answer['question_id']);
+            $answerAsObject = new Answer($answer['id'], $answer['modification_date'], $answer['answer_text'], $answer['question_id']);
             array_push($answersAsObjects, $answerAsObject);
         }
         return $answersAsObjects;
@@ -81,7 +81,7 @@ class Answer
         $answers = $stmt->fetchAll();
 
         foreach ($answers as $answer) {
-            $answerAsObject = new Answer($answer['id'], $answer['date'], $answer['answer'], $answer['question_id']);
+            $answerAsObject = new Answer($answer['id'], $answer['modification_date'], $answer['answer'], $answer['question_id']);
             array_push($answersAsObjects, $answerAsObject);
         }
 
@@ -95,4 +95,9 @@ class Answer
         $stmt = $pdo->prepare($query);
         $stmt->execute([$id]);
     }
+
+    public function getDate() {
+        return $this->date;
+    }
+
 }
