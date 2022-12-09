@@ -64,7 +64,6 @@ CREATE TABLE IF NOT EXISTS `exerciselooper`.`fulfillments` (
   `exercise_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_fulfillments_exercises1_idx` (`exercise_id` ASC) VISIBLE,
-  UNIQUE INDEX `modification_date_UNIQUE` (`modification_date` ASC) VISIBLE,
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   CONSTRAINT `fk_fulfillments_exercises1`
     FOREIGN KEY (`exercise_id`)
