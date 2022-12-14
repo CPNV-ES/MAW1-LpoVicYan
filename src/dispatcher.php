@@ -105,8 +105,6 @@ function dispatch($bag)
         $bag['exercise_id'] = $matches[1];
         $bag['fulfillment_id'] = $matches[2];
         $bag['handler'] = 'controllers/fulfillments/edit';
-        $bag['fulfillments'] = $_POST['fulfillment'];
-
     }
 
     //-----------------------------------------------------------------------------

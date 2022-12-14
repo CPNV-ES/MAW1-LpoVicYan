@@ -27,7 +27,7 @@
         <input type="hidden" value="<?= $question->getId() ?>" name="fulfillment[answers_attributes][<?= $question->getId() ?>][question_id]" id="fulfillment_answers_attributes__field_id" />
         <div class="field">
           <label for="fulfillment_answers_attributes__value"><?= $question->getName(); ?></label>
-          <input type="text" name="fulfillment[answers_attributes][<?= $question->getId() ?>][value]" id="fulfillment_answers_attributes__value" value="<?= $data['answers'][array_search($question->getId(), $data['answers'])]->getAnswerText() ?>" />
+          <input type="text" name="fulfillment[answers_attributes][<?= $question->getId() ?>][value]" id="fulfillment_answers_attributes__value" value="<?= $data['questions_answers'][$question->getId()] ?>" />
         </div>
       <?php endforeach; ?>
 

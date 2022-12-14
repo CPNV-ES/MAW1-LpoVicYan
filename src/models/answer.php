@@ -83,7 +83,7 @@ class Answer
         $answers = $stmt->fetchAll();
 
         foreach ($answers as $answer) {
-            $answerAsObject = new Answer($answer['id'], $answer['modification_date'], $answer['answer_text'], $answer['question_id'], $answer['fulfillment_id']);
+            $answerAsObject = new Answer($answer['id'], $answer['modification_date'], $answer['answer'], $answer['question_id'], $answer['fulfillment_id']);
             array_push($answersAsObjects, $answerAsObject);
         }
         return $answersAsObjects;
@@ -102,6 +102,11 @@ class Answer
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getQuestionId()
+    {
+        return $this->question_id;
     }
 
     public function getAnswerText()
