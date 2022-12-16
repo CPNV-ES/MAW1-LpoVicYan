@@ -104,3 +104,12 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Table `exerciselooper`.`answers`
+-- -----------------------------------------------------
+CREATE TABLE `exerciselooper`.`fulfillments` (
+  `id` INT UNSIGNED NOT NULL,
+  `answer_id` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
