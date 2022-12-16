@@ -28,7 +28,7 @@ class Answer
         $stmt->execute([$this->id]);
     }
 
-    public function save($fulfimment_id)
+    public function save()
     {
         // Updates or creates a answer depending if it exists or not
         $pdo = getConnector();
