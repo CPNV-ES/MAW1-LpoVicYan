@@ -21,11 +21,11 @@ function dispatch($bag)
         $bag['post_data'] = [];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $bag['handler']     = 'controllers/exercises/modify';
+            $bag['handler'] = 'controllers/exercises/modify';
             $bag['exercise_id'] = $matches[1];
-            $bag['post_data']   = [$_POST['field'], 'commit' => $_POST['commit']];
+            $bag['post_data'] = [$_POST['field'], 'commit' => $_POST['commit']];
         } else {
-            $bag['handler']     = 'controllers/exercises/modify';
+            $bag['handler'] = 'controllers/exercises/modify';
             $bag['exercise_id'] = $matches[1];
         }
 
@@ -34,20 +34,20 @@ function dispatch($bag)
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/(\w+)\/fields\/(\w+)\/edit$/', $bag['route'], $matches)) {
-        $bag['handler']     = 'controllers/questions/modify';
+        $bag['handler'] = 'controllers/questions/modify';
         $bag['exercise_id'] = $matches[1];
         $bag['question_id'] = $matches[2];
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/(\w+)\/fields\/(\d+)$/', $bag['route'], $matches)) {
-        $bag['handler']     = 'controllers/questions/delete';
+        $bag['handler'] = 'controllers/questions/delete';
         $bag['exercise_id'] = $matches[1];
         $bag['question_id'] = $matches[2];
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/(\d+)$/', $bag['route'], $matches)) {
         $bag['handler'] = 'controllers/exercises/delete_exercise';
-        $bag['id']      = $matches[1];
+        $bag['id'] = $matches[1];
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises$/', $bag['route'], $matches)) {
@@ -90,15 +90,15 @@ function dispatch($bag)
         $bag['exercise_id'] = $matches[1];
     }
     //-----------------------------------------------------------------------------
-
     elseif (preg_match('/^\/exercises\/(\d+)\/fulfillments\/(\d+)\/edit$/', $bag['route'], $matches)) {
         $bag['post_data'] = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $bag['post_data']   = ['fulfillment' => $_POST['fulfillment'], 'commit' => $_POST['commit']];
+            $bag['post_data'] = ['fulfillment' => $_POST['fulfillment'], 'commit' => $_POST['commit']];
         }
         $bag['exercise_id'] = $matches[1];
         $bag['fulfillment_id'] = $matches[2];
         $bag['handler'] = 'controllers/fulfillments/edit';
+    }
     //----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/(\d+)\/answering$/', $bag['route'], $matches)) {
         $bag['handler'] = 'controllers/exercises/answering';
