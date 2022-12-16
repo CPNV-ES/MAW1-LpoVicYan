@@ -76,7 +76,7 @@
                                 <?= $exercise->getTitle(); ?>
                             </td>
                             <td>
-                                <a title="Show results" href="/exercises/<?= $exercise->getId(); ?>/fields"><i
+                                <a title="Show results" href="/exercises/<?= $exercise->getId(); ?>/results"><i
                                         class="fa fa-chart-bar"></i></a>
                                 <a title="Close" rel="nofollow" data-method="put"
                                     href="/exercises/<?= $exercise->getId(); ?>?exercise[status]=closed"><i
@@ -106,7 +106,7 @@
                                 <?= $exercise->getTitle(); ?>
                             </td>
                             <td>
-                                <a title="Show results" href="/exercises/<?= $exercise->getId(); ?>/fields"><i
+                                <a title="Show results" href="/exercises/<?= $exercise->getId(); ?>/results"><i
                                         class="fa fa-chart-bar"></i></a>
                                 <a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete"
                                     href="/exercises/<?= $exercise->getId(); ?>"><i class="fa fa-trash"></i></a>

@@ -28,6 +28,36 @@ class Fulfillment
         return $fulfillmentAsObject;
     }
 
+    static function getAFulfillmentByExercise($exercise_id)
+    {
+        $pdo = getConnector();
+        $query = 'SELECT * FROM fulfillments WHERE exercise_id = ?';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$exercise_id]);
+        $fulfillment = $stmt->fetch();
+        $fulfillmentAsObject = new Fulfillment($fulfillment['id'], $fulfillment['modification_date'],$fulfillment['exercise_id']);
+        return $fulfillmentAsObject;
+    }
+
+    public static function getAFulfillmentsByExercise( $exercise_id )
+    {
+        // returns an array with all the questions
+        $fulfillmentsAsObjects = [];
+        $pdo                = getConnector();
+        $query              = 'SELECT * FROM fulfillments WHERE exercise_id=?';
+        $stmt               = $pdo->prepare( $query );
+        $stmt->execute( [$exercise_id] );
+        $fulfillments = $stmt->fetchAll();
+
+        foreach ( $fulfillments as $fulfillment )
+        {
+            $fulfillmentsAsObject = new Fulfillment($fulfillment['id'], $fulfillment['modification_date'],$fulfillment['exercise_id']);
+            array_push( $fulfillmentsAsObjects, $fulfillmentsAsObject );
+        }
+
+        return $fulfillmentsAsObjects;
+    }
+
     /**
      * Create a fulfillment
      */
@@ -44,5 +74,15 @@ class Fulfillment
             $stmt->execute([$this->modification_date, $this->exercise_id]);
             return $pdo->lastInsertId();
         }
+    }
+
+    public function getId() 
+    {
+        return $this->id;
+    }
+
+    public function getModificationDate() 
+    {
+        return $this->modification_date;
     }
 }

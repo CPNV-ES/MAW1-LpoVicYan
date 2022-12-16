@@ -8,11 +8,12 @@
  */
 
 $exercise = Exercise::getAnExercise($bag['exercise_id']); //sélectionne l'exercice
-$fulfillment = Fulfillment::getAFulfillment($bag['fulfillment']); //sélectionne le fullfillment 
-$answer = Answer::getAll($bag['answers']); // sélectionne toutes les réponses
+$fulfillments = Fulfillment::getAFulfillmentsByExercise($exercise->getId()); //sélectionne la date du fullfillment 
+//$answer = Answer::getAll($bag['answers']); // sélectionne toutes les réponses
 
-
-$bag['data'] = ['exercise' => $exercise, 'fulfillment' => $fulfillment, 'answer' => $fulfillment];
+if ($bag['handler']) 
+{
+$bag['data'] = ['exercise' => $exercise, 'fulfillments' => $fulfillments, 'answers' => $answers];
 $bag['view'] = 'views/exercises/results';
-
 return $bag;
+}

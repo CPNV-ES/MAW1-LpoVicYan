@@ -108,9 +108,15 @@ function dispatch($bag)
     elseif (preg_match('/^\/exercises\/(\d+)\/results$/', $bag['route'], $matches)) {
         $bag['handler'] = 'controllers/exercises/results';
         $bag['exercise_id'] = $matches[1];
-        $bag['view'] = 'views/exercises/results';
     }
     //-----------------------------------------------------------------------------
+    elseif (preg_match('/^\/exercises\/(\d+)\/fulfillments\/(\d+)\/answers$/', $bag['route'], $matches)) {
+        $bag['handler'] = 'controllers/exercises/answers';
+        $bag['exercise_id'] = $matches[1];
+        $bag['fulfillment_id'] = $matches[2];
+    }
+    //-----------------------------------------------------------------------------
+
     else {
         $bag['status_code'] = 404;
     }
