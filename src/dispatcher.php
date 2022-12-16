@@ -92,6 +92,10 @@ function dispatch($bag)
     //-----------------------------------------------------------------------------
 
     elseif (preg_match('/^\/exercises\/(\d+)\/fulfillments\/(\d+)\/edit$/', $bag['route'], $matches)) {
+        $bag['post_data'] = [];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $bag['post_data']   = ['fulfillment' => $_POST['fulfillment'], 'commit' => $_POST['commit']];
+        }
         $bag['exercise_id'] = $matches[1];
         $bag['fulfillment_id'] = $matches[2];
         $bag['handler'] = 'controllers/fulfillments/edit';

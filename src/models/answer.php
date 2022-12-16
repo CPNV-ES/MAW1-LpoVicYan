@@ -87,7 +87,8 @@ class Answer
         $stmt = $pdo->prepare($query);
         $stmt->execute([$id]);
         $answer = $stmt->fetch();
-        $answerAsObject = new Answer($answer['id'], $answer['modification_date'], $answer['answer_text'], $answer['question_id'], $answer['fulfillment_id']);
+        $answerAsObject = new Answer($answer['id'], $answer['modification_date'], $answer['answer'], $answer['question_id'], $answer['fulfillment_id']);
+
         return $answerAsObject;
     }
 
@@ -144,6 +145,16 @@ class Answer
     public function getAnswerText()
     {
         return $this->answer_text;
+    }
+
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    public function setAnswer($answer)
+    {
+        $this->answer_text = $answer;
     }
 }
 
