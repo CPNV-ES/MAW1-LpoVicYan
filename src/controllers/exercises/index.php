@@ -1,13 +1,12 @@
 <?php
 
-/**
+/*
  * Title: index
- * Author: Luís Pedro Pinheiro
+ * Author: LPOdev
  * Version: 3.0 from 16 September 2022
  */
 
-
-/**
+/*
  * If $bag['handler] is receive
  */
 if ($bag['handler']) {
@@ -18,5 +17,3 @@ if ($bag['handler']) {
     $bag['view'] = 'views/exercises/index';
     return $bag;
 }
-
-

@@ -46,7 +46,29 @@ class Exercise
      */
     static function delete( $id )
     {
-        $pdo   = getConnector();
+        $pdo = getConnector();
+
+        // check if current exercise has fields.
+        $exercise_fields = Question::getAll( $id );
+
+        // if true delete fields and anwers
+        if ( !empty( $exercise_fields ) )
+        {
+            foreach ( $exercise_fields as $field )
+            {
+                $answers = Answer::getAllByQuestionId( $field->getId() );
+                if ( !empty( $exercise_fields ) )
+                {
+                    foreach ( $answers as $answer )
+                    {
+                        $answer->delete();
+                    }
+                }
+
+                $field->delete();
+            }
+        }
+
         $query = 'DELETE FROM exercises WHERE id=?';
         $stmt  = $pdo->prepare( $query );
         $stmt->execute( [$id] );
@@ -57,7 +79,26 @@ class Exercise
      */
     function destroy()
     {
-        $pdo   = getConnector();
+        $pdo = getConnector();
+
+        // check if current exercise has fields.
+        $exercise_fields = Question::getAll( $this->id );
+
+        // if true
+        if ( !empty( $exercise_fields ) )
+        {
+            foreach ( $exercise_fields as $field )
+            {
+                $answers = Answer::getAllByQuestionId( $field->getId() );
+
+                foreach ( $answers as $answer )
+                {
+                    $answer->delete();
+                }
+                $field->delete();
+            }
+        }
+
         $query = 'DELETE FROM exercises WHERE id=?';
         $stmt  = $pdo->prepare( $query );
         $stmt->execute( [$this->id] );
