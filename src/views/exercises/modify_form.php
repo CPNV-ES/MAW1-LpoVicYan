@@ -26,8 +26,7 @@
     <head>
         <title>ExerciseLooper</title>
         <meta name="csrf-param" content="authenticity_token" />
-        <meta name="csrf-token"
-            content="FAx9Ksqj2r9SNlvFVZl6dUJbi/fnCBKWMaqRffoMk5Gwj25zG8CKINhipfvmKjjD2m3RoIWO5mFxhTrJ0qIf9w==" />
+        <meta name="csrf-token" content="FAx9Ksqj2r9SNlvFVZl6dUJbi/fnCBKWMaqRffoMk5Gwj25zG8CKINhipfvmKjjD2m3RoIWO5mFxhTrJ0qIf9w==" />
 
 
         <link rel="stylesheet" media="all" href="/css/stylesheet.css" />
@@ -74,10 +73,12 @@
                 <a data-confirm="Are you sure? You won&#39;t be able to further edit this exercise" class="button"
                     rel="nofollow" data-method="put" href="/exercises/<?= $data['exercise']->getId(); ?>/answering"><i
                         class="fa fa-comment"></i> Complete and be ready for answers</a>
+                <a data-confirm="Are you sure? You won&#39;t be able to further edit this exercise" class="button" rel="nofollow" data-method="put" href="/exercises/789?exercise%5Bstatus%5D=answering"><i class="fa fa-comment"></i> Complete and be ready for answers</a>
 
             </section>
             <section class="column">
                 <h1>New Field</h1>
+                
                 <form action="/exercises/<?= $data['exercise']->getId(); ?>/fields" accept-charset="UTF-8"
                     method="post">
                     <input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token"
