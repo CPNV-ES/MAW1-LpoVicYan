@@ -27,7 +27,7 @@ class Answer
         $stmt = $pdo->prepare($query);
         $stmt->execute([$this->id]);
     }
-    
+
     public function save()
     {
         // Updates or creates a answer depending if it exists or not
@@ -47,7 +47,7 @@ class Answer
             $stmt->execute([date("Y-m-d H:i:s"), $this->answer_text, $this->id]);
         }
     }
-    
+
     public static function loadById($id)
     {
         $pdo = getConnector();
@@ -71,7 +71,8 @@ class Answer
 
         foreach ($answers as $answer) {
             $answerAsObject = new Answer($answer['id'], $answer['modification_date'], $answer['answer'], $answer['question_id'], $answer['fulfillment_id']);
-
+        }
+    }
     public static function getAllById($id)
     {
         $pdo = getConnector();
@@ -82,7 +83,7 @@ class Answer
         $answers = $stmt->fetchAll();
 
         foreach ($answers as $answer) {
-            $answerAsObject = new Answer($answer['id'], $answer['modification_date'], $answer['answer_text'], $answer['question_id']);
+            $answerAsObject = new Answer($answer['id'], $answer['modification_date'], $answer['answer_text'], $answer['question_id'], $answer['fulfillment_id']);
             array_push($answersAsObjects, $answerAsObject);
         }
         return $answersAsObjects;
@@ -116,8 +117,9 @@ class Answer
     {
         return $this->id;
     }
-    
-    public function getDate() {
+
+    public function getDate()
+    {
         return $this->date;
     }
 
