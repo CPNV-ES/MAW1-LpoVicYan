@@ -26,16 +26,22 @@
         <meta name="csrf-token" content="BLjkGqGJW8WU1wASHt8IjAJ0JHUiugDVSz/+8DrrF9nluIDI1ZPFqpymow8rvEJM8MeRd0d0tYNQL92/5DuntQ==">
         <link rel="stylesheet" media="all" href="/css/stylesheet.css">
         <script src="/js/script.js"></script>
-
         <table>
             <thead>
                 <tr>
                     <th>Answers</th>
             </thead>
             <tbody>
-            <?php foreach ($data['answers'] as $answer) : ?>
+            <?php foreach ($data['questions_exercise'] as $question) : ?>
               <tr>
+                <td><?= $question->getName() ?></td>
+                <?php foreach ($question->getAnswers() as $answer): ?>
                 <td><?= $answer->getAnswerText() ?></td>
+                <?php if (str_world_count($answer->getAnswerText()) >10) : ?>
+                <i class="bi bi-check"></i>
+                <?php elseif (str_world_count($answer->getAnswerText()) >10) : ?>
+                <?php endif; ?>
+                <?php endforeach; ?>
               </tr>
             <?php endforeach; ?>
             </tbody>

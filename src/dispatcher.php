@@ -116,6 +116,12 @@ function dispatch($bag)
         $bag['fulfillment_id'] = $matches[2];
     }
     //-----------------------------------------------------------------------------
+    elseif (preg_match('/^\/exercises\/(\d+)\/question\/(\d+)$/', $bag['route'], $matches)) {
+        $bag['handler'] = 'controllers/exercises/answers';
+        $bag['exercise_id'] = $matches[1];
+        $bag['fulfillment_id'] = $matches[2];
+    }
+    //-----------------------------------------------------------------------------
 
     else {
         $bag['status_code'] = 404;
