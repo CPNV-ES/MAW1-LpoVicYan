@@ -1,12 +1,11 @@
 <?php
+
 /**
  * Project: MAW1-LpoVicYan
  * Title: modify.php
  * Author: LPOdev
  * Version: 1.0 from the 07th 10 2022
- */
-
-; ?>
+ */; ?>
 
 
 <header class="heading managing">
@@ -48,41 +47,32 @@
 
                     <tbody>
                         <?php
-                        foreach ($data['questions'] as $field): ?>
-                        <tr>
-                            <td>
-                                <?= $field->getName(); ?>
-                            </td>
-                            <td>
-                                <?= $field->getType(); ?>
-                            </td>
-                            <td>
-                                <a title="Edit"
-                                    href="/exercises/<?= $data['exercise']->getId(); ?>/fields/<?= $field->getId(); ?>/edit"><i
-                                        class="fa fa-edit"></i></a>
-                                <a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete"
-                                    href="/exercises/<?= $data['exercise']->getId(); ?>/fields/<?= $field->getId(); ?>"><i
-                                        class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
+                        foreach ($data['questions'] as $field) : ?>
+                            <tr>
+                                <td>
+                                    <?= $field->getName(); ?>
+                                </td>
+                                <td>
+                                    <?= $field->getType(); ?>
+                                </td>
+                                <td>
+                                    <a title="Edit" href="/exercises/<?= $data['exercise']->getId(); ?>/fields/<?= $field->getId(); ?>/edit"><i class="fa fa-edit"></i></a>
+                                    <a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete" href="/exercises/<?= $data['exercise']->getId(); ?>/fields/<?= $field->getId(); ?>"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
                         <?php
                         endforeach; ?>
                     </tbody>
                 </table>
 
-                <a data-confirm="Are you sure? You won&#39;t be able to further edit this exercise" class="button"
-                    rel="nofollow" data-method="put" href="/exercises/<?= $data['exercise']->getId(); ?>/answering"><i
-                        class="fa fa-comment"></i> Complete and be ready for answers</a>
-                <a data-confirm="Are you sure? You won&#39;t be able to further edit this exercise" class="button" rel="nofollow" data-method="put" href="/exercises/789?exercise%5Bstatus%5D=answering"><i class="fa fa-comment"></i> Complete and be ready for answers</a>
+                <a data-confirm="Are you sure? You won&#39;t be able to further edit this exercise" class="button" rel="nofollow" data-method="put" href="/exercises/<?= $data['exercise']->getId(); ?>/answering"><i class="fa fa-comment"></i> Complete and be ready for answers</a>
 
             </section>
             <section class="column">
                 <h1>New Field</h1>
-                
-                <form action="/exercises/<?= $data['exercise']->getId(); ?>/fields" accept-charset="UTF-8"
-                    method="post">
-                    <input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token"
-                        value="dHt1q3fSnM1NXO344vHuHW5LpwOOrGG/GOJhLZJGHDwUrFWhF7KAo4teeRBModaf3x0Jmq9xC34MNjsfALADBg==" />
+
+                <form action="/exercises/<?= $data['exercise']->getId(); ?>/fields" accept-charset="UTF-8" method="post">
+                    <input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="dHt1q3fSnM1NXO344vHuHW5LpwOOrGG/GOJhLZJGHDwUrFWhF7KAo4teeRBModaf3x0Jmq9xC34MNjsfALADBg==" />
 
                     <div class="field">
                         <label for="field_label">Label</label>
