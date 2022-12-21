@@ -3,11 +3,8 @@
 class Answer
 {
     protected $answer_text;
-
     protected $date;
-
     protected $id;
-
     protected $question_id;
     protected $fulfillment_id;
 
@@ -71,8 +68,11 @@ class Answer
 
         foreach ($answers as $answer) {
             $answerAsObject = new Answer($answer['id'], $answer['modification_date'], $answer['answer'], $answer['question_id'], $answer['fulfillment_id']);
+            array_push($answersAsObjects, $answerAsObject);
         }
+        return $answersAsObjects;
     }
+
     public static function getAllById($id)
     {
         $pdo = getConnector();
@@ -111,6 +111,14 @@ class Answer
         $query = 'DELETE FROM answers WHERE id=?';
         $stmt = $pdo->prepare($query);
         $stmt->execute([$id]);
+    }
+
+    public static function deleteByQuestionId($question_id)
+    {
+        $pdo = getConnector();
+        $query = 'DELETE FROM answers WHERE question_id=?';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$question_id]);
     }
 
     public function getId()

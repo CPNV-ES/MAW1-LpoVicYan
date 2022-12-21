@@ -30,7 +30,7 @@ class Question
     }
 
     /**
-     * Delete an exercise
+     * Delete an exercise by id
      */
     public function delete()
     {
@@ -39,6 +39,7 @@ class Question
         $stmt = $pdo->prepare($query);
         $stmt->execute([$this->id]);
     }
+
 
     public static function getAll($exercise_id)
     {
