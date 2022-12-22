@@ -44,12 +44,7 @@ CREATE TABLE IF NOT EXISTS `exerciselooper`.`questions` (
   `exercise_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `idquestions_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `fk_questions_exercises1_idx` (`exercise_id` ASC) VISIBLE,
-  CONSTRAINT `fk_questions_exercises1`
-    FOREIGN KEY (`exercise_id`)
-    REFERENCES `exerciselooper`.`exercises` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  INDEX `fk_questions_exercises1_idx` (`exercise_id` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -64,12 +59,7 @@ CREATE TABLE IF NOT EXISTS `exerciselooper`.`fulfillments` (
   `exercise_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_fulfillments_exercises1_idx` (`exercise_id` ASC) VISIBLE,
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
-  CONSTRAINT `fk_fulfillments_exercises1`
-    FOREIGN KEY (`exercise_id`)
-    REFERENCES `exerciselooper`.`exercises` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -87,17 +77,7 @@ CREATE TABLE IF NOT EXISTS `exerciselooper`.`answers` (
   PRIMARY KEY (`id`),
   INDEX `fk_answers_questions_idx` (`question_id` ASC) VISIBLE,
   UNIQUE INDEX `idanswers_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `fk_answers_fulfillments1_idx` (`fulfillment_id` ASC) VISIBLE,
-  CONSTRAINT `fk_answers_questions`
-    FOREIGN KEY (`question_id`)
-    REFERENCES `exerciselooper`.`questions` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_answers_fulfillments1`
-    FOREIGN KEY (`fulfillment_id`)
-    REFERENCES `exerciselooper`.`fulfillments` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  INDEX `fk_answers_fulfillments1_idx` (`fulfillment_id` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
