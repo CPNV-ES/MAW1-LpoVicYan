@@ -13,7 +13,7 @@ DROP SCHEMA IF EXISTS `exerciselooper` ;
 -- Schema exerciselooper
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `exerciselooper` DEFAULT CHARACTER SET utf8 ;
-USE `exerciselooper` ;
+USE `exerciselooper`;
 
 -- -----------------------------------------------------
 -- Table `exerciselooper`.`exercises`

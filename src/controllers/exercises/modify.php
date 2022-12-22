@@ -14,7 +14,7 @@ if ($bag['post_data']) {
         $question->setName($data['name']);
         $question->setType($data['type']);
     } else {
-        $question = new Question(0, $data['label'], $data['value_kind'], count(Question::getAll($bag['exercise_id'])) + 1, $bag['exercise_id']);
+        $question = new Question(0, $data['label'], $data['value_kind'], count(Question::getAll($bag['exercise_id'])) + 1, $bag['exercise_id'], null);
     }
     $question->save();
 }
