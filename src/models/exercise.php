@@ -48,24 +48,23 @@ class Exercise
         $pdo = getConnector();
 
         // check if current exercise has fields.
-        $exercise_fields = Question::getAll( $id );
+        $exercise_fields = Question::getAll($id);
 
         // if true delete fields and anwers
-        if ( !empty( $exercise_fields ) )
-        {
-            foreach ( $exercise_fields as $field )
-            {
-                $answers = Answer::getAllByQuestionId( $field->getId() );
-                if ( !empty( $exercise_fields ) )
-                {
-                    foreach ( $answers as $answer )
-                    {
-                        $answer->delete();
-                    }
-                }
+        foreach ($exercise_fields as $field) {
+            $answers = Answer::getAll($field->getId());
 
-                $field->delete();
+            foreach ($answers as $answer) {
+                $answer->delete();
             }
+
+            $field->delete();
+        }
+
+        $fulfillments = Fulfillment::getAllFulfillmentsByExerciseId($id);
+
+        foreach ($fulfillments as $fulfillment) {
+            $fulfillment->delete();
         }
 
         $query = 'DELETE FROM exercises WHERE id=?';
@@ -81,17 +80,14 @@ class Exercise
         $pdo = getConnector();
 
         // check if current exercise has fields.
-        $exercise_fields = Question::getAll( $this->id );
+        $exercise_fields = Question::getAll($this->id);
 
         // if true
-        if ( !empty( $exercise_fields ) )
-        {
-            foreach ( $exercise_fields as $field )
-            {
-                $answers = Answer::getAllByQuestionId( $field->getId() );
+        if (!empty($exercise_fields)) {
+            foreach ($exercise_fields as $field) {
+                $answers = Answer::getAll($field->getId());
 
-                foreach ( $answers as $answer )
-                {
+                foreach ($answers as $answer) {
                     $answer->delete();
                 }
                 $field->delete();
