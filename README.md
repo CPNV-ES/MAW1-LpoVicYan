@@ -17,13 +17,17 @@
 5. Clone the repository
 <pre><code>$ git clone https://github.com/CPNV-ES/MAW1-LpoVicYan.git</code></pre>
 
-5. Go to src/models and copy/paste the .consts.php.example file. Modify your database credentials
-<pre><code>//Database informations 
+6. Go to src/models and copy/paste the .consts.php.example file. Modify your database credentials
+<pre><code>
 $dbuser = '....';
 $dbpass = '....';
 $dbhost = '....';
 $dbname = '....';
 </code></pre>
 
+7. Create the database with the sql file in conception folder -> exerciselooper.sql
+
+8. Start a php server in public
+<pre><code>php -S localhost:1111</code></pre>
 
 
