@@ -83,7 +83,7 @@ class Answer
         $answers = $stmt->fetchAll();
 
         foreach ($answers as $answer) {
-            $answerAsObject = new Answer($answer['id'], $answer['modification_date'], $answer['answer_text'], $answer['question_id'], $answer['fulfillment_id']);
+            $answerAsObject = new Answer($answer['id'], $answer['modification_date'], $answer['answer'], $answer['question_id'], $answer['fulfillment_id']);
             array_push($answersAsObjects, $answerAsObject);
         }
         return $answersAsObjects;
@@ -96,6 +96,22 @@ class Answer
         $query = 'SELECT * FROM answers where fulfillment_id = ?;';
         $stmt = $pdo->prepare($query);
         $stmt->execute([$fulfillment_id]);
+        $answers = $stmt->fetchAll();
+
+        foreach ($answers as $answer) {
+            $answerAsObject = new Answer($answer['id'], $answer['modification_date'], $answer['answer'], $answer['question_id'], $answer['fulfillment_id']);
+            array_push($answersAsObjects, $answerAsObject);
+        }
+        return $answersAsObjects;
+    }
+
+    public static function getAllByQuestion($question_id)
+    {
+        $answersAsObjects = [];
+        $pdo = getConnector();
+        $query = 'SELECT * FROM answers where question_id = ?;';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$question_id]);
         $answers = $stmt->fetchAll();
 
         foreach ($answers as $answer) {
