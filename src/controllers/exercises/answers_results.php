@@ -10,18 +10,19 @@
 $exercise = Exercise::getAnExercise($bag['exercise_id']); //sélectionne l'exercice
 $question = Question::getById($bag['answer_id']); // sélectionnes les question de l'exercice
 $fulfillments = Fulfillment::getAllFulfillmentsByExerciseId($exercise->getId()); //sélectionne la date du fullfillment 
-$answers = []; 
+$answers = [];
 
 foreach ($fulfillments as $fulfillment) {
     $listOfAnswers = Answer::getAllByFulfillment($fulfillment->getId());
     foreach ($listOfAnswers as $answer) {
-        array_push($answers, $answer);
+        if ($answer->getQuestionId() == $bag['answer_id']) {
+            array_push($answers, $answer);
+        }
     }
 }
 
-if ($bag['handler']) 
-{
-$bag['data'] = ['exercise' => $exercise, 'question' => $question, 'fulfillments' => $fulfillments, 'answers' => $answers];
-$bag['view'] = 'views/questions/results';
-return $bag;
+if ($bag['handler']) {
+    $bag['data'] = ['exercise' => $exercise, 'question' => $question, 'fulfillments' => $fulfillments, 'answers' => $answers];
+    $bag['view'] = 'views/questions/results';
+    return $bag;
 }

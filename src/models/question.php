@@ -73,12 +73,12 @@ class Question
         $pdo   = getConnector();
         $questionsAsObjects = [];
         $query = 'SELECT * FROM questions WHERE id = ?';
-        $stmt  = $pdo->prepare( $query );
-        $stmt->execute( [$id] );
+        $stmt  = $pdo->prepare($query);
+        $stmt->execute([$id]);
         $questions = $stmt->fetchAll();
 
         foreach ($questions as $question) {
-            $questionAsObject = new Question( $question['id'], $question['name'], $question['type'], $question['order'], $question['exercise_id'], null);
+            $questionAsObject = new Question($question['id'], $question['name'], $question['type'], $question['order'], $question['exercise_id'], null);
             array_push($questionsAsObjects, $questionAsObject);
         }
         return $questionsAsObjects;
@@ -104,7 +104,7 @@ class Question
         return $this->type;
     }
 
-    public function getAnswers() 
+    public function getAnswers()
     {
         return $this->answers;
     }
