@@ -8,7 +8,7 @@
  */
 if ($bag['handler']) {
     $exercise_id = $bag['exercise_id'];
-    $fulfillment = $bag['fulfillment_id'];
+    $fulfillment_id = $bag['fulfillment_id'];
     $questions = [];
 
 
@@ -17,6 +17,6 @@ if ($bag['handler']) {
         $exercise = Exercise::getAnExercise($exercise_id);
         $questions = Question::getAll($exercise_id);
     }
-    $bag['data'] = ['exercise' => $exercise, 'fulfillment_id' => $fulfillment, 'questions' => $questions];
+    $bag['data'] = ['exercise' => $exercise, 'fulfillment_id' => $fulfillment_id, 'questions' => $questions];
 }
 $bag['view'] = 'views/exercises/answers';

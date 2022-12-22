@@ -24,7 +24,7 @@ class Answer
         $stmt = $pdo->prepare($query);
         $stmt->execute([$this->id]);
     }
-    
+
     public function save()
     {
         // Updates or creates a answer depending if it exists or not
@@ -44,7 +44,7 @@ class Answer
             $stmt->execute([date("Y-m-d H:i:s"), $this->answer_text, $this->id]);
         }
     }
-    
+
     public static function loadById($id)
     {
         $pdo = getConnector();
@@ -133,14 +133,20 @@ class Answer
     {
         return $this->id;
     }
-    
-    public function getDate() {
+
+    public function getDate()
+    {
         return $this->date;
     }
 
     public function getQuestionId()
     {
         return $this->question_id;
+    }
+
+    public function getFulfillmentId()
+    {
+        return $this->fulfillment_id;
     }
 
     public function getAnswerText()

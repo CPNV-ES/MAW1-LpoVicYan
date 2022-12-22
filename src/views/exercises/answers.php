@@ -39,7 +39,7 @@
                     <tr>
                         <td><?= $question->getName() ?></td>
                         <?php foreach ($question->getAnswers() as $answer) : ?>
-                            <?php if ($answer->getQuestionId() == $question->getId()) : ?>
+                            <?php if ($answer->getFulfillmentId() == $data['fulfillment_id']) : ?>
                                 <td><?= $answer->getAnswerText() ?></td>
                                 <td>
                                     <?php if (strlen($answer->getAnswerText()) == 0) : ?>
