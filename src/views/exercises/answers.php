@@ -2,8 +2,8 @@
 
 /**
  * Title : answers
- * Author : Victorien Montavon
- * Vs : 1.0 from 16.12.22
+ * Author : Victorien Montavon & Yann Menoud
+ * Vs : 3.0 from 16.12.22
  */
 ?>
 
@@ -30,20 +30,28 @@
             <thead>
                 <tr>
                     <th>Answers</th>
+                    <th>Value</th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
-            <?php foreach ($data['questions_exercise'] as $question) : ?>
-              <tr>
-                <td><?= $question->getName() ?></td>
-                <?php foreach ($question->getAnswers() as $answer): ?>
-                <td><?= $answer->getAnswerText() ?></td>
-                <?php if (str_world_count($answer->getAnswerText()) >10) : ?>
-                <i class="bi bi-check"></i>
-                <?php elseif (str_world_count($answer->getAnswerText()) >10) : ?>
-                <?php endif; ?>
+                <?php foreach ($data['questions_exercise'] as $question) : ?>
+                    <tr>
+                        <td><?= $question->getName() ?></td>
+                        <?php foreach ($question->getAnswers() as $answer) : ?>
+                            <td><?= $answer->getAnswerText() ?></td>
+                            <td>
+                                <?php if (strlen($answer->getAnswerText()) == 0) : ?>
+                                    <i class="fa fa-times empty"></i>
+                                <?php elseif (strlen($answer->getAnswerText()) < 10) : ?>
+                                    <i class="fa fa-check short"></i>
+                                <?php else : ?>
+                                    <i class="fa fa-check-double filled"></i>
+                                <?php endif; ?>
+                            </td>
+                        <?php endforeach; ?>
+                    </tr>
                 <?php endforeach; ?>
-              </tr>
-            <?php endforeach; ?>
             </tbody>
         </table>
     </main>

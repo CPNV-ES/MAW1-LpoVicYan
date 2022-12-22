@@ -2,8 +2,8 @@
 
 /*
  * Title: question
- * Author: LPOdev
- * Version: 1.0 from 29th September 2022
+ * Author: LPOdev & Yann Menoud
+ * Version: 6.0 from 29th September 2022
  */
 
 require_once '.const.php';
