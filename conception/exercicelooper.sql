@@ -13,7 +13,7 @@ DROP SCHEMA IF EXISTS `exerciselooper` ;
 -- Schema exerciselooper
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `exerciselooper` DEFAULT CHARACTER SET utf8 ;
-USE `exerciselooper` ;
+USE `exerciselooper`;
 
 -- -----------------------------------------------------
 -- Table `exerciselooper`.`exercises`
@@ -92,8 +92,13 @@ CREATE TABLE IF NOT EXISTS `exerciselooper`.`answers` (
     FOREIGN KEY (`question_id`)
     REFERENCES `exerciselooper`.`questions` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-ENGINE = InnoDB;)
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_answers_fulfillments1`
+    FOREIGN KEY (`fulfillment_id`)
+    REFERENCES `exerciselooper`.`fulfillments` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
