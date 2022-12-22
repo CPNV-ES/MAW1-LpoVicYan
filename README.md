@@ -17,5 +17,13 @@
 5. Clone the repository
 <pre><code>$ git clone https://github.com/CPNV-ES/MAW1-LpoVicYan.git</code></pre>
 
+5. Go to src/models and copy/paste the .consts.php.example file. Modify your database credentials
+<pre><code>//Database informations 
+$dbuser = '....';
+$dbpass = '....';
+$dbhost = '....';
+$dbname = '....';
+</code></pre>
+
 
 
