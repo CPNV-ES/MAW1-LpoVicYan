@@ -3,7 +3,7 @@
 /**
  * Project MAW-LPOVicYAn
  * Title : answers
- * Author : Victorien Montavon & Yann Menoud
+ * Author : Victorien Montavon
  * Vs : 3.0 from 16.12.2022
  */
 if ($bag['handler']) {
@@ -17,6 +17,6 @@ if ($bag['handler']) {
         $exercise = Exercise::getAnExercise($exercise_id);
         $questions = Question::getAll($exercise_id);
     }
-    $bag['data'] = ['exercise' => $exercise, 'fulfillment_id' => $fulfillment, 'questions_exercise' => $questions];
+    $bag['data'] = ['exercise' => $exercise, 'fulfillment_id' => $fulfillment, 'questions' => $questions];
 }
 $bag['view'] = 'views/exercises/answers';

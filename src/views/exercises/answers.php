@@ -35,20 +35,22 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($data['questions_exercise'] as $question) : ?>
+                <?php foreach ($data['questions'] as $question) : ?>
                     <tr>
                         <td><?= $question->getName() ?></td>
                         <?php foreach ($question->getAnswers() as $answer) : ?>
-                            <td><?= $answer->getAnswerText() ?></td>
-                            <td>
-                                <?php if (strlen($answer->getAnswerText()) == 0) : ?>
-                                    <i class="fa fa-times empty"></i>
-                                <?php elseif (strlen($answer->getAnswerText()) < 10) : ?>
-                                    <i class="fa fa-check short"></i>
-                                <?php else : ?>
-                                    <i class="fa fa-check-double filled"></i>
-                                <?php endif; ?>
-                            </td>
+                            <?php if ($answer->getQuestionId() == $question->getId()) : ?>
+                                <td><?= $answer->getAnswerText() ?></td>
+                                <td>
+                                    <?php if (strlen($answer->getAnswerText()) == 0) : ?>
+                                        <i class="fa fa-times empty"></i>
+                                    <?php elseif (strlen($answer->getAnswerText()) < 10) : ?>
+                                        <i class="fa fa-check short"></i>
+                                    <?php else : ?>
+                                        <i class="fa fa-check-double filled"></i>
+                                    <?php endif; ?>
+                                </td>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </tr>
                 <?php endforeach; ?>
