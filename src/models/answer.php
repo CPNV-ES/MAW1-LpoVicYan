@@ -24,7 +24,7 @@ class Answer
         $stmt = $pdo->prepare($query);
         $stmt->execute([$this->id]);
     }
-
+    
     public function save()
     {
         // Updates or creates a answer depending if it exists or not
@@ -44,7 +44,7 @@ class Answer
             $stmt->execute([date("Y-m-d H:i:s"), $this->answer_text, $this->id]);
         }
     }
-
+    
     public static function loadById($id)
     {
         $pdo = getConnector();
@@ -129,21 +129,12 @@ class Answer
         $stmt->execute([$id]);
     }
 
-    public static function deleteByQuestionId($question_id)
-    {
-        $pdo = getConnector();
-        $query = 'DELETE FROM answers WHERE question_id=?';
-        $stmt = $pdo->prepare($query);
-        $stmt->execute([$question_id]);
-    }
-
     public function getId()
     {
         return $this->id;
     }
-
-    public function getDate()
-    {
+    
+    public function getDate() {
         return $this->date;
     }
 

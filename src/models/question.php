@@ -49,7 +49,6 @@ class Question
         $stmt->execute([$exercise_id]);
         $questions = $stmt->fetchAll();
 
-
         foreach ($questions as $question) {
             $answers = Answer::getAllByQuestion($question['id']);
             $questionsAsObject = new Question($question['id'], $question['name'], $question['type'], $question['order'], $question['exercise_id'], $answers);
@@ -66,7 +65,6 @@ class Question
         $stmt->execute([$id]);
         $question = $stmt->fetchAll()[0];
         $answers = Answer::getAllByQuestion($id);
-
         return new Question($question['id'], $question['name'], $question['type'], $question['order'], $question['exercise_id'], $answers);
     }
 
@@ -80,7 +78,7 @@ class Question
         $questions = $stmt->fetchAll();
 
         foreach ($questions as $question) {
-            $questionAsObject = new Question( $question['id'], $question['name'], $question['type'], $question['order'], $question['exercise_id'] );
+            $questionAsObject = new Question( $question['id'], $question['name'], $question['type'], $question['order'], $question['exercise_id'], null);
             array_push($questionsAsObjects, $questionAsObject);
         }
         return $questionsAsObjects;

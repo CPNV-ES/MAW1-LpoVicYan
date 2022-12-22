@@ -121,9 +121,9 @@ function dispatch($bag)
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/(\d+)\/question\/(\d+)$/', $bag['route'], $matches)) {
-        $bag['handler'] = 'controllers/exercises/answers';
+        $bag['handler'] = 'controllers/exercises/answers_results';
         $bag['exercise_id'] = $matches[1];
-        $bag['fulfillment_id'] = $matches[2];
+        $bag['answer_id'] = $matches[2];
     }
     //-----------------------------------------------------------------------------
 
