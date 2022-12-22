@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `exerciselooper`.`answers` (
     REFERENCES `exerciselooper`.`questions` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-ENGINE = InnoDB;
+ENGINE = InnoDB;)
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
