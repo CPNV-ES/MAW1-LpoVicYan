@@ -1,9 +1,11 @@
 {
-    "autoload": {
-        "files": [
-            "models/.const.php",
-            "models/exercise.php",
-            "models/question.php"
-        ]
-    }
+  "autoload": {
+    "files": [
+      "models/.const.php",
+      "models/exercise.php",
+      "models/question.php",
+      "models/answer.php",
+      "models/fulfillment.php"
+    ]
+  }
 }

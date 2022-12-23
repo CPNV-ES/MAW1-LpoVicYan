@@ -6,7 +6,7 @@
  * Version: 3.0 from 16th September 2022
  */
 
-define( 'USERS_DATA_PATHNAME', BASE_DIR . '/data/exercises.json' );
+define('USERS_DATA_PATHNAME', BASE_DIR . '/data/exercises.json');
 
 /**
  * Contructor of Exercise
@@ -32,8 +32,7 @@ class Exercise
         $creation_date,
         $modification_date,
         $status
-    )
-    {
+    ) {
         $this->id                = $id;
         $this->title             = $title;
         $this->creation_date     = $creation_date;
@@ -44,12 +43,33 @@ class Exercise
     /**
      * Delete an exercise
      */
-    static function delete( $id )
+    static function delete($id)
     {
-        $pdo   = getConnector();
+        $pdo = getConnector();
+
+        // check if current exercise has fields.
+        $exercise_fields = Question::getAll($id);
+
+        // if true delete fields and anwers
+        foreach ($exercise_fields as $field) {
+            $answers = Answer::getAll($field->getId());
+
+            foreach ($answers as $answer) {
+                $answer->delete();
+            }
+
+            $field->delete();
+        }
+
+        $fulfillments = Fulfillment::getAllFulfillmentsByExerciseId($id);
+
+        foreach ($fulfillments as $fulfillment) {
+            $fulfillment->delete();
+        }
+
         $query = 'DELETE FROM exercises WHERE id=?';
-        $stmt  = $pdo->prepare( $query );
-        $stmt->execute( [$id] );
+        $stmt  = $pdo->prepare($query);
+        $stmt->execute([$id]);
     }
 
     /**
@@ -57,45 +77,59 @@ class Exercise
      */
     function destroy()
     {
-        $pdo   = getConnector();
+        $pdo = getConnector();
+
+        // check if current exercise has fields.
+        $exercise_fields = Question::getAll($this->id);
+
+        // if true
+        if (!empty($exercise_fields)) {
+            foreach ($exercise_fields as $field) {
+                $answers = Answer::getAll($field->getId());
+
+                foreach ($answers as $answer) {
+                    $answer->delete();
+                }
+                $field->delete();
+            }
+        }
+
         $query = 'DELETE FROM exercises WHERE id=?';
-        $stmt  = $pdo->prepare( $query );
-        $stmt->execute( [$this->id] );
+        $stmt  = $pdo->prepare($query);
+        $stmt->execute([$this->id]);
     }
 
     /**
      * Get all exercises of a status
      */
-    static function getAllExercises( $status )
+    static function getAllExercises($status)
     {
         $exercisesAsObjects = [];
         $pdo                = getConnector();
         $query              = 'SELECT * FROM exercises WHERE status=?';
-        $stmt               = $pdo->prepare( $query );
-        $stmt->execute( [$status] );
+        $stmt               = $pdo->prepare($query);
+        $stmt->execute([$status]);
         $exercises = $stmt->fetchAll();
 
-        foreach ( $exercises as $exercise )
-        {
-            $exerciseAsObject = new Exercise( $exercise['id'], $exercise['title'], $exercise['creation_date'], $exercise['modification_date'], $exercise['status'] );
-            array_push( $exercisesAsObjects, $exerciseAsObject );
+        foreach ($exercises as $exercise) {
+            $exerciseAsObject = new Exercise($exercise['id'], $exercise['title'], $exercise['creation_date'], $exercise['modification_date'], $exercise['status']);
+            array_push($exercisesAsObjects, $exerciseAsObject);
         }
 
         return $exercisesAsObjects;
-
     }
 
     /**
      * Get an exercise
      */
-    static function getAnExercise( $id )
+    static function getAnExercise($id)
     {
         $pdo   = getConnector();
         $query = 'SELECT * FROM exercises WHERE id = ?';
-        $stmt  = $pdo->prepare( $query );
-        $stmt->execute( [$id] );
+        $stmt  = $pdo->prepare($query);
+        $stmt->execute([$id]);
         $exercise         = $stmt->fetch();
-        $exerciseAsObject = new Exercise( $exercise['id'], $exercise['title'], $exercise['creation_date'], $exercise['modification_date'], $exercise['status'] );
+        $exerciseAsObject = new Exercise($exercise['id'], $exercise['title'], $exercise['creation_date'], $exercise['modification_date'], $exercise['status']);
 
         return $exerciseAsObject;
     }
@@ -147,29 +181,26 @@ class Exercise
     {
         $pdo   = getConnector();
         $query = 'SELECT * FROM exercises WHERE id = ?';
-        $stmt  = $pdo->prepare( $query );
-        $stmt->execute( [$this->id] );
+        $stmt  = $pdo->prepare($query);
+        $stmt->execute([$this->id]);
 
-        if ( $stmt->fetch() == null )
-        {
+        if ($stmt->fetch() == null) {
             $query = 'INSERT INTO exercises (id, title, creation_date, modification_date, status) VALUES (?, ?, ?, ?, ?)';
-            $stmt  = $pdo->prepare( $query );
-            $stmt->execute( [$this->id, $this->title, $this->creation_date, $this->modification_date, $this->status] );
+            $stmt  = $pdo->prepare($query);
+            $stmt->execute([$this->id, $this->title, date("Y-m-d H:i:s"), date("Y-m-d H:i:s"), $this->status]);
 
             return $pdo->lastInsertId();
-        }
-        else
-        {
+        } else {
             $query = 'UPDATE exercises SET title=?, creation_date=?, modification_date=?, status=? WHERE id=?';
-            $stmt  = $pdo->prepare( $query );
-            $stmt->execute( [$this->title, $this->creation_date, $this->modification_date, $this->status, $this->id] );
+            $stmt  = $pdo->prepare($query);
+            $stmt->execute([$this->title, $this->creation_date, date("Y-m-d H:i:s"), $this->status, $this->id]);
         }
     }
 
     /**
      * Set modification date of exercise
      */
-    public function setModificationDate( $newModificationDAte )
+    public function setModificationDate($newModificationDAte)
     {
         $this->modification_date = $newModificationDAte;
     }
@@ -177,7 +208,7 @@ class Exercise
     /**
      * Set status of exercise
      */
-    public function setStatus( $newStatus )
+    public function setStatus($newStatus)
     {
         $this->status = $newStatus;
     }
@@ -185,7 +216,7 @@ class Exercise
     /**
      * Set Title of exercise
      */
-    public function setTitle( $newTitle )
+    public function setTitle($newTitle)
     {
         $this->title = $newTitle;
     }
